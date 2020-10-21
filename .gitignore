@@ -1,0 +1,6 @@
+*.user
+*.aps
+/**/Temp/
+/**/media/Shaders/
+/**/.vs/
+/**/GameSources/.filters
