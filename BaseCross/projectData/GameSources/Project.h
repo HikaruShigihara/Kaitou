@@ -13,5 +13,7 @@
 #include "Character.h"
 #include "Player.h"
 
-
+#include "ResultStage.h"
+#include "TitleStage.h"
+#include "StageSelect.h"
 
