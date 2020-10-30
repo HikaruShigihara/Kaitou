@@ -62,7 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Blockswitch.cs" />
     <Compile Include="Assets\Scripts\CameraMove.cs" />
     <Compile Include="Assets\Scripts\CountOperator.cs" />
     <Compile Include="Assets\Scripts\Goal_Scenemove.cs" />
@@ -71,6 +70,10 @@
     <Compile Include="Assets\Scripts\State_SwitchManage.cs" />
     <Compile Include="Assets\Scripts\_Switch_clision.cs" />
     <Compile Include="Assets\Scripts\kaiten.cs" />
+    <Compile Include="Assets\Scripts\x_180.cs" />
+    <Compile Include="Assets\Scripts\x_90.cs" />
+    <Compile Include="Assets\Scripts\y_90.cs" />
+    <Compile Include="Assets\Scripts\z_90.cs" />
     <Compile Include="Assets\UnityTile3D-master\Tile3D\Tile3D.cs" />
     <Compile Include="Assets\UnityTile3D-master\Tile3D\Vector3Ext.cs" />
     <Reference Include="UnityEngine">

@@ -204,12 +204,12 @@ public class kaiten : MonoBehaviour
         //    zeromax_Z = true;
         //    KeyOperation();
         //}
-        if (rotatoOira.z >= 90.0f && Flag != 10 && Flag != 20 && Flag != 30)
+        if (rotatoOira.z >= 90.0f && Flag != 10 && Flag != 20 && Flag != 30 && Flag != 40)
         {
             Flag = 1;
             move = true;
         }
-        else if (rotatoOira.z >= 180.0f && Flag != 20 && Flag != 30)
+        else if (rotatoOira.z >= 180.0f && Flag != 20 && Flag != 30 && Flag != 40)
         {
             Flag = 2;
             move = false;
@@ -261,6 +261,7 @@ public class kaiten : MonoBehaviour
                 A = false;
                 Flag = 50;
                 break;
+
             default:
                 KeyOperation();
                 break;

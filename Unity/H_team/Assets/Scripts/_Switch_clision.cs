@@ -7,7 +7,7 @@ public class _Switch_clision : MonoBehaviour
 
     // 自身の保持ナンバー
     [SerializeField]
-    private uint myNumber ;
+    private uint myNumber;
 
 
     // 親に通知のため
