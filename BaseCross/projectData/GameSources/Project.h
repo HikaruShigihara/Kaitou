@@ -12,6 +12,9 @@
 #include "GameStage.h"
 #include "Character.h"
 #include "Player.h"
+#include "MyUI.h"
+#include "EditStage.h"
+
 
 #include "ResultStage.h"
 #include "TitleStage.h"

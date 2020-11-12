@@ -9,32 +9,62 @@
 
 namespace basecross{
 
+	void Scene::CreateResourses() {
+		wstring dataDir;
+		//mediaディレクトリ取得用
+		App::GetApp()->GetAssetsDirectory(dataDir);
+
+		wstring mediaDir;
+		App::GetApp()->GetDataDirectory(mediaDir);
+
+		FindFile(dataDir);
+		FindFile(mediaDir + L"Texters/");
+		FindFile(mediaDir + L"Sound/SE/");
+		FindFile(mediaDir + L"Sound/BGM/");
+	}
+
+	void Scene::FindFile(wstring dir) {
+
+	}
+
 	//--------------------------------------------------------------------------------------
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
 	void Scene::OnCreate(){
 		try {
-			//クリアする色を設定
-			Col4 Col;
-			Col.set(31.0f / 255.0f, 30.0f / 255.0f, 71.0f / 255.0f, 255.0f / 255.0f);
-			SetClearColor(Col);
-			//自分自身にイベントを送る
-			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
+			//リソース作成
+			CreateResourses();
+
+			//変更でシーン遷移
+			SetGameStage(GameStageKey::title);
+
 		}
 		catch (...) {
 			throw;
 		}
 	}
 
-	Scene::~Scene() {
-	}
+	//Scene::~Scene() {
+	//}
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
-		if (event->m_MsgStr == L"ToGameStage") {
-			//最初のアクティブステージの設定
+
+		switch (m_gameStageKey)
+		{
+		case GameStageKey::title:
+			ResetActiveStage<TitleStage>();
+			break;
+		case GameStageKey::stageSelect:
+			ResetActiveStage<StageSelect>();
+			break;
+		case GameStageKey::game:
 			ResetActiveStage<GameStage>();
+			break;
+		case GameStageKey::result:
+			ResetActiveStage<ResultStage>();
+			break;
 		}
+
 	}
 
 }
