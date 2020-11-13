@@ -3,8 +3,6 @@
 
 namespace basecross {
 
-
-
 	class EditStage : public GameObject {
 
 	};

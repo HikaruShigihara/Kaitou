@@ -29,4 +29,8 @@ namespace basecross {
 		SetAlphaActive(true);
 
 	}
+
+	void Title_UI::OnCreate() {
+		Draw();
+	}
 }

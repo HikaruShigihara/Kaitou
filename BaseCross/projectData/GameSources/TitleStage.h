@@ -13,8 +13,13 @@ namespace basecross {
 
 		void CreateViewLight();
 
+		wstring m_title;
+
+		void CreateUI();
+
 	public:
 		TitleStage() : Stage(),
+			m_title(L"blue.png"),
 			m_bgm(NULL)
 
 
