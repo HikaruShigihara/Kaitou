@@ -34,10 +34,25 @@ namespace basecross {
 
 	}
 
+	void TitleStage::CreateStage() {
+		AddGameObject<FixedBox>(
+			Vec3(10.0f, 1.0f, 10.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+			);
+	}
+
+	void TitleStage::CreatePlayer() {
+		AddGameObject<Player>();
+
+	}
+	
 	void TitleStage::OnCreate() {
 		try {
 			CreateViewLight();
-			CreateUI();
+			//CreateUI();
+			CreateStage();
+			CreatePlayer();
 			//ƒV[ƒ“‘JˆÚ‚ÌŽd•û(OnUpdate‚É)
 			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
 
