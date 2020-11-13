@@ -26,7 +26,7 @@ namespace basecross {
 		AddGameObject<Title_UI>(
 			Vec2(500.0f, 500.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(1.0f),
+			Vec3(2.0f),
 			1,
 			Col4(1.0f),
 			m_title
