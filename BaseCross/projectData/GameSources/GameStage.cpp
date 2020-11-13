@@ -25,9 +25,6 @@ namespace basecross {
 		//デフォルトのライティングを指定
 		PtrMultiLight->SetDefaultLighting();
 	}
-
-
-
 	void GameStage::OnCreate() {
 		try {
 			//ビューとライトの作成

@@ -21,8 +21,6 @@ namespace basecross {
 		TitleStage() : Stage(),
 			m_title(L"blue.png"),
 			m_bgm(NULL)
-
-
 		{}
 		
 		virtual ~TitleStage() {}

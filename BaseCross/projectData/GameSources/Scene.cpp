@@ -19,10 +19,8 @@ namespace basecross{
 
 		FindFile(dataDir);
 		FindFile(mediaDir + L"Textures/");
-		//FindFile(mediaDir + L"Sound/SE/");
-		//FindFile(mediaDir + L"Sound/BGM/");
-		//FindFile(mediaDir + L"Sound/BGM/");
-		
+
+
 	}
 
 	void Scene::FindFile(wstring dir) {
@@ -86,7 +84,7 @@ namespace basecross{
 			CreateResourses();
 
 			//•ÏX‚ÅƒV[ƒ“‘JˆÚ
-			SetGameStage(GameStageKey::title);
+			SetGameStage(GameStageKey::game);
 
 		}
 		catch (...) {

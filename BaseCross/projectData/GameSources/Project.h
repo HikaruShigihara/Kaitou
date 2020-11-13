@@ -14,6 +14,7 @@
 #include "Player.h"
 #include "MyUI.h"
 #include "EditStage.h"
+#include "Object.h"
 
 
 #include "ResultStage.h"
