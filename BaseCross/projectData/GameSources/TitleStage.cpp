@@ -25,6 +25,10 @@ namespace basecross {
 	void TitleStage::OnCreate() {
 		try {
 			CreateViewLight();
+
+			//ƒV[ƒ“‘JˆÚ‚ÌŽd•û(OnUpdate‚É)
+			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
+
 		}
 		catch (...) {
 			throw;

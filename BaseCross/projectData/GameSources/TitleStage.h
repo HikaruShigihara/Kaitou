@@ -43,10 +43,6 @@ namespace basecross {
 			bgm->Stop(m_bgm);
 		}
 
-		//ƒV[ƒ“‘JˆÚ‚ÌŽd•û
-		//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
-
-
 	};
 
 }
