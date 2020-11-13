@@ -8,6 +8,11 @@
 
 namespace basecross{
 
+	void Player::OnCreate() {
+
+
+	}
+
 }
 //end basecross
 
