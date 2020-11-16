@@ -36,7 +36,7 @@ namespace basecross {
 
 	void TitleStage::CreateStage() {
 		AddGameObject<FixedBox>(
-			Vec3(10.0f, 1.0f, 10.0f),
+			Vec3(0.25f, 0.25f, 0.25f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f)
 			);

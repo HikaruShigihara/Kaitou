@@ -91,19 +91,19 @@ namespace basecross{
 
 		if (KeyState.m_bPressedKeyTbl['W']) {
 			//ëO
-			fThumbLY = 1.0f;
+			fThumbLY = 2.0f;
 		}
 		else if (KeyState.m_bPressedKeyTbl['S']) {
 			//å„ÇÎ
-			fThumbLY = -1.0f;
+			fThumbLY = -2.0f;
 		}
 		if (KeyState.m_bPressedKeyTbl['D']) {
 			//âE
-			fThumbLX = 1.0f;
+			fThumbLX = 2.0f;
 		}
 		else if (KeyState.m_bPressedKeyTbl['A']) {
 			//ç∂
-			fThumbLX = -1.0f;
+			fThumbLX = -2.0f;
 		}
 
 		auto ptrTransform = GetComponent<Transform>();
@@ -135,6 +135,11 @@ namespace basecross{
 		return angle;
 	}
 
+	void Player::Respawn() {
+		auto ptrTrans = GetComponent<Transform>();
+		ptrTrans->SetPosition(m_Position);
+	}
+
 	void Player::PlayerMove() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto angle = GetPlayerMoveVec();
@@ -153,10 +158,23 @@ namespace basecross{
 	}
 
 	void Player::OnUpdate() {
+		auto pos = GetComponent<Transform>()->GetPosition();
+
+		if (pos.y <= -5.0f) {
+			Respawn();
+		}
 		PlayerMove();
 	}
 
 	void Player::OnUpdate2() {
+		//auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		//auto trans = GetComponent<Transform>();
+		//auto pos = trans->GetPosition();
+
+		//if (KeyState.m_bPushKeyTbl['W']) {
+		//	trans->SetPosition(Vec3(0.0f, 0.0f, 2.0f));
+		//}
+
 		auto PtrPs = GetComponent<RigidbodySphere>();
 		auto Ptr = GetComponent<Transform>();
 		Ptr->SetPosition(PtrPs->GetPosition());

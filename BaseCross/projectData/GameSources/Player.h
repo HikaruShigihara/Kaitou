@@ -11,10 +11,11 @@ namespace basecross{
 		Vec3 m_Scale;
 		Vec3 m_Rotation;
 		Vec3 m_Position;
-
+		//Vec3 m_Respawn = Vec3(0.0f, 3.0f, 0.0f);
 		Vec3 GetPlayerMoveVec() const;
 		
 		void PlayerMove();
+		void Respawn();
 	public:
 		Player(
 			const shared_ptr<Stage>& StagePtr,
