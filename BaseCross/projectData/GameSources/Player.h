@@ -8,9 +8,24 @@
 
 namespace basecross{
 	class Player : public GameObject {
+		Vec3 m_Scale;
+		Vec3 m_Rotation;
+		Vec3 m_Position;
+
+		Vec3 GetPlayerMoveVec() const;
+		
+		void PlayerMove();
 	public:
-		Player(const shared_ptr<Stage>& StagePtr) :
-			GameObject(StagePtr)
+		Player(
+			const shared_ptr<Stage>& StagePtr,
+			Vec3& scale,
+			Vec3& rotation,
+			Vec3& position
+			) :
+			GameObject(StagePtr),
+			m_Scale(scale),
+			m_Rotation(rotation),
+			m_Position(position)
 		{}
 
 		virtual ~Player() {}
@@ -18,8 +33,8 @@ namespace basecross{
 		//èâä˙âª
 		virtual void OnCreate() override;
 		//çXêV
-		//virtual void OnUpdate() override;
-		//virtual void OnUpdate2() override;
+		virtual void OnUpdate() override;
+		virtual void OnUpdate2() override;
 
 
 	};

@@ -10,9 +10,12 @@ namespace basecross {
 	class StageSelect : public Stage {
 
 		void CreateViewLight();
+		void CreateUI();
 
+		wstring m_StageSelect_image;
 	public:
-		StageSelect() : Stage()
+		StageSelect() : Stage(),
+			m_StageSelect_image(L"StageSelect.png")
 
 
 		{}

@@ -22,9 +22,22 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
+	void ResultStage::CreateUI() {
+		AddGameObject<StageSelect_UI>(
+			Vec2(1920.0f, 1080.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(1.0f),
+			0,
+			Col4(1.0f),
+			m_Result_image
+			);
+
+	}
+
 	void ResultStage::OnCreate() {
 		try {
 			CreateViewLight();
+			CreateUI();
 		}
 		catch (...) {
 			throw;

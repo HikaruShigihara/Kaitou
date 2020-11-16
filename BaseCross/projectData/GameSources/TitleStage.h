@@ -21,7 +21,7 @@ namespace basecross {
 		void CreatePlayer();
 	public:
 		TitleStage() : Stage(),
-			m_title(L"blue.png"),
+			m_title(L"Title.png"),
 			m_bgm(NULL)
 		{}
 		

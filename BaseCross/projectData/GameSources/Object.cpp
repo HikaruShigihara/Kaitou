@@ -37,6 +37,10 @@ namespace basecross {
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
+		PsBoxParam param(ptrTransform->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
+		auto PsPtr = AddComponent<RigidbodyBox>(param);
+		PsPtr->SetDrawActive(true);
+
 	}
 
 

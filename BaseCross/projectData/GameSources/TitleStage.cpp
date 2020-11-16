@@ -24,10 +24,10 @@ namespace basecross {
 
 	void TitleStage::CreateUI() {
 		AddGameObject<Title_UI>(
-			Vec2(500.0f, 500.0f),
+			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(2.0f),
-			1,
+			Vec3(1.0f),
+			0,
 			Col4(1.0f),
 			m_title
 			);
@@ -43,12 +43,18 @@ namespace basecross {
 	}
 
 	void TitleStage::CreatePlayer() {
-		AddGameObject<Player>();
-
+		AddGameObject<Player>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f),
+			Vec3(0, 1.50f, 0)
+			);
 	}
 	
 	void TitleStage::OnCreate() {
 		try {
+			//•¨—‰‰Z—LŒø
+			SetPhysicsActive(true);
+
 			CreateViewLight();
 			//CreateUI();
 			CreateStage();
