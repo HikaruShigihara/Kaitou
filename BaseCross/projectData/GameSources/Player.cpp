@@ -91,19 +91,19 @@ namespace basecross{
 
 		if (KeyState.m_bPressedKeyTbl['W']) {
 			//ëO
-			fThumbLY = 2.0f;
+			fThumbLY = 2.5f;
 		}
 		else if (KeyState.m_bPressedKeyTbl['S']) {
 			//å„ÇÎ
-			fThumbLY = -2.0f;
+			fThumbLY = -2.5f;
 		}
 		if (KeyState.m_bPressedKeyTbl['D']) {
 			//âE
-			fThumbLX = 2.0f;
+			fThumbLX = 2.5f;
 		}
 		else if (KeyState.m_bPressedKeyTbl['A']) {
 			//ç∂
-			fThumbLX = -2.0f;
+			fThumbLX = -2.5f;
 		}
 
 		auto ptrTransform = GetComponent<Transform>();
@@ -137,7 +137,13 @@ namespace basecross{
 
 	void Player::Respawn() {
 		auto ptrTrans = GetComponent<Transform>();
-		ptrTrans->SetPosition(m_Position);
+		auto pos = ptrTrans->GetPosition();
+
+		if (pos.y <= -1.0f) {
+			ptrTrans->SetPosition(m_Position);
+
+		}
+
 	}
 
 	void Player::PlayerMove() {
@@ -159,10 +165,7 @@ namespace basecross{
 
 	void Player::OnUpdate() {
 		auto pos = GetComponent<Transform>()->GetPosition();
-
-		if (pos.y <= -5.0f) {
-			Respawn();
-		}
+		Respawn();
 		PlayerMove();
 	}
 
