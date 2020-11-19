@@ -18,11 +18,6 @@ namespace basecross{
 		//CollisionSphere衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionSphere>();
 
-		//各パフォーマンスを得る
-		//GetStage()->SetCollisionPerformanceActive(true);
-		//GetStage()->SetUpdatePerformanceActive(true);
-		//GetStage()->SetDrawPerformanceActive(true);
-
 		//重力をつける
 		auto ptrGra = AddComponent<Gravity>();
 
@@ -36,12 +31,12 @@ namespace basecross{
 		auto psPtr = AddComponent<RigidbodySphere>(param);
 		//自動的にTransformを設定するフラグは無し
 		psPtr->SetAutoTransform(false);
-		psPtr->SetDrawActive(true);
+		//psPtr->SetDrawActive(true);
 
 		//文字列をつける
-		//auto ptrString = AddComponent<StringSprite>();
-		//ptrString->SetText(L"");
-		//ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
+		auto ptrString = AddComponent<StringSprite>();
+		ptrString->SetText(L"");
+		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
 
 		//影をつける（シャドウマップを描画する）
 		auto shadowPtr = AddComponent<Shadowmap>();
@@ -91,20 +86,38 @@ namespace basecross{
 
 		if (KeyState.m_bPressedKeyTbl['W']) {
 			//前
-			fThumbLY = 2.5f;
+			fThumbLY = 3.0f;
 		}
 		else if (KeyState.m_bPressedKeyTbl['S']) {
 			//後ろ
-			fThumbLY = -2.5f;
+			fThumbLY = -3.0f;
 		}
 		if (KeyState.m_bPressedKeyTbl['D']) {
 			//右
-			fThumbLX = 2.5f;
+			fThumbLX = 3.0f;
 		}
 		else if (KeyState.m_bPressedKeyTbl['A']) {
 			//左
-			fThumbLX = -2.5f;
+			fThumbLX = -3.0f;
 		}
+
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_UP) {
+			//前
+			fThumbLY = 3.0f;
+		}
+		else if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN) {
+			//後ろ
+			fThumbLY = -3.0f;
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
+			//右
+			fThumbLX = 3.0f;
+		}
+		else if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
+			//左
+			fThumbLX = -3.0f;
+		}
+
 
 		auto ptrTransform = GetComponent<Transform>();
 		if (fThumbLX != 0 || fThumbLY != 0) {
@@ -136,14 +149,13 @@ namespace basecross{
 	}
 
 	void Player::Respawn() {
-		auto ptrTrans = GetComponent<Transform>();
-		auto pos = ptrTrans->GetPosition();
+		const float limitY = 10.0f;
+		auto player = GetComponent<Transform>();
+		auto pos = player->GetPosition();
 
-		if (pos.y <= -1.0f) {
-			ptrTrans->SetPosition(m_Position);
-
+		if (abs(pos.y) > limitY) {
+			player->SetPosition(m_Position);
 		}
-
 	}
 
 	void Player::PlayerMove() {
@@ -164,23 +176,30 @@ namespace basecross{
 	}
 
 	void Player::OnUpdate() {
-		auto pos = GetComponent<Transform>()->GetPosition();
-		Respawn();
 		PlayerMove();
+
+		Respawn();
 	}
 
 	void Player::OnUpdate2() {
-		//auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		//auto trans = GetComponent<Transform>();
-		//auto pos = trans->GetPosition();
-
-		//if (KeyState.m_bPushKeyTbl['W']) {
-		//	trans->SetPosition(Vec3(0.0f, 0.0f, 2.0f));
-		//}
-
 		auto PtrPs = GetComponent<RigidbodySphere>();
 		auto Ptr = GetComponent<Transform>();
 		Ptr->SetPosition(PtrPs->GetPosition());
+
+		DrawStrings();
+
+	}
+	void Player::DrawStrings() {
+		auto Pos = GetComponent<Transform>()->GetPosition();
+		wstring PositionStr(L"Position:\t");
+		PositionStr += L"X=" + Util::FloatToWStr(Pos.x, 6, Util::FloatModify::Fixed) + L",\t";
+		PositionStr += L"Y=" + Util::FloatToWStr(Pos.y, 6, Util::FloatModify::Fixed) + L",\t";
+		PositionStr += L"Z=" + Util::FloatToWStr(Pos.z, 6, Util::FloatModify::Fixed) + L"\n";
+
+		wstring str = PositionStr;
+
+		auto PtrString = GetComponent<StringSprite>();
+		PtrString->SetText(str);
 
 	}
 }

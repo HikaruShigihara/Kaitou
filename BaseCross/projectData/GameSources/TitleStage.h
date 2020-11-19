@@ -28,7 +28,7 @@ namespace basecross {
 		virtual ~TitleStage() {}
 
 		virtual void OnCreate() override;
-		//virtual void OnUpdate() override;
+		virtual void OnUpdate() override;
 
 		//SEÇÃä÷êî
 		void PlaySE(wstring key, float vol) {

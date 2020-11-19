@@ -13,6 +13,7 @@
 #include "Character.h"
 #include "Player.h"
 #include "MyUI.h"
+#include "MyCamera.h"
 #include "EditStage.h"
 #include "Object.h"
 

@@ -45,6 +45,14 @@ namespace basecross {
 		}
 	}
 
+	void StageSelect::OnUpdate() {
+		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+		}
+	}
+
 
 }
 //end basecross

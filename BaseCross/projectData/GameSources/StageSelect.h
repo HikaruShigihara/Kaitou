@@ -23,7 +23,7 @@ namespace basecross {
 		virtual ~StageSelect() {}
 
 		virtual void OnCreate() override;
-		//virtual void OnUpdate() override;
+		virtual void OnUpdate() override;
 	};
 	
 }

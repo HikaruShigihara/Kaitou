@@ -12,7 +12,7 @@ namespace basecross {
 		const Vec3 at(0.0f);
 		auto PtrView = CreateView<SingleView>();
 		//ÉrÉÖÅ[ÇÃÉJÉÅÉâÇÃê›íË
-		auto PtrCamera = ObjectFactory::Create<Camera>();
+		auto PtrCamera = ObjectFactory::Create<MyCamera>();
 		PtrView->SetCamera(PtrCamera);
 		PtrCamera->SetEye(eye);
 		PtrCamera->SetAt(at);
@@ -27,11 +27,10 @@ namespace basecross {
 			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(1.0f),
-			0,
+			-99,
 			Col4(1.0f),
 			m_title
 			);
-
 	}
 
 	void TitleStage::CreateStage() {
@@ -40,13 +39,29 @@ namespace basecross {
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f)
 			);
+		AddGameObject<FixedBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.25f, 0.0f, 0.0f)
+			);
+		AddGameObject<FixedBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.50f, 0.0f, 0.0f)
+			);
+		AddGameObject<FixedBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.75f, 0.0f, 0.0f)
+			);
+
 	}
 
 	void TitleStage::CreatePlayer() {
 		AddGameObject<Player>(
 			Vec3(0.25f, 0.25f, 0.25f),
 			Vec3(0.0f),
-			Vec3(0, 1.50f, 0)
+			Vec3(0, 1.0f, 0)
 			);
 	}
 	
@@ -67,6 +82,14 @@ namespace basecross {
 			throw;
 		}
 	}
+	
+	void TitleStage::OnUpdate() {
+		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
+		}
 
+	}
 }
 //end basecross

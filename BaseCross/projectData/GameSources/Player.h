@@ -16,6 +16,7 @@ namespace basecross{
 		
 		void PlayerMove();
 		void Respawn();
+		void DrawStrings();
 	public:
 		Player(
 			const shared_ptr<Stage>& StagePtr,
