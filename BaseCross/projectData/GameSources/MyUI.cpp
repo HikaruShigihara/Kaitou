@@ -41,4 +41,8 @@ namespace basecross {
 	void Result_UI::OnCreate() {
 		Draw();
 	}
+
+	void Game_Back::OnCreate() {
+		Draw();
+	}
 }

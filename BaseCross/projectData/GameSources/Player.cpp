@@ -148,16 +148,6 @@ namespace basecross{
 		return angle;
 	}
 
-	void Player::Respawn() {
-		const float limitY = 10.0f;
-		auto player = GetComponent<Transform>();
-		auto pos = player->GetPosition();
-
-		if (abs(pos.y) > limitY) {
-			player->SetPosition(m_Position);
-		}
-	}
-
 	void Player::PlayerMove() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto angle = GetPlayerMoveVec();
@@ -172,13 +162,27 @@ namespace basecross{
 			auto utilPtr = GetBehavior<UtilBehavior>();
 			utilPtr->RotToHead(angle, 1.0f);
 		}
+	}
+
+	void Player::Respawn() {
+		const float limitY = 10.0f;
+		auto player = GetComponent<Transform>();
+		auto pos = player->GetPosition();
+
+		if (abs(pos.y) > limitY) {
+			player->SetPosition(m_Position);
+		}
+	}
+
+	void Player::StageRotate() {
+		//ステージ回転
 
 	}
 
 	void Player::OnUpdate() {
 		PlayerMove();
 
-		Respawn();
+		//Respawn();
 	}
 
 	void Player::OnUpdate2() {

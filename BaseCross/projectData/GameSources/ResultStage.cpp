@@ -29,7 +29,7 @@ namespace basecross {
 			Vec3(1.0f),
 			0,
 			Col4(1.0f),
-			m_Result_image
+			m_Result_Star3
 			);
 
 	}

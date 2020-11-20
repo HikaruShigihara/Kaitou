@@ -115,4 +115,31 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 	};
+
+	class Game_Back : public UI_Base {
+	public:
+
+		Game_Back(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~Game_Back() {}
+
+		virtual void OnCreate() override;
+	};
+
 }

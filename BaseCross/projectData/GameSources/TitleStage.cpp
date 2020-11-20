@@ -23,14 +23,30 @@ namespace basecross {
 	}
 
 	void TitleStage::CreateUI() {
-		AddGameObject<Title_UI>(
+
+	}
+
+	void TitleStage::CreateBack() {
+		//ゲームの方
+		AddGameObject<Game_Back>(
 			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(1.0f),
 			-99,
 			Col4(1.0f),
-			m_title
-			);
+			m_back
+		);
+
+		//タイトルの背景
+		//AddGameObject<Title_UI>(
+		//	Vec2(1920.0f, 1080.0f),
+		//	Vec3(0.0f, 0.0f, 0.0f),
+		//	Vec3(1.0f),
+		//	-99,
+		//	Col4(1.0f),
+		//	m_title
+		//	);
+
 	}
 
 	void TitleStage::CreateStage() {
@@ -54,6 +70,36 @@ namespace basecross {
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.75f, 0.0f, 0.0f)
 			);
+		AddGameObject<FixedBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.75f, 0.25f, 0.0f)
+			);
+		AddGameObject<FixedBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.50f, 0.0f, 0.25f)
+			);
+		AddGameObject<FixedBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.75f, 0.0f, 0.25f)
+			);
+		AddGameObject<FixedBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.25f, 0.0f, 0.25f)
+			);
+		AddGameObject<FixedBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.25f)
+			);
+		AddGameObject<FixedBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.75f, 0.25f, 0.25f)
+			);
 
 	}
 
@@ -72,6 +118,7 @@ namespace basecross {
 
 			CreateViewLight();
 			//CreateUI();
+			CreateBack();
 			CreateStage();
 			CreatePlayer();
 			//シーン遷移の仕方(OnUpdateに)

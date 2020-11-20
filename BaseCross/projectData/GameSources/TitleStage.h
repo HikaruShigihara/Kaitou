@@ -14,14 +14,16 @@ namespace basecross {
 		void CreateViewLight();
 
 		wstring m_title;
+		wstring m_back;
 
 		void CreateUI();
-
+		void CreateBack();
 		void CreateStage();
 		void CreatePlayer();
 	public:
 		TitleStage() : Stage(),
 			m_title(L"Title.png"),
+			m_back(L"Blue_Back.png"),
 			m_bgm(NULL)
 		{}
 		
