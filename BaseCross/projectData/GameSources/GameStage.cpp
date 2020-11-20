@@ -52,8 +52,6 @@ namespace basecross {
 		//OBB衝突j判定を付ける
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetSleepActive(true);
-		//重力をつける
-		auto ptrGra = AddComponent<Gravity>();
 		//影をつける
 		auto shadowPtr = AddComponent<Shadowmap>();
 		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
@@ -61,10 +59,17 @@ namespace basecross {
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		ptrDraw->SetTextureResource(L"WALL_TX");
 		ptrDraw->SetOwnShadowActive(true);
 	}
 
+	void GameStage::CreateFixedBox() {
+		AddGameObject<MoveBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+			);
+
+	}
 	void GameStage::CreateXmlObjects() {
 		auto group = CreateSharedObjectGroup(L"SeekGroup");
 		auto CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps");
@@ -84,42 +89,63 @@ namespace basecross {
 		vector<wstring> LineVec;
 		//最初に「改行」をデリミタとした文字列の配列にする
 		Util::WStrToTokenVector(LineVec, MapStr, L'\n');
-
-		for (int z = 0; z < Depth; z++) {
+		for (size_t i = 0; i < LineVec.size(); i++) {
 			//トークン（カラム）の配列
 			vector<wstring> Tokens;
 			//トークン（カラム）単位で文字列を抽出(L','をデリミタとして区分け)
-			Util::WStrToTokenVector(Tokens, LineVec[z], L',');
-
-			for (int x = 0; x < Width; x++) {
-				float XPos = (float)((int)x - 10);
-				float ZPos = (float)(10 - (int)x);
-				if (Tokens[x] == L"0") {
+			Util::WStrToTokenVector(Tokens, LineVec[i], L',');
+			for (size_t j = 0; j < Tokens.size(); j++) {
+				//XとZの位置を計算
+				float XPos = (float)((int)j - 19);
+				float ZPos = (float)(19 - (int)i);
+				if (Tokens[j] == L"1") {
 					AddGameObject<MoveBox>(
-						Vec3(1.0f, 1.0f, 1.0f),
+						Vec3(0.25f, 0.25f, 0.25f),
 						Vec3(0.0f, 0.0f, 0.0f),
-						Vec3(XPos, 0.5f, ZPos)
-						);
-					
-				}
-				else if (Tokens[x] == L"1") {
-					AddGameObject<MoveBox>(
-						Vec3(1.0f, 1.0f, 1.0f),
-						Vec3(0.0f, 0.0f, 0.0f),
-						Vec3(XPos, 0.5f, ZPos)
-						);
-
+						Vec3(XPos*0.25, 0.0f, ZPos*0.25));
 
 				}
-
-				else if (Tokens[x] == L"2") {
+				else if (Tokens[j] == L"2") {
 					AddGameObject<MoveBox>(
-						Vec3(1.0f, 1.0f, 1.0f),
+						Vec3(0.25f, 0.25f, 0.25f),
 						Vec3(0.0f, 0.0f, 0.0f),
-						Vec3(XPos, 0.5f, ZPos)
-						);
-
+						Vec3(XPos*0.25, 0.5f, ZPos*0.25));
 				}
+					//for (int z = 0; z < 10; z++) {
+					//	//トークン（カラム）の配列
+					//	vector<wstring> Tokens;
+					//	//トークン（カラム）単位で文字列を抽出(L','をデリミタとして区分け)
+					//	Util::WStrToTokenVector(Tokens, LineVec[z], L',');
+
+					//	for (int x = 0; x < 10; x++) {
+					//		//float XPos = (float)((int)x - 10);
+					//		//float ZPos = (float)(10 - (int)x);
+					//		if (Tokens[x] == L"0") {
+					//			AddGameObject<MoveBox>(
+					//				Vec3(1.0f, 1.0f, 1.0f),
+					//				Vec3(0.0f, 0.0f, 0.0f),
+					//				Vec3(x, 0.0f, x)
+					//				);
+					//			
+					//		}
+							//else if (Tokens[x] == L"1") {
+							//	AddGameObject<MoveBox>(
+							//		Vec3(1.0f, 1.0f, 1.0f),
+							//		Vec3(0.0f, 0.0f, 0.0f),
+							//		Vec3(XPos, 0.5f, ZPos)
+							//		);
+
+
+							//}
+
+							//else if (Tokens[x] == L"2") {
+							//	AddGameObject<MoveBox>(
+							//		Vec3(1.0f, 1.0f, 1.0f),
+							//		Vec3(0.0f, 0.0f, 0.0f),
+							//		Vec3(XPos, 0.5f, ZPos)
+							//		);
+
+							//}
 
 			}
 		}
@@ -130,7 +156,7 @@ namespace basecross {
 			App::GetApp()->GetDataDirectory(DataDir);
 			//XMLの読み込み
 			m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test2.xml"));
-
+			CreateFixedBox();
 			//ビューとライトの作成
 			CreateViewLight();
 			CreateXmlObjects();

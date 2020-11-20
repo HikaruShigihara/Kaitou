@@ -19,6 +19,9 @@ namespace basecross {
 		void CreateViewLight();
 		//ボックスの作成
 		void CreateFixedBox();
+
+		void CreatePlayer();
+
 		//XMLのオブジェクトの作成
 		void CreateXmlObjects();
 
