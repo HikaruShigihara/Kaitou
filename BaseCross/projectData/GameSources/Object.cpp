@@ -2,20 +2,6 @@
 #include "Project.h"
 
 namespace basecross {
-	//ç\ízÇ∆îjä¸
-	FixedBox::FixedBox(const shared_ptr<Stage>& StagePtr,
-		const Vec3& Scale,
-		const Vec3& Rotation,
-		const Vec3& Position
-	) :
-		GameObject(StagePtr),
-		m_Scale(Scale),
-		m_Rotation(Rotation),
-		m_Position(Position)
-	{
-	}
-	FixedBox::~FixedBox() {}
-
 	//èâä˙âª
 	void FixedBox::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();
@@ -33,7 +19,14 @@ namespace basecross {
 		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
 		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		//ptrDraw->SetTextureResource(L"SKY_TX");
+
+		auto ptrParent = m_Parent.lock();
+		if (ptrParent) {
+			auto posTarget = ptrParent->GetComponent<Transform>()->GetPosition();
+			posTarget += m_VecToParent;
+			ptrTransform->SetPosition(posTarget);
+		}
+
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
@@ -41,6 +34,10 @@ namespace basecross {
 		auto PsPtr = AddComponent<RigidbodyBox>(param);
 		PsPtr->SetDrawActive(true);
 
+	}
+
+	void FixedBox::SeekParent() {
+		
 	}
 
 
