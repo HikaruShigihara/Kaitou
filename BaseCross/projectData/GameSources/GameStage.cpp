@@ -165,6 +165,28 @@ namespace basecross {
 			
 		}
 	}
+
+	void GameStage::CreateBack() {
+		//ゲームの方
+		AddGameObject<Game_Back>(
+			Vec2(1920.0f, 1080.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(1.0f),
+			-99,
+			Col4(1.0f),
+			m_back
+			);
+
+	}
+
+	void GameStage::CreatePlayer() {
+		AddGameObject<Player>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f),
+			Vec3(0, 1.0f, 0)
+			);
+	}
+
 	void GameStage::OnCreate() {
 		try {
 			wstring DataDir;
@@ -175,6 +197,7 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			CreateXmlObjects();
+			CreateBack();
 		}
 		catch (...) {
 			throw;

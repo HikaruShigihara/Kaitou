@@ -27,25 +27,15 @@ namespace basecross {
 	}
 
 	void TitleStage::CreateBack() {
-		//ゲームの方
-		AddGameObject<Game_Back>(
+		//タイトルの背景
+		AddGameObject<Title_UI>(
 			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(1.0f),
 			-99,
 			Col4(1.0f),
-			m_back
-		);
-
-		//タイトルの背景
-		//AddGameObject<Title_UI>(
-		//	Vec2(1920.0f, 1080.0f),
-		//	Vec3(0.0f, 0.0f, 0.0f),
-		//	Vec3(1.0f),
-		//	-99,
-		//	Col4(1.0f),
-		//	m_title
-		//	);
+			m_title
+			);
 
 	}
 
@@ -103,13 +93,6 @@ namespace basecross {
 
 	}
 
-	void TitleStage::CreatePlayer() {
-		AddGameObject<Player>(
-			Vec3(0.25f, 0.25f, 0.25f),
-			Vec3(0.0f),
-			Vec3(0, 1.0f, 0)
-			);
-	}
 	
 	void TitleStage::OnCreate() {
 		try {
@@ -117,10 +100,9 @@ namespace basecross {
 			SetPhysicsActive(true);
 
 			CreateViewLight();
-			//CreateUI();
+			CreateUI();
 			CreateBack();
-			CreateStage();
-			CreatePlayer();
+			//CreateStage();
 			//シーン遷移の仕方(OnUpdateに)
 			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
 

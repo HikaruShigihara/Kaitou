@@ -15,6 +15,7 @@ namespace basecross {
 		//XMLリーダー
 		unique_ptr<XmlDocReader> m_XmlDocReader;
 
+		wstring m_back;
 		//ビューの作成
 		void CreateViewLight();
 		//ボックスの作成
@@ -22,12 +23,16 @@ namespace basecross {
 
 		void CreatePlayer();
 
+		void CreateBack();
+
 		//XMLのオブジェクトの作成
 		void CreateXmlObjects();
 
 	public:
 		//構築と破棄
-		GameStage() :Stage() {}
+		GameStage() : Stage(),
+			m_back(L"Blue_Back.png")
+		{}
 		virtual ~GameStage() {}
 		//初期化
 		virtual void OnCreate()override;
