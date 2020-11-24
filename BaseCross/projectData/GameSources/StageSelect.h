@@ -15,7 +15,8 @@ namespace basecross {
 		wstring m_StageSelect_image;
 	public:
 		StageSelect() : Stage(),
-			m_StageSelect_image(L"StageSelect.png")
+			m_StageSelect_image(L"StageSelect 2.png")
+
 
 
 		{}
