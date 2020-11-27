@@ -14,6 +14,7 @@ namespace basecross {
 		void CreateViewLight();
 
 		wstring m_title;
+		wstring m_titleflame;
 
 		void CreateUI();
 		void CreateBack();
@@ -21,6 +22,7 @@ namespace basecross {
 	public:
 		TitleStage() : Stage(),
 			m_title(L"Title.png"),
+			m_titleflame(L"Frame.png"),
 			m_bgm(NULL)
 		{}
 		

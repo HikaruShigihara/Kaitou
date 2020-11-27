@@ -23,6 +23,14 @@ namespace basecross {
 	}
 
 	void TitleStage::CreateUI() {
+		AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(-550.0f, -400.0f, 0.0f),
+			Vec3(1.0f),
+			0,
+			Col4(1.0f),
+			m_titleflame
+			);
 
 	}
 
