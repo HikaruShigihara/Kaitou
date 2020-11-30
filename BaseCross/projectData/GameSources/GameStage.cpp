@@ -66,7 +66,7 @@ namespace basecross {
 		auto goal = AddGameObject<Goal>(
 			Vec3(0.45f, 0.45f, 0.45f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.2f, 2.2f)
+			Vec3(0.0f, 0.19f, 2.1f)
 			);
 		
 		//AddGameObject<ParentBox>(
@@ -202,7 +202,7 @@ namespace basecross {
 			float n = static_cast<float>(i);
 			m_numbers[i] = AddGameObject<Number_UI>(
 				Vec2(500.0f, 100.0f),
-				Vec3(600.0f * 0.5f - n * 64.0f - 64.0f, 460.0f * 0.5f, 0.0f),
+				Vec3(1300.0f * 0.5f - n * 64.0f - 64.0f, 1000.0f * 0.5f, 0.0f),
 				Vec3(1.5f, 1.5f, 1.5f),
 				1,
 				Col4(1.0f, 1.0f, 1.0f, 1.0f),
@@ -311,10 +311,19 @@ namespace basecross {
 				m_cloud4
 				);
 
+				//AddGameObject<Clear>(
+				//	Vec2(137.0f, 64.0f),
+				//	Vec3(0.0f, 200.0f, 0.0f),
+				//	Vec3(3.0f),
+				//	10,
+				//	Col4(1.0f),
+				//	m_clear
+				//);
+
 	}
 
 	void GameStage::CreatePlayer() {
-		AddGameObject<Player>(
+		auto player = AddGameObject<Player>(
 			Vec3(0.1f, 0.1f, 0.1f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0, 2, 0)

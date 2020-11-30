@@ -46,6 +46,10 @@ namespace basecross {
 		Draw();
 	}
 
+	void Clear::OnCreate() {
+		Draw();
+	}
+
 	void Number_UI::OnCreate() {
 		float score = static_cast<float>(m_Score / m_place % 10);
 		float Width = 69.1f / 691.0f;	//各数字の幅をテクスチャ座標に変換
@@ -96,10 +100,12 @@ namespace basecross {
 		PtrAction->Run();
 	}
 	void Cloud::OnUpdate() {
+		auto PtrAction = AddComponent<Action>();
 		auto trans = GetComponent<Transform>();
 		auto pos = GetComponent<Transform>()->GetPosition();
-		if (pos.x >= 1000.0f) {
-			trans->SetPosition(Vec3(1000.0f, 0.0f, 0.0f));
+		if (pos.x >= 800.0f) {
+			trans->SetPosition(Vec3(-1000.0f, 0.0f, 0.0f));
+			//PtrAction->Stop();
 		}
 	}
 
