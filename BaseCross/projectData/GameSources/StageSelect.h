@@ -31,7 +31,7 @@ namespace basecross {
 		StageSelect() : Stage(),
 			m_StageSelect_image(L"StageSelect 2.png"),
 			m_StageSelect_Stage01(L"red.jpg"),
-			m_StageSelect_Stage02(L"00.jpg"),
+			m_StageSelect_Stage02(L"blue22.jpg"),
 			m_StageSelect_Stage03(L"yellow.jpg")
 		{}
 

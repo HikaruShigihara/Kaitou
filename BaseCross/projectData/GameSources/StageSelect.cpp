@@ -109,6 +109,7 @@ namespace basecross {
 				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 					App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
 				}
+				break;
 			case 2:
 				BoolCheck();
 				m_Stage03->SetDrawActive(true);
