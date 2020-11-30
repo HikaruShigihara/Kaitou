@@ -14,6 +14,7 @@ namespace basecross{
 		//Vec3 m_Respawn = Vec3(0.0f, 3.0f, 0.0f);
 		Vec3 GetPlayerMoveVec() const;
 
+		float m_WalkSpeed = 4.5f;
 		void PlayerMove();
 		void StageRotate();
 		void Respawn();
@@ -39,7 +40,7 @@ namespace basecross{
 		virtual void OnUpdate() override;
 		virtual void OnUpdate2() override;
 
-
+		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
 	};
 
 }

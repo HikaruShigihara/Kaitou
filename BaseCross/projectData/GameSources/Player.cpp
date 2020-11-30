@@ -15,8 +15,10 @@ namespace basecross{
 		ptr->SetRotation(m_Rotation);
 		ptr->SetPosition(m_Position);
 
-		//CollisionSphere衝突判定を付ける
-		auto ptrColl = AddComponent<CollisionSphere>();
+		//衝突判定を付ける
+		auto ptrColl = AddComponent<CollisionObb>();
+		ptrColl->SetMakedSize(Vec3(1.0f, 2.0f, 1.0f));
+		ptrColl->SetAfterCollision(AfterCollision::Auto);
 
 		//重力をつける
 		auto ptrGra = AddComponent<Gravity>();
@@ -25,12 +27,9 @@ namespace basecross{
 		GetStage()->SetUpdatePerformanceActive(true);
 		GetStage()->SetDrawPerformanceActive(true);
 
-		//WorldMatrixをもとにRigidbodySphereのパラメータを作成
-		PsSphereParam param(ptr->GetWorldMatrix(), 1.0f, false, PsMotionType::MotionTypeActive);
-		//RigidbodySphereコンポーネントを追加
-		auto psPtr = AddComponent<RigidbodySphere>(param);
-		//自動的にTransformを設定するフラグは無し
-		psPtr->SetAutoTransform(false);
+		//PsSphereParam param(ptr->GetWorldMatrix(), 1.0f, false, PsMotionType::MotionTypeActive);
+		//auto psPtr = AddComponent<RigidbodySphere>(param);
+		//psPtr->SetAutoTransform(false);
 		//psPtr->SetDrawActive(true);
 
 		//文字列をつける
@@ -39,18 +38,58 @@ namespace basecross{
 		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
 
 		//影をつける（シャドウマップを描画する）
-		auto shadowPtr = AddComponent<Shadowmap>();
+		//auto shadowPtr = AddComponent<Shadowmap>();
+		////影の形（メッシュ）を設定
+		//shadowPtr->SetMeshResource(L"DEFAULT_SPHERE");
+
+		////描画コンポーネントの設定
+		//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		////描画するメッシュを設定
+		//ptrDraw->SetMeshResource(L"DEFAULT_SPHERE");
+		//ptrDraw->SetFogEnabled(true);
+		////描画するテクスチャを設定
+		//ptrDraw->SetTextureResource(L"Blue.png");
+		//SetAlphaActive(true);
+
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f)
+		);
+
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
+
 		//影の形（メッシュ）を設定
-		shadowPtr->SetMeshResource(L"DEFAULT_SPHERE");
+		ptrShadow->SetMeshResource(L"Player.bmf");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
 
 		//描画コンポーネントの設定
-		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		//描画するメッシュを設定
-		ptrDraw->SetMeshResource(L"DEFAULT_SPHERE");
+		auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
 		ptrDraw->SetFogEnabled(true);
-		//描画するテクスチャを設定
-		ptrDraw->SetTextureResource(L"Blue.png");
+		//描画するメッシュを設定
+		ptrDraw->SetMeshResource(L"Player.bmf");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+
+		//ptrDraw->AddAnimation(L"Default", 0, 20, true, 20.0f);
+		//ptrDraw->ChangeCurrentAnimation(L"Default");
+
+
+		//透明処理
 		SetAlphaActive(true);
+
+
+		auto ptrCamera = dynamic_pointer_cast<MyCamera>(OnGetDrawCamera());
+		if (ptrCamera) {
+			//MyCameraである
+			//MyCameraに注目するオブジェクト（プレイヤー）の設定
+			ptrCamera->SetTargetObject(GetThis<GameObject>());
+			ptrCamera->SetTargetToAt(Vec3(0, 0.25f, 0));
+		}
+
 	}
 
 	Vec3 Player::GetPlayerMoveVec() const {
@@ -61,61 +100,45 @@ namespace basecross{
 		float fThumbLX = 0.0f;
 		WORD wButtons = 0;
 		if (cntlVec[0].bConnected) {
-			fThumbLY = cntlVec[0].fThumbLY;
-			fThumbLX = cntlVec[0].fThumbLX;
+			//fThumbLY = cntlVec[0].fThumbLY;
+			//fThumbLX = cntlVec[0].fThumbLX;
 			wButtons = cntlVec[0].wButtons;
 		}
 
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		//if (KeyState.m_bPushKeyTbl['W']) {
-		//	//前
-		//	fThumbLY = 1.0f;
-		//}
-		//else if (KeyState.m_bPushKeyTbl['S']) {
-		//	//後ろ
-		//	fThumbLY = -1.0f;
-		//}
-		//if (KeyState.m_bPushKeyTbl['D']) {
-		//	//右
-		//	fThumbLX = 1.0f;
-		//}
-		//else if (KeyState.m_bPushKeyTbl['A']) {
-		//	//左
-		//	fThumbLX = -1.0f;
-		//}
 
 		if (KeyState.m_bPressedKeyTbl['W']) {
 			//前
-			fThumbLY = 3.0f;
+			fThumbLY = m_WalkSpeed;
 		}
 		else if (KeyState.m_bPressedKeyTbl['S']) {
 			//後ろ
-			fThumbLY = -3.0f;
+			fThumbLY = -m_WalkSpeed;
 		}
 		if (KeyState.m_bPressedKeyTbl['D']) {
 			//右
-			fThumbLX = 3.0f;
+			fThumbLX = m_WalkSpeed;
 		}
 		else if (KeyState.m_bPressedKeyTbl['A']) {
 			//左
-			fThumbLX = -3.0f;
+			fThumbLX = -m_WalkSpeed;
 		}
 
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_UP) {
 			//前
-			fThumbLY = 3.0f;
+			fThumbLY = m_WalkSpeed;
 		}
 		else if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN) {
 			//後ろ
-			fThumbLY = -3.0f;
+			fThumbLY = -m_WalkSpeed;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
 			//右
-			fThumbLX = 3.0f;
+			fThumbLX = m_WalkSpeed;
 		}
 		else if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
 			//左
-			fThumbLX = -3.0f;
+			fThumbLX = -m_WalkSpeed;
 		}
 
 
@@ -144,23 +167,48 @@ namespace basecross{
 			//移動サイズを設定。
 			angle *= moveSize;
 			angle.y = 0.0f;
+
+			//カウント追加
+			auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
+			gamestage->SetCount(1);
+
 		}
 		return angle;
 	}
 
 	void Player::PlayerMove() {
+		//float elapsedTime = App::GetApp()->GetElapsedTime();
+		//auto angle = GetPlayerMoveVec();
+		//auto Vec = GetPlayerMoveVec();
+		//auto PtrPs = GetComponent<RigidbodySphere>();
+		//auto Velo = PtrPs->GetLinearVelocity();
+		//Velo.x = Vec.x * 5.0f;
+		//Velo.z = Vec.z * 5.0f;
+		//PtrPs->SetLinearVelocity(Velo);
+		////回転の計算
+		//if (angle.length() > 0.0f) {
+		//	auto utilPtr = GetBehavior<UtilBehavior>();
+		//	utilPtr->RotToHead(angle, 1.0f);
+		//}
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto angle = GetPlayerMoveVec();
-		auto Vec = GetPlayerMoveVec();
-		auto PtrPs = GetComponent<RigidbodySphere>();
-		auto Velo = PtrPs->GetLinearVelocity();
-		Velo.x = Vec.x * 5.0f;
-		Velo.z = Vec.z * 5.0f;
-		PtrPs->SetLinearVelocity(Velo);
+		if (angle.length() > 0.0f) {
+			auto pos = GetComponent<Transform>()->GetPosition();
+			pos += angle * elapsedTime * 6.0f;
+			GetComponent<Transform>()->SetPosition(pos);
+		}
 		//回転の計算
 		if (angle.length() > 0.0f) {
 			auto utilPtr = GetBehavior<UtilBehavior>();
 			utilPtr->RotToHead(angle, 1.0f);
+		}
+		//auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
+		//gamestage->SetCount(1);
+	}
+
+	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		if (Other->FindTag(L"Goal")) {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
 		}
 	}
 
@@ -171,24 +219,31 @@ namespace basecross{
 
 		if (abs(pos.y) > limitY) {
 			player->SetPosition(m_Position);
+			auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
+			gamestage->resetCount();
+
 		}
 	}
 
 	void Player::StageRotate() {
 		//ステージ回転
+		//auto stage = 
 
 	}
 
 	void Player::OnUpdate() {
 		PlayerMove();
+		//float elapsedTime = App::GetApp()->GetElapsedTime();
+		//auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		//ptrDraw->UpdateAnimation(elapsedTime);
 
-		//Respawn();
+		Respawn();
 	}
 
 	void Player::OnUpdate2() {
-		auto PtrPs = GetComponent<RigidbodySphere>();
-		auto Ptr = GetComponent<Transform>();
-		Ptr->SetPosition(PtrPs->GetPosition());
+		//auto PtrPs = GetComponent<RigidbodySphere>();
+		//auto Ptr = GetComponent<Transform>();
+		//Ptr->SetPosition(PtrPs->GetPosition());
 
 		DrawStrings();
 
