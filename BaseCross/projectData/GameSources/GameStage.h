@@ -24,6 +24,8 @@ namespace basecross {
 		wstring m_goal;
 
 		wstring m_cloud,m_cloud1, m_cloud2, m_cloud3, m_cloud4;
+		wstring m_clear;
+		bool m_clearflag;
 		int m_number;
 		//ƒrƒ…[‚Ìì¬
 		void CreateViewLight();
@@ -49,6 +51,7 @@ namespace basecross {
 			m_cloud3(L"Cloud Parts 3.png"),
 			m_cloud4(L"Cloud Parts 4.png"),
 			m_cloud(L"Cloud.png"),
+			m_clear(L"Clear.png"),
 			m_number(000)
 		{}
 		virtual ~GameStage() {}

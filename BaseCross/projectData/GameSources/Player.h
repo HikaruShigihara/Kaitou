@@ -12,7 +12,11 @@ namespace basecross{
 		Vec3 m_Rotation;
 		Vec3 m_Position;
 		//Vec3 m_Respawn = Vec3(0.0f, 3.0f, 0.0f);
+		bool m_clearflag = false;
+		float time;
 		Vec3 GetPlayerMoveVec() const;
+
+		wstring m_clear = wstring(L"Clear.png");
 
 		float m_WalkSpeed = 4.5f;
 		void PlayerMove();
@@ -41,6 +45,10 @@ namespace basecross{
 		virtual void OnUpdate2() override;
 
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
+
+		bool GetClearFlag() {
+			return m_clearflag;
+		}
 	};
 
 }

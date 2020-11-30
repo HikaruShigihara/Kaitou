@@ -141,6 +141,31 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 	};
+	class Clear : public UI_Base {
+	public:
+
+		Clear(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~Clear() {}
+
+		virtual void OnCreate() override;
+	};
 
 	class Number_UI : public GameObject {
 		int m_place;	//ˆÊ
