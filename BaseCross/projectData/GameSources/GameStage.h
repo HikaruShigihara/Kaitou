@@ -64,6 +64,9 @@ namespace basecross {
 		void SetCount(int i){
 			m_number += i;
 		}
+		void resetCount() {
+			m_number = 0;
+		}
 	};
 
 	//--------------------------------------------------------------------------------------

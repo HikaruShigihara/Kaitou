@@ -218,4 +218,32 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 	};
+
+	class Title_Kai : public UI_Base {
+		float time;
+	public:
+
+		Title_Kai(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~Title_Kai() {}
+
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
+	};
 }

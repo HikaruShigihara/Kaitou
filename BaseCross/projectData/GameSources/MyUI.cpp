@@ -89,14 +89,37 @@ namespace basecross {
 		Draw();
 		auto PtrAction = AddComponent<Action>();
 
-		PtrAction->AddMoveBy(0.1f, Vec3(10.0f, 0, 0));
+		PtrAction->AddMoveBy(0.1f, Vec3(5.0f, 0, 0));
 
 		PtrAction->SetLooped(true);
 		//アクション開始
 		PtrAction->Run();
 	}
 	void Cloud::OnUpdate() {
+		auto trans = GetComponent<Transform>();
+		auto pos = GetComponent<Transform>()->GetPosition();
+		if (pos.x >= 1000.0f) {
+			trans->SetPosition(Vec3(1000.0f, 0.0f, 0.0f));
+		}
+	}
 
+	void Title_Kai::OnCreate() {
+		Draw();
+	}
+	void Title_Kai::OnUpdate() {
+		auto PtrAction = AddComponent<Action>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		time += elapsedTime;
+		PtrAction->AddRotateBy(5.0f, Vec3(0.0f, 0.0f, XM_PI));
 
+		PtrAction->SetLooped(true);
+		if (time >= 3.0f) {
+			PtrAction->Run();
+
+		}
+		if (time >= 4.0f) {
+			PtrAction->Stop();
+			time = 0;
+		}
 	}
 }

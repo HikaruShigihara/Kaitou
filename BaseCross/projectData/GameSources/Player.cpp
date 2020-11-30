@@ -74,8 +74,8 @@ namespace basecross{
 		ptrDraw->SetMeshResource(L"Player.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 
-		ptrDraw->AddAnimation(L"Default", 0, 20, true, 20.0f);
-		ptrDraw->ChangeCurrentAnimation(L"Default");
+		//ptrDraw->AddAnimation(L"Default", 0, 20, true, 20.0f);
+		//ptrDraw->ChangeCurrentAnimation(L"Default");
 
 
 		//“§–¾ˆ—
@@ -219,6 +219,9 @@ namespace basecross{
 
 		if (abs(pos.y) > limitY) {
 			player->SetPosition(m_Position);
+			auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
+			gamestage->resetCount();
+
 		}
 	}
 
@@ -230,11 +233,11 @@ namespace basecross{
 
 	void Player::OnUpdate() {
 		PlayerMove();
-		float elapsedTime = App::GetApp()->GetElapsedTime();
-		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
-		ptrDraw->UpdateAnimation(elapsedTime);
+		//float elapsedTime = App::GetApp()->GetElapsedTime();
+		//auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		//ptrDraw->UpdateAnimation(elapsedTime);
 
-		//Respawn();
+		Respawn();
 	}
 
 	void Player::OnUpdate2() {

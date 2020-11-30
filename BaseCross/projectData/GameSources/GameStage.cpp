@@ -227,16 +227,16 @@ namespace basecross {
 	}
 
 	void GameStage::CreateCloud() {
-		auto cloud = AddGameObject<Cloud>(
-			Vec2(1920.0f, 1080.0f),
-			Vec3(-1000.0f, 0.0f, 0.0f),
-			Vec3(1.0f),
-			-98,
-			Col4(1.0f),
-			m_cloud
-			);
-		auto pos = cloud->GetComponent<Transform>()->GetPosition();
-		if (pos.x >= 1000.0f) {
+		//auto cloud = AddGameObject<Cloud>(
+		//	Vec2(1920.0f, 1080.0f),
+		//	Vec3(-1000.0f, 0.0f, 0.0f),
+		//	Vec3(1.0f),
+		//	-98,
+		//	Col4(1.0f),
+		//	m_cloud
+		//	);
+		//auto pos = cloud->GetComponent<Transform>()->GetPosition();
+		//if (pos.x >= 1000.0f) {
 			AddGameObject<Cloud>(
 				Vec2(1027.0f, 652.0f),
 				Vec3(-1000.0f, 300.0f, 0.0f),
@@ -245,10 +245,10 @@ namespace basecross {
 				Col4(1.0f),
 				m_cloud1
 				);
-		}
+		
 			AddGameObject<Cloud>(
 				Vec2(1027.0f, 652.0f),
-				Vec3(-1000.0f, 0.0f, 0.0f),
+				Vec3(-1500.0f, 0.0f, 0.0f),
 				Vec3(0.5f),
 				-98,
 				Col4(1.0f),
@@ -256,7 +256,7 @@ namespace basecross {
 				);
 			AddGameObject<Cloud>(
 				Vec2(1027.0f, 652.0f),
-				Vec3(-1000.0f, -300.0f, 0.0f),
+				Vec3(-300.0f, -300.0f, 0.0f),
 				Vec3(0.5f),
 				-98,
 				Col4(1.0f),
@@ -270,8 +270,49 @@ namespace basecross {
 				Col4(1.0f),
 				m_cloud4
 				);
-		
+			AddGameObject<Cloud>(
+				Vec2(1027.0f, 652.0f),
+				Vec3(0.0f, 0.0f, 0.0f),
+				Vec3(0.5f),
+				-98,
+				Col4(1.0f),
+				m_cloud4
+				);
+			AddGameObject<Cloud>(
+				Vec2(1027.0f, 652.0f),
+				Vec3(500.0f, 300.0f, 0.0f),
+				Vec3(0.5f),
+				-98,
+				Col4(1.0f),
+				m_cloud2
+				);
+			AddGameObject<Cloud>(
+				Vec2(1027.0f, 652.0f),
+				Vec3(0.0f, 300.0f, 0.0f),
+				Vec3(0.5f),
+				-98,
+				Col4(1.0f),
+				m_cloud1
+				);
+			AddGameObject<Cloud>(
+				Vec2(1027.0f, 652.0f),
+				Vec3(500.0f, -300.0f, 0.0f),
+				Vec3(0.5f),
+				-98,
+				Col4(1.0f),
+				m_cloud1
+				);
+			AddGameObject<Cloud>(
+				Vec2(1027.0f, 652.0f),
+				Vec3(-700.0f, -300, 0.0f),
+				Vec3(0.5f),
+				-98,
+				Col4(1.0f),
+				m_cloud4
+				);
+
 	}
+
 	void GameStage::CreatePlayer() {
 		AddGameObject<Player>(
 			Vec3(0.1f, 0.1f, 0.1f),
