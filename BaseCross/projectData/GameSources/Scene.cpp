@@ -12,14 +12,18 @@ namespace basecross{
 	void Scene::CreateResourses() {
 		wstring dataDir;
 		//mediaディレクトリ取得用
-		App::GetApp()->GetAssetsDirectory(dataDir);
+		//App::GetApp()->GetAssetsDirectory(dataDir);
 
 		wstring mediaDir;
 		App::GetApp()->GetDataDirectory(mediaDir);
 
 		FindFile(dataDir);
 		FindFile(mediaDir + L"Textures/");
+		FindFile(mediaDir + L"Model/");
 
+
+		//bmfモデルのリソース作成
+		//ステージ
 
 	}
 
@@ -64,7 +68,18 @@ namespace basecross{
 				}
 
 				//例外処理
-
+				if (exe == L".bmf") {
+					// 例外の登録,ボーンモデルだから
+					if ((fileName == L"Player.bmf")){
+						auto modelMesh = MeshResource::CreateBoneModelMesh(dir, fileName);
+						App::GetApp()->RegisterResource(fileName, modelMesh);
+					}
+					else
+					{
+						auto modelMesh = MeshResource::CreateStaticModelMesh(dir, fileName);
+						App::GetApp()->RegisterResource(fileName, modelMesh);
+					}
+				}
 
 			}
 		} while (FindNextFile(hFind, &win32fd));
@@ -84,7 +99,7 @@ namespace basecross{
 			CreateResourses();
 
 			//変更でシーン遷移
-			SetGameStage(GameStageKey::title);
+			SetGameStage(GameStageKey::game);
 
 		}
 		catch (...) {
