@@ -14,20 +14,26 @@ namespace basecross {
 		void BoolCheck();
 
 		wstring m_StageSelect_image;
-		wstring m_StageSelect_test;
-		wstring m_StageSelect_test2;
+		wstring m_StageSelect_Stage01;
+		wstring m_StageSelect_Stage02;
+		wstring m_StageSelect_Stage03;
+
 
 	public :
 		int m_StageSelectNumber;
 		int m_StageQuantity;//ステージの個数
-		std::shared_ptr<basecross::StageSelect_UI> m_Gorira;
-		std::shared_ptr<basecross::StageSelect_UI> m_Banana;
+		std::shared_ptr<basecross::StageSelect_UI> m_Stage01;
+		std::shared_ptr<basecross::StageSelect_UI> m_Stage02;
+		std::shared_ptr<basecross::StageSelect_UI> m_Stage03;
+
 
 
 		StageSelect() : Stage(),
 			m_StageSelect_image(L"StageSelect 2.png"),
-			m_StageSelect_test(L"Banana.jpg"),
-			m_StageSelect_test2(L"00.jpg") {}
+			m_StageSelect_Stage01(L"red.jpg"),
+			m_StageSelect_Stage02(L"00.jpg"),
+			m_StageSelect_Stage03(L"yellow.jpg")
+		{}
 
 
 

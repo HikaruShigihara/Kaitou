@@ -25,12 +25,111 @@ namespace basecross {
 	void TitleStage::CreateUI() {
 		AddGameObject<Title_UI>(
 			Vec2(581.0f, 132.0f),
-			Vec3(-550.0f, -400.0f, 0.0f),
-			Vec3(1.0f),
-			0,
+			Vec3(-600.0f, -400.0f, 0.0f),
+			Vec3(0.8f),
+			-3,
 			Col4(1.0f),
 			m_titleflame
 			);
+		AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(0.0f, -400.0f, 0.0f),
+			Vec3(0.8f),
+			-3,
+			Col4(1.0f),
+			m_titleflame
+			);
+		AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(600.0f, -400.0f, 0.0f),
+			Vec3(0.8f),
+			-3,
+			Col4(1.0f),
+			m_titleflame
+			);
+
+
+
+		m_Start=
+			AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(-600.0f, -400.0f, 0.0f),
+			Vec3(1.0f),
+			-1,
+			Col4(1.0f),
+			m_titleflame
+			);
+		m_Select=
+			AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(0.0f, -400.0f, 0.0f),
+			Vec3(1.0f),
+			-1,
+			Col4(1.0f),
+			m_titleflame
+			);
+		m_End=
+			AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(600.0f, -400.0f, 0.0f),
+			Vec3(1.0f),
+			-1,
+			Col4(1.0f),
+			m_titleflame
+			);
+		AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(-600.0f, -420.0f, 0.0f),
+			Vec3(0.8f),
+			-2,
+			Col4(1.0f),
+			m_Startlogo
+			);
+		AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(10.0f, -420.0f, 0.0f),
+			Vec3(0.8f),
+			-2,
+			Col4(1.0f),
+			m_Selectlogo
+			);
+		AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(620.0f, -420.0f, 0.0f),
+			Vec3(0.8f),
+			-2,
+			Col4(1.0f),
+			m_Endlogo
+			);
+
+		m_StartLogoObject=
+			AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(-600.0f, -420.0f, 0.0f),
+			Vec3(1.0f),
+			0,
+			Col4(1.0f),
+			m_Startlogo
+			);
+		m_SelectLogoObject=
+			AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(10.0f, -420.0f, 0.0f),
+			Vec3(1.0f),
+			0,
+			Col4(1.0f),
+			m_Selectlogo
+			);
+		m_EndLogoObject=
+			AddGameObject<Title_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(620.0f, -420.0f, 0.0f),
+			Vec3(1.0f),
+			0,
+			Col4(1.0f),
+			m_Endlogo
+			);
+
 
 	}
 
@@ -46,6 +145,18 @@ namespace basecross {
 			);
 
 	}
+
+	void TitleStage::BoolSet() {
+		m_Start->SetDrawActive(false);
+		m_Select->SetDrawActive(false);
+		m_End->SetDrawActive(false);
+		m_StartLogoObject->SetDrawActive(false);
+		m_SelectLogoObject->SetDrawActive(false);
+		m_EndLogoObject->SetDrawActive(false);
+
+
+	}
+
 
 	void TitleStage::CreateStage() {
 		AddGameObject<FixedBox>(
@@ -104,6 +215,8 @@ namespace basecross {
 	
 	void TitleStage::OnCreate() {
 		try {
+			m_SelectChoices = 0;
+			m_SelectQuantity = 3;
 			//•¨—‰‰ŽZ—LŒø
 			SetPhysicsActive(true);
 
@@ -123,8 +236,54 @@ namespace basecross {
 	void TitleStage::OnUpdate() {
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
+			m_SelectChoices += 1;
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
+			m_SelectChoices -= 1;
+		}
+
+		switch (m_SelectChoices)
+		{
+		case 0:
+			BoolSet();
+			m_Start->SetDrawActive(true);
+			m_StartLogoObject->SetDrawActive(true);
+
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+			}
+
+			break;
+		case 1:
+			BoolSet();
+			m_Select->SetDrawActive(true);
+			m_SelectLogoObject->SetDrawActive(true);
+
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
+			}
+
+			break;
+		case 2:
+
+			BoolSet();
+			m_End->SetDrawActive(true);
+			m_EndLogoObject->SetDrawActive(true);
+
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
+			}
+
+		}
+		
+		if (m_SelectChoices >= m_SelectQuantity)
+		{
+			m_SelectChoices = 0;
+		}
+		if (m_SelectChoices < 0)
+		{
+			m_SelectChoices = m_SelectQuantity - 1;
 		}
 
 	}

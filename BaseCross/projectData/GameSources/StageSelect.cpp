@@ -32,38 +32,49 @@ namespace basecross {
 			m_StageSelect_image
 			);
 
-		m_Banana=
+		m_Stage01=
 			AddGameObject<StageSelect_UI>(
 			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(1.0f),
 			-1,
 			Col4(1.0f),
-			m_StageSelect_test
+			m_StageSelect_Stage01
 			);
-		m_Gorira=
+		m_Stage02=
 			AddGameObject<StageSelect_UI>(
 			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(1.0f),
 			-1,
 			Col4(1.0f),
-			m_StageSelect_test2
+			m_StageSelect_Stage02
+			);
+
+		m_Stage03=
+			AddGameObject<StageSelect_UI>(
+			Vec2(1920.0f, 1080.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(1.0f),
+			-1,
+			Col4(1.0f),
+			m_StageSelect_Stage03
 			);
 
 
 	}
 
 	void StageSelect::BoolCheck() {
-		m_Banana->SetDrawActive(false);
-		m_Gorira->SetDrawActive(false);
+		m_Stage01->SetDrawActive(false);
+		m_Stage02->SetDrawActive(false);
+		m_Stage03->SetDrawActive(false);
 
 	}
 
 	void StageSelect::OnCreate() {
 		try {
 			m_StageSelectNumber = 0;
-			m_StageQuantity = 2;
+			m_StageQuantity = 3;
 			CreateViewLight();
 			CreateUI();
 		}
@@ -78,11 +89,15 @@ namespace basecross {
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
 			m_StageSelectNumber += 1;
 		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
+			m_StageSelectNumber -= 1;
+		}
+
 		switch (m_StageSelectNumber)
 		{
 			case 0:
 				BoolCheck();
-				m_Banana->SetDrawActive(true);
+				m_Stage01->SetDrawActive(true);
 				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 					App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 				}
@@ -90,9 +105,15 @@ namespace basecross {
 				break;
 			case 1:
 				BoolCheck();
-				m_Gorira->SetDrawActive(true);
+				m_Stage02->SetDrawActive(true);
 				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-					App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+					App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
+				}
+			case 2:
+				BoolCheck();
+				m_Stage03->SetDrawActive(true);
+				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+					App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
 				}
 
 				break;
@@ -103,7 +124,10 @@ namespace basecross {
 		{
 			m_StageSelectNumber = 0;
 		}
-
+		if (m_StageSelectNumber < 0)
+		{
+			m_StageSelectNumber = m_StageQuantity-1;
+		}
 	}
 
 
