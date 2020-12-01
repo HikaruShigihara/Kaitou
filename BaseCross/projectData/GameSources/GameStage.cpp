@@ -62,13 +62,7 @@ namespace basecross {
 	//	ptrDraw->SetOwnShadowActive(true);
 	//}
 
-	void GameStage::CreateFixedBox() {
-		auto goal = AddGameObject<Goal>(
-			Vec3(0.45f, 0.45f, 0.45f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.19f, 2.1f)
-			);
-		
+	void GameStage::CreateFixedBox() {		
 		//AddGameObject<ParentBox>(
 		//	Vec3(0.25f, 0.25f, 0.25f),
 		//	Vec3(0.0f, 0.0f, 0.0f),
@@ -85,6 +79,15 @@ namespace basecross {
 			);
 		SetSharedGameObject(L"ParentBox", m_Parentbox);
 		m_Parentbox->AddTag(L"ParentBox");
+
+		m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
+		m_Target = AddGameObject<Goal>(
+			Vec3(0.45f, 0.45f, 0.45f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.19f, 2.1f),
+			m_Target,
+			Vec3(0, 0, 0)
+			);
 
 
 		m_group = CreateSharedObjectGroup(L"FixedBoxes");
@@ -130,9 +133,9 @@ namespace basecross {
 					if (Tokens[j] == L"1") {
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
 						m_Target = AddGameObject<FixedBox>(
-						Vec3(0.1f, 0.1f, 0.1f),
+						Vec3(0.13f, 0.13f, 0.13f),
 						Vec3(0.0f, 0.0f, 0.0f),
-						Vec3(XPos*0.43f, f*0.43f, ZPos*0.43f),
+						Vec3(XPos*0.6f, f*0.6f, ZPos*0.6f),
 							m_Target,
 							Vec3(0,0,0)
 							);
@@ -142,7 +145,7 @@ namespace basecross {
 					else if (Tokens[j] == L"2") {
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
 						m_Target = AddGameObject<FixedBox>(
-						Vec3(0.1f, 0.1f, 0.1f),
+						Vec3(0.15f, 0.15f, 0.15f),
 						Vec3(0.0f, 0.0f, 0.0f),
 						Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
 						m_Target,
@@ -385,6 +388,7 @@ namespace basecross {
 			CreateBack();
 			CreateCloud();
 			CreateUI();
+			//PlayBGM(L"Title.wav", 0.5f);
 		}
 		catch (...) {
 			throw;

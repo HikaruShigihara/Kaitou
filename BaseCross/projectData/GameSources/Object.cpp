@@ -52,10 +52,10 @@ namespace basecross {
 			//auto posTarget = ptrParent->GetComponent<Transform>()->GetPosition();
 			//posTarget += m_VecToParent;
 			//ptrTransform->SetPosition(posTarget);
-			//auto posTarget = ptrParent->GetComponent<Transform>()->GetRotation();
-			//posTarget += m_VecToParent;
-			//ptrTransform->SetRotation(posTarget);
-
+			auto posTarget = ptrParent->GetComponent<Transform>()->GetRotation();
+			posTarget += m_VecToParent;
+			ptrTransform->SetRotation(posTarget);
+			ptrTransform->SetParent(ptrParent);
 		}
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
@@ -86,15 +86,16 @@ namespace basecross {
 		ptrDraw->SetTextureResource(L"red.png");
 
 		auto ptrParent = m_Parent.lock();
-		//if (ptrParent) {
-		//	auto posTarget = ptrParent->GetComponent<Transform>()->GetPosition();
-		//	posTarget += m_VecToParent;
-		//	ptrTransform->SetPosition(posTarget);
-		//	//auto posTarget = ptrParent->GetComponent<Transform>()->GetRotation();
-		//	//posTarget += m_VecToParent;
-		//	//ptrTransform->SetRotation(posTarget);
+		if (ptrParent) {
+			//auto posTarget = ptrParent->GetComponent<Transform>()->GetPosition();
+			//posTarget += m_VecToParent;
+			//ptrTransform->SetPosition(posTarget);
+			auto posTarget = ptrParent->GetComponent<Transform>()->GetRotation();
+			posTarget += m_VecToParent;
+			ptrTransform->SetRotation(posTarget);
+			ptrTransform->SetParent(ptrParent);
 
-		//}
+		}
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
@@ -123,12 +124,39 @@ namespace basecross {
 			//auto posTarget = mat.transInMatrix();
 			//auto v = Lerp::CalculateLerp(pos, posTarget, 0.0f, 1.0f, 0.2f, Lerp::rate::Linear);
 			//ptrTrans->SetPosition(v);
-			ptrTrans->SetQuaternion(mat.quatInMatrix());
+			//ptrTrans->SetQuaternion(mat.quatInMatrix());
 		}
 	}
 
 	void FixedBox::OnUpdate() {
 		SeekParent();
+	}
+
+	void Goal::SeekParentGoal() {
+		auto ptrTrans = GetComponent<Transform>();
+		//auto pos = ptrTrans->GetPosition();
+		auto ptrParent = m_Parent.lock();
+		if (ptrParent) {
+			auto matParent = ptrParent->GetComponent<Transform>()->GetWorldMatrix();
+			matParent.scaleIdentity();
+			Mat4x4 mat;
+			mat.affineTransformation(
+				Vec3(1.0),
+				Vec3(0.0),
+				Vec3(0.0),
+				m_VecToParent
+			);
+			mat *= matParent;
+
+			//auto posTarget = mat.transInMatrix();
+			//auto v = Lerp::CalculateLerp(pos, posTarget, 0.0f, 1.0f, 0.2f, Lerp::rate::Linear);
+			//ptrTrans->SetPosition(v);
+			//ptrTrans->SetQuaternion(mat.quatInMatrix());
+		}
+
+	}
+	void Goal::OnUpdate() {
+		SeekParentGoal();
 	}
 
 	void ParentBox::OnCreate() {
@@ -156,15 +184,21 @@ namespace basecross {
 	void ParentBox::OnUpdate() {
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto elap = App::GetApp()->GetElapsedTime();
+		m_time += elap;
+
 		auto PtrAction = AddComponent<Action>();
-		PtrAction->AddRotateBy(1.0f, Vec3(0, 0, 90));
+		PtrAction->AddRotateBy(5.0f, Vec3(0, 0, 3));
 		PtrAction->SetLooped(false);
 
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 
-			PtrAction->Run();
-
+			if (m_time < 1.0f) {
+				PtrAction->Run();
+			}
 		}
-
+		if (m_time > 3.0f) {
+			PtrAction->Stop();
+		}
 	}
 }

@@ -32,6 +32,7 @@ namespace basecross {
 
 		{}
 
+
 		virtual ~FixedBox()
 		{}
 		//‰Šú‰»
@@ -47,23 +48,23 @@ namespace basecross {
 		weak_ptr<GameObject> m_Parent;
 		Vec3 m_VecToParent;
 
-
+		void SeekParentGoal();
 	public:
 		//\’z‚Æ”jŠü
 		Goal(const shared_ptr<Stage>& StagePtr,
 			const Vec3& Scale,
 			const Vec3& Rotation,
-			const Vec3& Position
-			//const shared_ptr<GameObject>& Parent,
-			//const Vec3& VecToParent
+			const Vec3& Position,
+			const shared_ptr<GameObject>& Parent,
+			const Vec3& VecToParent
 
 		) :
 			GameObject(StagePtr),
 			m_Scale(Scale),
 			m_Rotation(Rotation),
-			m_Position(Position)
-			//m_Parent(Parent),
-			//m_VecToParent(VecToParent)
+			m_Position(Position),
+			m_Parent(Parent),
+			m_VecToParent(VecToParent)
 
 		{}
 
@@ -71,6 +72,7 @@ namespace basecross {
 		{}
 		//‰Šú‰»
 		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
 	};
 
 
@@ -78,6 +80,7 @@ namespace basecross {
 		Vec3 m_Scale;
 		Vec3 m_Rotation;
 		Vec3 m_Position;
+		float m_time;
 	public:
 		//\’z‚Æ”jŠü
 		ParentBox(const shared_ptr<Stage>& StagePtr,

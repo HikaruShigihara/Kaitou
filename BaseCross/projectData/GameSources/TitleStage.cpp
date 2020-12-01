@@ -331,7 +331,7 @@ namespace basecross {
 			//ƒV[ƒ“‘JˆÚ‚ÌŽd•û(OnUpdate‚É)
 			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
 
-			PlayBGM(L"Title.wav", 0.5f);
+			PlayBGM(L"Stage.wav", 0.5f);
 		}
 		catch (...) {
 			throw;
