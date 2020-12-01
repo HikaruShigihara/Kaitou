@@ -14,6 +14,9 @@ namespace basecross {
 	class GameStage : public Stage {
 		//XMLリーダー
 		unique_ptr<XmlDocReader> m_XmlDocReader;
+
+		shared_ptr<SoundItem> m_bgm;
+
 		shared_ptr<GameObjectGroup> m_group;
 		shared_ptr<GameObject> m_fixedbox;
 		shared_ptr<GameObject> m_Parentbox;
@@ -27,6 +30,7 @@ namespace basecross {
 		wstring m_cloud,m_cloud1, m_cloud2, m_cloud3, m_cloud4;
 		wstring m_clear;
 		bool m_clearflag;
+		Vec3 m_scale, m_rotation, m_position;
 		int m_number;
 		//ビューの作成
 		void CreateViewLight();
@@ -53,7 +57,11 @@ namespace basecross {
 			m_cloud4(L"Cloud Parts 4.png"),
 			m_cloud(L"Cloud.png"),
 			m_clear(L"Clear.png"),
-			m_number(000)
+			m_number(000),
+			m_scale(0.13f),
+			m_rotation(0.0f),
+			m_position(0.6f),
+			m_bgm(NULL)
 		{}
 		virtual ~GameStage() {}
 		//初期化
@@ -71,6 +79,11 @@ namespace basecross {
 		void resetCount() {
 			m_number = 0;
 		}
+		void PlayBGM(wstring key, float vol) {
+			auto bgm = App::GetApp()->GetXAudio2Manager();
+			m_bgm = bgm->Start(key, XAUDIO2_LOOP_INFINITE, vol);
+		}
+
 	};
 
 	//--------------------------------------------------------------------------------------
