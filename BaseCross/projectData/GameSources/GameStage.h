@@ -18,6 +18,7 @@ namespace basecross {
 		shared_ptr<GameObject> m_fixedbox;
 		shared_ptr<GameObject> m_Parentbox;
 		shared_ptr<GameObject> m_numbers[3];
+		shared_ptr<GameObject> m_Target;
 		
 		wstring m_back;
 		wstring m_number_UI;

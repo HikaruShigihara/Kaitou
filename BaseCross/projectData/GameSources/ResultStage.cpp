@@ -56,7 +56,6 @@ namespace basecross {
 			Col4(1.0f),
 			m_Result_StarOnly
 			);
-
 	}
 
 	void ResultStage::OnCreate() {
@@ -70,6 +69,13 @@ namespace basecross {
 	}
 
 	void ResultStage::OnUpdate() {
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
+		}
 
 		m_Star01=
 			AddGameObject<Result_UI>(
@@ -85,6 +91,7 @@ namespace basecross {
 			x -= 0.01f;
 
 		}
+		//m_Star01->
 	}
 
 }
