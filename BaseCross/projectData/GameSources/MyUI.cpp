@@ -128,4 +128,75 @@ namespace basecross {
 			time = 0;
 		}
 	}
+
+	void Result_Star1::OnCreate() {
+		SetDrawActive(false);
+
+		Draw();	
+	}
+	void Result_Star1::OnUpdate() {	
+		auto PtrAction = AddComponent<Action>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		time += elapsedTime;
+
+
+		PtrAction->AddScaleTo(0.3f, Vec3(1.0f));
+
+		if (time >= 1.0f) {
+
+			SetDrawActive(true);
+			PtrAction->Run();
+
+		}
+
+
+	}
+
+	void Result_Star2::OnCreate() {
+		SetDrawActive(false);
+
+		Draw();
+	}
+	void Result_Star2::OnUpdate() {
+		auto PtrAction = AddComponent<Action>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		time += elapsedTime;
+
+
+		PtrAction->AddScaleTo(0.3f, Vec3(1.0f));
+
+		if (time >= 2.0f) {
+
+			SetDrawActive(true);
+			PtrAction->Run();
+
+		}
+
+
+	}
+
+	void Result_Star3::OnCreate() {
+		SetDrawActive(false);
+
+		Draw();
+	}
+	void Result_Star3::OnUpdate() {
+		auto PtrAction = AddComponent<Action>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		time += elapsedTime;
+
+
+		PtrAction->AddScaleTo(0.3f, Vec3(1.0f));
+
+		if (time >= 3.0f) {
+
+			SetDrawActive(true);
+			PtrAction->Run();
+
+		}
+
+
+	}
+
+
 }

@@ -271,4 +271,88 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 	};
+
+	class Result_Star1 : public UI_Base {
+		float time;
+	public:
+
+		Result_Star1(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~Result_Star1() {}
+
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
+	};
+	class Result_Star2 : public UI_Base {
+		float time;
+	public:
+
+		Result_Star2(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~Result_Star2() {}
+
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
+	};
+
+	class Result_Star3 : public UI_Base {
+		float time;
+	public:
+
+		Result_Star3(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~Result_Star3() {}
+
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
+	};
+
 }
