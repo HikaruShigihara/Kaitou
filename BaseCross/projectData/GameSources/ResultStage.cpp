@@ -85,7 +85,6 @@ namespace basecross {
 			x -= 0.01f;
 
 		}
-		m_Star01->
 	}
 
 }
