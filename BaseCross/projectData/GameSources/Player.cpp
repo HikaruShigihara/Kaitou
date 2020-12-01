@@ -37,20 +37,6 @@ namespace basecross{
 		ptrString->SetText(L"");
 		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
 
-		//影をつける（シャドウマップを描画する）
-		//auto shadowPtr = AddComponent<Shadowmap>();
-		////影の形（メッシュ）を設定
-		//shadowPtr->SetMeshResource(L"DEFAULT_SPHERE");
-
-		////描画コンポーネントの設定
-		//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		////描画するメッシュを設定
-		//ptrDraw->SetMeshResource(L"DEFAULT_SPHERE");
-		//ptrDraw->SetFogEnabled(true);
-		////描画するテクスチャを設定
-		//ptrDraw->SetTextureResource(L"Blue.png");
-		//SetAlphaActive(true);
-
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
 			Vec3(1.0f, 1.0f, 1.0f),
@@ -89,7 +75,6 @@ namespace basecross{
 			ptrCamera->SetTargetObject(GetThis<GameObject>());
 			ptrCamera->SetTargetToAt(Vec3(0, 0.25f, 0));
 		}
-
 	}
 
 	Vec3 Player::GetPlayerMoveVec() const {
@@ -177,19 +162,6 @@ namespace basecross{
 	}
 
 	void Player::PlayerMove() {
-		//float elapsedTime = App::GetApp()->GetElapsedTime();
-		//auto angle = GetPlayerMoveVec();
-		//auto Vec = GetPlayerMoveVec();
-		//auto PtrPs = GetComponent<RigidbodySphere>();
-		//auto Velo = PtrPs->GetLinearVelocity();
-		//Velo.x = Vec.x * 5.0f;
-		//Velo.z = Vec.z * 5.0f;
-		//PtrPs->SetLinearVelocity(Velo);
-		////回転の計算
-		//if (angle.length() > 0.0f) {
-		//	auto utilPtr = GetBehavior<UtilBehavior>();
-		//	utilPtr->RotToHead(angle, 1.0f);
-		//}
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto angle = GetPlayerMoveVec();
 		if (angle.length() > 0.0f) {
@@ -197,13 +169,12 @@ namespace basecross{
 			pos += angle * elapsedTime * 6.0f;
 			GetComponent<Transform>()->SetPosition(pos);
 		}
+
 		//回転の計算
 		if (angle.length() > 0.0f) {
 			auto utilPtr = GetBehavior<UtilBehavior>();
 			utilPtr->RotToHead(angle, 1.0f);
 		}
-		//auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
-		//gamestage->SetCount(1);
 	}
 
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {

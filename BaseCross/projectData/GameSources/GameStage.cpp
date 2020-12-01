@@ -78,13 +78,13 @@ namespace basecross {
 	}
 	void GameStage::CreateXmlObjects() {
 		//êe
-		//m_Parentbox = AddGameObject<ParentBox>(
-		//	Vec3(0.25f, 0.25f, 0.25f),
-		//	Vec3(0.0f, 0.0f, 0.0f),
-		//	Vec3(0.0f, 1.0f, 0.0f)
-		//	);
-		//SetSharedGameObject(L"ParentBox", m_Parentbox);
-		//m_Parentbox->AddTag(L"ParentBox");
+		m_Parentbox = AddGameObject<ParentBox>(
+			Vec3(0.25f, 0.25f, 0.25f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 1.0f, 0.0f)
+			);
+		SetSharedGameObject(L"ParentBox", m_Parentbox);
+		m_Parentbox->AddTag(L"ParentBox");
 
 
 		m_group = CreateSharedObjectGroup(L"FixedBoxes");
@@ -128,25 +128,25 @@ namespace basecross {
 					float XPos = (float)((int)j - 5);
 					float ZPos = (float)(5 - (int)i);
 					if (Tokens[j] == L"1") {
-						//shared_ptr<GameObject> ptrTarget = GetSharedGameObject<FixedBox>(L"Player");
-						AddGameObject<FixedBox>(
+						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
+						m_Target = AddGameObject<FixedBox>(
 						Vec3(0.1f, 0.1f, 0.1f),
 						Vec3(0.0f, 0.0f, 0.0f),
-						Vec3(XPos*0.43f, f*0.43f, ZPos*0.43f)
-							//ptrTarget,
-							//Vec3(0,0,0)
+						Vec3(XPos*0.43f, f*0.43f, ZPos*0.43f),
+							m_Target,
+							Vec3(0,0,0)
 							);
 					//Group = GetSharedObjectGroup(L"FixedBoxes");
 					m_group->IntoGroup(m_fixedbox);
 					}
 					else if (Tokens[j] == L"2") {
-						//shared_ptr<GameObject> ptrTarget = GetSharedGameObject<FixedBox>(L"Player");
-						AddGameObject<FixedBox>(
+						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
+						m_Target = AddGameObject<FixedBox>(
 						Vec3(0.1f, 0.1f, 0.1f),
 						Vec3(0.0f, 0.0f, 0.0f),
-						Vec3(XPos*0.25f, 0.5f, ZPos*0.25f)
-						//ptrTarget,
-						//Vec3(0,0,0)
+						Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
+						m_Target,
+						Vec3(0,0,0)
 						);
 					//Group = GetSharedObjectGroup(L"FixedBoxes");
 					m_group->IntoGroup(m_fixedbox);
@@ -357,11 +357,12 @@ namespace basecross {
 		//PtrAction->AddRotateBy(1.0f, Vec3(0, 0, 90));
 		//PtrAction->SetLooped(false);
 
-		//if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 
-		//	PtrAction->Run();
+			//PtrAction->Run();
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
 
-		//}
+		}
 		//if (KeyState.m_bPushKeyTbl['W']) {
 		//	PtrAction->Run();
 

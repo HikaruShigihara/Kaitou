@@ -17,19 +17,34 @@ namespace basecross {
 		wstring m_Result_Star3;
 		wstring m_Result_StarOnly;
 
+		wstring m_titleflame;
+		wstring m_Selectlogo;
+		wstring m_next;
 	public:
 		float x = 1.0f;
 		std::shared_ptr<basecross::Result_UI> m_Star01;
 		std::shared_ptr<basecross::Result_UI> m_Star02;
 		std::shared_ptr<basecross::Result_UI> m_Star03;
 
+		std::shared_ptr<basecross::Title_UI> m_Start;
+		std::shared_ptr<basecross::Title_UI> m_Select;
+		std::shared_ptr<basecross::Title_UI> m_End;
+		std::shared_ptr<basecross::Title_UI> m_StartLogoObject;
+		std::shared_ptr<basecross::Title_UI> m_SelectLogoObject;
+		std::shared_ptr<basecross::Title_UI> m_EndLogoObject;
+
+
 		ResultStage() : Stage(),
 			m_Result_image(L"Result.png"),
 			m_Result_Star1(L"Star_1.png"),
 			m_Result_Star2(L"Star_2.png"),
 			m_Result_Star3(L"Star_3.png"),
-			m_Result_StarOnly(L"StarOnly.png")
-			
+			m_Result_StarOnly(L"StarOnly.png"),
+			m_titleflame(L"Frame.png"),
+			m_next(L"next.png"),
+			m_Selectlogo(L"Selectlogo.png")
+
+
 		{}
 
 		virtual ~ResultStage() {}

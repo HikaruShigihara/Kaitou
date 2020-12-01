@@ -20,7 +20,7 @@ namespace basecross{
 		FindFile(dataDir);
 		FindFile(mediaDir + L"Textures/");
 		FindFile(mediaDir + L"Model/");
-
+		FindFile(mediaDir + L"BGM/");
 
 		//bmfモデルのリソース作成
 		//ステージ
@@ -66,6 +66,7 @@ namespace basecross{
 
 					App::GetApp()->RegisterWav(fileName, wav);
 				}
+
 
 				//例外処理
 				if (exe == L".bmf") {

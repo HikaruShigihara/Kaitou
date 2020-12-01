@@ -331,6 +331,7 @@ namespace basecross {
 			//ƒV[ƒ“‘JˆÚ‚ÌŽd•û(OnUpdate‚É)
 			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
 
+			PlayBGM(L"Title.wav", 0.5f);
 		}
 		catch (...) {
 			throw;
@@ -356,6 +357,7 @@ namespace basecross {
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+				StopBGM();
 			}
 
 			break;
@@ -366,6 +368,7 @@ namespace basecross {
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
+				StopBGM();
 			}
 
 			break;
@@ -377,6 +380,7 @@ namespace basecross {
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
+				StopBGM();
 			}
 
 		}
