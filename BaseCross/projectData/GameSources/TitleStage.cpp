@@ -382,6 +382,7 @@ namespace basecross {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
 				StopBGM();
 			}
+			break;
 
 		}
 		

@@ -11,27 +11,33 @@ namespace basecross {
 
 		void CreateViewLight();
 		void CreateUI();
+		void BoolSet();
+
 		wstring m_Result_image;
 		wstring m_Result_Star1;
 		wstring m_Result_Star2;
 		wstring m_Result_Star3;
 		wstring m_Result_StarOnly;
-
 		wstring m_titleflame;
+		wstring m_Nextlogo;
 		wstring m_Selectlogo;
+		wstring m_Endlogo;
 		wstring m_next;
 	public:
-		float x = 1.0f;
+		int m_SelectChoices;
+		int m_SelectQuantity;//ëIëéàÇÃå¬êî
+
+		//float x = 1.0f;
 		std::shared_ptr<basecross::Result_UI> m_Star01;
 		std::shared_ptr<basecross::Result_UI> m_Star02;
 		std::shared_ptr<basecross::Result_UI> m_Star03;
 
-		std::shared_ptr<basecross::Title_UI> m_Start;
-		std::shared_ptr<basecross::Title_UI> m_Select;
-		std::shared_ptr<basecross::Title_UI> m_End;
-		std::shared_ptr<basecross::Title_UI> m_StartLogoObject;
-		std::shared_ptr<basecross::Title_UI> m_SelectLogoObject;
-		std::shared_ptr<basecross::Title_UI> m_EndLogoObject;
+		std::shared_ptr<basecross::Result_UI> m_Start;
+		std::shared_ptr<basecross::Result_UI> m_Select;
+		std::shared_ptr<basecross::Result_UI> m_End;
+		std::shared_ptr<basecross::Result_UI> m_NextLogoObject;
+		std::shared_ptr<basecross::Result_UI> m_SelectLogoObject;
+		std::shared_ptr<basecross::Result_UI> m_EndLogoObject;
 
 
 		ResultStage() : Stage(),
@@ -41,8 +47,10 @@ namespace basecross {
 			m_Result_Star3(L"Star_3.png"),
 			m_Result_StarOnly(L"StarOnly.png"),
 			m_titleflame(L"Frame.png"),
-			m_next(L"next.png"),
-			m_Selectlogo(L"Selectlogo.png")
+			m_Selectlogo(L"SelectStage.png"),
+			m_Nextlogo(L"Next.png"),
+			m_Endlogo(L"Titlelogo.png")
+
 
 
 		{}

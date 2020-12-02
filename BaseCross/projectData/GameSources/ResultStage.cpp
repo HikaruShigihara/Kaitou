@@ -24,14 +24,120 @@ namespace basecross {
 
 	void ResultStage::CreateUI() {
 
+		AddGameObject<Result_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(-600.0f, -400.0f, 0.0f),
+			Vec3(0.8f),
+			-3,
+			Col4(1.0f),
+			m_titleflame
+			);
+		AddGameObject<Result_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(0.0f, -400.0f, 0.0f),
+			Vec3(0.8f),
+			-3,
+			Col4(1.0f),
+			m_titleflame
+			);
+		AddGameObject<Result_UI>(
+			Vec2(581.0f, 132.0f),
+			Vec3(600.0f, -400.0f, 0.0f),
+			Vec3(0.8f),
+			-3,
+			Col4(1.0f),
+			m_titleflame
+			);
+
+
 			AddGameObject<Result_UI>(
 				Vec2(1920.0f, 1080.0f),
 				Vec3(0.0f, 0.0f, 0.0f),
 				Vec3(1.0f),
-				-1,
+				-4,
 				Col4(1.0f),
 				m_Result_image
 				);
+			m_Start =
+				AddGameObject<Result_UI>(
+					Vec2(581.0f, 132.0f),
+					Vec3(-600.0f, -400.0f, 0.0f),
+					Vec3(1.0f),
+					-1,
+					Col4(1.0f),
+					m_titleflame
+					);
+			m_Select =
+				AddGameObject<Result_UI>(
+					Vec2(581.0f, 132.0f),
+					Vec3(0.0f, -400.0f, 0.0f),
+					Vec3(1.0f),
+					-1,
+					Col4(1.0f),
+					m_titleflame
+					);
+			m_End =
+				AddGameObject<Result_UI>(
+					Vec2(581.0f, 132.0f),
+					Vec3(600.0f, -400.0f, 0.0f),
+					Vec3(1.0f),
+					-1,
+					Col4(1.0f),
+					m_titleflame
+					);
+			AddGameObject<Result_UI>(
+				Vec2(581.0f, 132.0f),
+				Vec3(-600.0f, -420.0f, 0.0f),
+				Vec3(0.8f),
+				-2,
+				Col4(1.0f),
+				m_Nextlogo
+				);
+			AddGameObject<Result_UI>(
+				Vec2(581.0f, 132.0f),
+				Vec3(10.0f, -420.0f, 0.0f),
+				Vec3(0.8f),
+				-2,
+				Col4(1.0f),
+				m_Selectlogo
+				);
+			AddGameObject<Result_UI>(
+				Vec2(581.0f, 132.0f),
+				Vec3(620.0f, -420.0f, 0.0f),
+				Vec3(0.8f),
+				-2,
+				Col4(1.0f),
+				m_Endlogo
+				);
+
+			m_NextLogoObject =
+				AddGameObject<Result_UI>(
+					Vec2(581.0f, 132.0f),
+					Vec3(-600.0f, -420.0f, 0.0f),
+					Vec3(1.0f),
+					0,
+					Col4(1.0f),
+					m_Nextlogo
+					);
+			m_SelectLogoObject =
+				AddGameObject<Result_UI>(
+					Vec2(581.0f, 132.0f),
+					Vec3(10.0f, -420.0f, 0.0f),
+					Vec3(1.0f),
+					0,
+					Col4(1.0f),
+					m_Selectlogo
+					);
+			m_EndLogoObject =
+				AddGameObject<Result_UI>(
+					Vec2(581.0f, 132.0f),
+					Vec3(620.0f, -420.0f, 0.0f),
+					Vec3(1.0f),
+					0,
+					Col4(1.0f),
+					m_Endlogo
+					);
+
 	switch (1){
 		case 3:
 			AddGameObject<Result_Star3>(
@@ -66,10 +172,22 @@ namespace basecross {
 
 	}
 
+	void ResultStage::BoolSet() {
+		m_Start->SetDrawActive(false);
+		m_Select->SetDrawActive(false);
+		m_End->SetDrawActive(false);
+		m_NextLogoObject->SetDrawActive(false);
+		m_SelectLogoObject->SetDrawActive(false);
+		m_EndLogoObject->SetDrawActive(false);
+
+
+	}
+
 	void ResultStage::OnCreate() {
 		try {
 			CreateViewLight();
 			CreateUI();
+			m_SelectQuantity = 3;
 		}
 		catch (...) {
 			throw;
@@ -77,20 +195,58 @@ namespace basecross {
 	}
 
 	void ResultStage::OnUpdate() {
+		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
+			m_SelectChoices += 1;
 		}
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
+			m_SelectChoices -= 1;
 		}
 
+		switch (m_SelectChoices)
+		{
+		case 0:
+			BoolSet();
+			m_Start->SetDrawActive(true);
+			m_NextLogoObject->SetDrawActive(true);
 
-		if (x > 0) {
-			x -= 0.01f;
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+			}
+
+			break;
+		case 1:
+			BoolSet();
+			m_Select->SetDrawActive(true);
+			m_SelectLogoObject->SetDrawActive(true);
+
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
+			}
+
+			break;
+		case 2:
+
+			BoolSet();
+			m_End->SetDrawActive(true);
+			m_EndLogoObject->SetDrawActive(true);
+
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
+			}
+			break;
 
 		}
-		//m_Star01->
+
+		if (m_SelectChoices >= m_SelectQuantity)
+		{
+			m_SelectChoices = 0;
+		}
+		if (m_SelectChoices < 0)
+		{
+			m_SelectChoices = m_SelectQuantity - 1;
+		}
 	}
 
 }
