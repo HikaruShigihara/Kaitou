@@ -130,6 +130,35 @@ namespace basecross {
 			m_Endlogo
 			);
 
+		m_SelectArrowNumber1=
+			AddGameObject<Title_Arrow>(
+			Vec2(256.0f, 256.0f),
+			Vec3(-600.0f, -280.0f, 0.0f),
+			Vec3(0.4f),
+			1,
+			Col4(1.0f),
+			m_SelectArrow
+			);
+		m_SelectArrowNumber2=
+			AddGameObject<Title_Arrow>(
+			Vec2(256.0f, 256.0f),
+			Vec3(-10.0f, -280.0f, 0.0f),
+			Vec3(0.4f),
+			1,
+			Col4(1.0f),
+			m_SelectArrow
+			);
+
+		m_SelectArrowNumber3=
+			AddGameObject<Title_Arrow>(
+			Vec2(256.0f, 256.0f),
+			Vec3(610.0f, -280.0f, 0.0f),
+			Vec3(0.4f),
+			1,
+			Col4(1.0f),
+			m_SelectArrow
+			);
+
 
 	}
 	void TitleStage::CreateCloud() {
@@ -256,6 +285,9 @@ namespace basecross {
 		m_StartLogoObject->SetDrawActive(false);
 		m_SelectLogoObject->SetDrawActive(false);
 		m_EndLogoObject->SetDrawActive(false);
+		m_SelectArrowNumber1->SetDrawActive(false);
+		m_SelectArrowNumber2->SetDrawActive(false);
+		m_SelectArrowNumber3->SetDrawActive(false);
 
 
 	}
@@ -354,6 +386,8 @@ namespace basecross {
 			BoolSet();
 			m_Start->SetDrawActive(true);
 			m_StartLogoObject->SetDrawActive(true);
+			m_SelectArrowNumber1->SetDrawActive(true);
+
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
@@ -365,6 +399,8 @@ namespace basecross {
 			BoolSet();
 			m_Select->SetDrawActive(true);
 			m_SelectLogoObject->SetDrawActive(true);
+			m_SelectArrowNumber2->SetDrawActive(true);
+
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
@@ -377,6 +413,8 @@ namespace basecross {
 			BoolSet();
 			m_End->SetDrawActive(true);
 			m_EndLogoObject->SetDrawActive(true);
+			m_SelectArrowNumber3->SetDrawActive(true);
+
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);

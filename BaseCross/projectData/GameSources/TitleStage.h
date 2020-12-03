@@ -18,6 +18,8 @@ namespace basecross {
 		wstring m_Startlogo;
 		wstring m_Selectlogo;
 		wstring m_Endlogo;
+		wstring m_SelectArrow;
+
 		wstring m_cloud1, m_cloud2, m_cloud3, m_cloud4;
 		wstring m_Kai, m_Tou;
 
@@ -37,6 +39,10 @@ namespace basecross {
 		std::shared_ptr<basecross::Title_UI> m_StartLogoObject;
 		std::shared_ptr<basecross::Title_UI> m_SelectLogoObject;
 		std::shared_ptr<basecross::Title_UI> m_EndLogoObject;
+		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber1;
+		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber2;
+		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber3;
+
 
 
 		TitleStage() : Stage(),
@@ -45,6 +51,7 @@ namespace basecross {
 			m_Startlogo(L"Startlogo.png"),
 			m_Selectlogo(L"Selectlogo.png"),
 			m_Endlogo(L"Endlogo.png"),
+			m_SelectArrow(L"Select_Arrow.png"),
 			m_cloud1(L"Cloud Parts 1.png"),
 			m_cloud2(L"Cloud Parts 2.png"),
 			m_cloud3(L"Cloud Parts 3.png"),

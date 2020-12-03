@@ -187,6 +187,7 @@ namespace basecross {
 		try {
 			CreateViewLight();
 			CreateUI();
+			m_SelectChoices = 0;
 			m_SelectQuantity = 3;
 		}
 		catch (...) {

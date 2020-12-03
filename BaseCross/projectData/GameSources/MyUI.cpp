@@ -94,7 +94,6 @@ namespace basecross {
 		auto PtrAction = AddComponent<Action>();
 
 		PtrAction->AddMoveBy(0.1f, Vec3(5.0f, 0, 0));
-
 		PtrAction->SetLooped(true);
 		//アクション開始
 		PtrAction->Run();
@@ -102,10 +101,10 @@ namespace basecross {
 	void Cloud::OnUpdate() {
 		auto PtrAction = AddComponent<Action>();
 		auto trans = GetComponent<Transform>();
-		auto pos = GetComponent<Transform>()->GetPosition();
-		if (pos.x >= 800.0f) {
-			trans->SetPosition(Vec3(-1000.0f, 0.0f, 0.0f));
-			//PtrAction->Stop();
+		auto pos = trans->GetPosition();
+		if (pos.x >= 1200.0f) {
+			PtrAction->AddMoveTo(0.000001f, Vec3(-1200.0f, pos.y, 0.0f));
+			PtrAction->AddMoveTo(45.0f, Vec3(1200.0f, pos.y, 0.0f));
 		}
 	}
 
@@ -197,6 +196,23 @@ namespace basecross {
 
 
 	}
+
+	void Title_Arrow::OnCreate() {
+		Draw();	
+		auto PtrAction = AddComponent<Action>();
+		auto pos = GetComponent<Transform>()->GetPosition();
+
+		PtrAction->AddMoveTo(1.0f, Vec3(pos.x, -250.0f, 0.0f));
+		PtrAction->AddMoveTo(1.0f, Vec3(pos.x, -280.0f, 0.0f));
+		PtrAction->SetLooped(true);
+		PtrAction->Run();
+
+	}
+	void Title_Arrow::OnUpdate() {
+
+	}
+
+	
 
 
 }
