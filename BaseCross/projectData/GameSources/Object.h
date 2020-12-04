@@ -95,17 +95,17 @@ namespace basecross {
 		ParentBox(const shared_ptr<Stage>& StagePtr,
 			const Vec3& Scale,
 			const Vec3& Rotation,
-			const Vec3& Position,
-			const shared_ptr<GameObject>& Parent,
-			const Vec3& VecToParent
+			const Vec3& Position
+			//const shared_ptr<GameObject>& Parent,
+			//const Vec3& VecToParent
 
 		) :
 			GameObject(StagePtr),
 			m_Scale(Scale),
 			m_Rotation(Rotation),
-			m_Position(Position),
-			m_Parent(Parent),
-			m_VecToParent(VecToParent)
+			m_Position(Position)
+			//m_Parent(Parent),
+			//m_VecToParent(VecToParent)
 
 		{}
 
