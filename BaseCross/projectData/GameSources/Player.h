@@ -8,8 +8,8 @@
 
 namespace basecross{
 	class Player : public GameObject {
-		Vec3 m_Scale;
-		Vec3 m_Rotation;
+		Vec3 m_Scale = Vec3(0.3f, 0.5f, 0.3f);
+		Vec3 m_Rotation = Vec3(0.0f);
 		Vec3 m_Position;
 		//Vec3 m_Respawn = Vec3(0.0f, 3.0f, 0.0f);
 		bool m_clearflag = false;
@@ -18,21 +18,20 @@ namespace basecross{
 
 		wstring m_clear = wstring(L"Clear.png");
 
-		float m_WalkSpeed = 4.5f;
+		float m_WalkSpeed = 6.55f;
 		void PlayerMove();
-		void StageRotate();
 		void Respawn();
 		void DrawStrings();
 	public:
 		Player(
 			const shared_ptr<Stage>& StagePtr,
-			Vec3& scale,
-			Vec3& rotation,
+			//Vec3& scale,
+			//Vec3& rotation,
 			Vec3& position
 			) :
 			GameObject(StagePtr),
-			m_Scale(scale),
-			m_Rotation(rotation),
+			//m_Scale(scale),
+			//m_Rotation(rotation),
 			m_Position(position)
 		{}
 

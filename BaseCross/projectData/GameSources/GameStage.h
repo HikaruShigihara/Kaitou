@@ -22,6 +22,7 @@ namespace basecross {
 		shared_ptr<GameObject> m_Parentbox;
 		shared_ptr<GameObject> m_numbers[3];
 		shared_ptr<GameObject> m_Target;
+		shared_ptr<GameObject> m_Goal;
 		
 		wstring m_back;
 		wstring m_number_UI;
@@ -30,15 +31,13 @@ namespace basecross {
 		wstring m_cloud,m_cloud1, m_cloud2, m_cloud3, m_cloud4;
 		wstring m_clear;
 		bool m_clearflag;
-		Vec3 m_scale, m_rotation, m_position;
+		float m_position;
 		int m_number;
 		//ビューの作成
 		void CreateViewLight();
 		//ボックスの作成
-		void CreateFixedBox();
 		void CreateUI();
 		void CreatePlayer();
-		void MoveStage();
 		void CreateBack();
 		void CreateCloud();
 
@@ -58,9 +57,7 @@ namespace basecross {
 			m_cloud(L"Cloud.png"),
 			m_clear(L"Clear.png"),
 			m_number(000),
-			m_scale(0.13f),
-			m_rotation(0.0f),
-			m_position(0.6f),
+			m_position(0.65f),
 			m_bgm(NULL)
 		{}
 		virtual ~GameStage() {}

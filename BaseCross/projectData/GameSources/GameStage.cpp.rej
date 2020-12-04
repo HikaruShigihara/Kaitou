@@ -1,0 +1,9 @@
+diff a/BaseCross/projectData/GameSources/GameStage.cpp b/BaseCross/projectData/GameSources/GameStage.cpp	(rejected hunks)
+@@ -125,7 +125,6 @@
+ 			//�g�[�N���i�J�����j�̔z��
+ 			vector<wstring> Tokens;
+ 			//�g�[�N���i�J�����j�P�ʂŕ�����𒊏o(L','��f���~�^�Ƃ��ċ敪��)
+-			Util::WStrToTokenVector(Tokens, LineVec[i], L',');
+ 				for (size_t j = 0; j < 10; j++) {
+ 				//X��Z�̈ʒu��v�Z
+ 					float XPos = (float)((int)j - 5);

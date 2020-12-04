@@ -16,10 +16,11 @@ namespace basecross{
 		ptr->SetPosition(m_Position);
 
 		//衝突判定を付ける
-		auto ptrColl = AddComponent<CollisionObb>();
-		ptrColl->SetMakedSize(Vec3(1.0f, 2.0f, 1.0f));
+		auto ptrColl = AddComponent<CollisionCapsule>();
+		//ptrColl->SetMakedHeight(3.0f);
+		//ptrColl->SetMakedSize(Vec3(2.0f, 5.0f, 2.0f));
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
-
+		//ptrColl->SetDrawActive(true);
 		//重力をつける
 		auto ptrGra = AddComponent<Gravity>();
 
@@ -27,38 +28,39 @@ namespace basecross{
 		GetStage()->SetUpdatePerformanceActive(true);
 		GetStage()->SetDrawPerformanceActive(true);
 
-		//PsSphereParam param(ptr->GetWorldMatrix(), 1.0f, false, PsMotionType::MotionTypeActive);
-		//auto psPtr = AddComponent<RigidbodySphere>(param);
+		//PsCylinderParam param(ptr->GetWorldMatrix(), 1.0f, false, PsMotionType::MotionTypeActive);
+		//auto psPtr = AddComponent<RigidbodyCylinder>(param);
 		//psPtr->SetAutoTransform(false);
 		//psPtr->SetDrawActive(true);
 
 		//文字列をつける
-		auto ptrString = AddComponent<StringSprite>();
-		ptrString->SetText(L"");
-		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
+		//auto ptrString = AddComponent<StringSprite>();
+		//ptrString->SetText(L"");
+		//ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.3f, 0.2f, 0.3f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, XM_PI, 0.0f),
+			Vec3(0.0f, -0.8f, 0.0f)
 		);
 
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"Player.bmf");
+		ptrShadow->SetMeshResource(L"Player_4.bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 
 		//描画コンポーネントの設定
-		auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
+		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
 		ptrDraw->SetFogEnabled(true);
 		//描画するメッシュを設定
-		ptrDraw->SetMeshResource(L"Player.bmf");
+		ptrDraw->SetMeshResource(L"Player_4.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
+		ptrDraw->SetDrawActive(true);
 
 		//ptrDraw->AddAnimation(L"Default", 0, 20, true, 20.0f);
 		//ptrDraw->ChangeCurrentAnimation(L"Default");
@@ -202,19 +204,14 @@ namespace basecross{
 		const float limitY = 10.0f;
 		auto player = GetComponent<Transform>();
 		auto pos = player->GetPosition();
-
+		
 		if (abs(pos.y) > limitY) {
 			player->SetPosition(m_Position);
 			auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
 			gamestage->resetCount();
+			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 
 		}
-	}
-
-	void Player::StageRotate() {
-		//ステージ回転
-		//auto stage = 
-
 	}
 
 	void Player::OnUpdate() {
@@ -231,7 +228,7 @@ namespace basecross{
 		//auto Ptr = GetComponent<Transform>();
 		//Ptr->SetPosition(PtrPs->GetPosition());
 
-		DrawStrings();
+		//DrawStrings();
 
 	}
 	void Player::DrawStrings() {
