@@ -70,7 +70,7 @@ namespace basecross {
 	}
 	void Goal::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();
-		ptrTransform->SetScale(Vec3(1.0f, 1.0f, 1.0f));
+		ptrTransform->SetScale(Vec3(0.65f, 0.65f, 0.65f));
 		ptrTransform->SetRotation(Vec3(0.0f, 0.0f, 0.0f));
 		ptrTransform->SetPosition(m_Position);
 		//OBB衝突j判定を付ける
@@ -174,16 +174,28 @@ namespace basecross {
 		//タグをつける
 		AddTag(L"ParentBox");
 		//影をつける（シャドウマップを描画する）
-		auto shadowPtr = AddComponent<Shadowmap>();
-		//影の形（メッシュ）を設定
-		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+		//auto shadowPtr = AddComponent<Shadowmap>();
+		////影の形（メッシュ）を設定
+		//shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
 		auto ptrDraw = AddComponent<BcPCTStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		ptrDraw->SetAlpha(true);
 
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
-		ptrDraw->SetDrawActive(false);
+
+		ptrDraw->SetDrawActive(true);
+
+		auto ptrParent = m_Parent.lock();
+		if (ptrParent) {
+			auto posTarget = ptrParent->GetComponent<Transform>()->GetPosition();
+			posTarget += m_VecToParent;
+			ptrTransform->SetPosition(posTarget);
+			//auto posTarget = ptrParent->GetComponent<Transform>()->GetRotation();
+			//posTarget += m_VecToParent;
+			//ptrTransform->SetRotation(posTarget);
+			ptrTransform->SetParent(ptrParent);
+
+		}
 
 		auto ptrString = AddComponent<StringSprite>();
 		ptrString->SetText(L"");
@@ -199,8 +211,8 @@ namespace basecross {
 		auto ptrTrans = GetComponent<Transform>();
 		auto quat = ptrTrans->GetQuaternion();
 		auto rot = ptrTrans->GetRotation();
-		auto angleX = quat.x * (180 / XM_PI);
-		auto angleZ = quat.z * (180 / XM_PI);
+		auto angleX = quat.x * (180.0f / XM_PI);
+		auto angleZ = quat.z * (180.0f / XM_PI) * 3;
 
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 			m_Key = 0;
@@ -208,6 +220,7 @@ namespace basecross {
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
 			m_Key = 1;
+			m_Keycount++;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 			m_Key = 2;
@@ -220,23 +233,46 @@ namespace basecross {
 		{
 		case 0://B
 			if (m_Keycount == 1) {
-				if (angleZ < 40.0f) {
+				if (angleZ < 120.1f) {
+					
 					quat.z += m_movevalue * elap;
 					ptrTrans->SetQuaternion(quat);
 				}
 			}
 			else if (m_Keycount == 2) {
-				if (angleZ < 57.29f) {
+				if (angleZ < 172.0f) {
 					quat.z += m_movevalue * elap;
 					ptrTrans->SetQuaternion(quat);
 					
 				}
+				else {
+					rot.z = 1.0f;
+					ptrTrans->SetQuaternion(quat);
+				}
+			}
+			else if (m_Keycount == 3) {
+
+				//if (angleZ == 60.0f) {
+				//	quat.normalize();
+				//	quat.z += m_movevalue * elap;
+				//	ptrTrans->SetQuaternion(quat);
+				//}
+				
 			}
 			break;
 		case 1://X
-			if (angleZ > -40.0f) {
-				quat.z -= m_movevalue * elap;
-				ptrTrans->SetQuaternion(quat);
+			if (m_Keycount == 1) {
+				if (angleZ > -40.0f) {
+					quat.z -= m_movevalue * elap;
+					ptrTrans->SetQuaternion(quat);
+				}
+
+			}
+			else if (m_Keycount == 2) {
+				if (angleZ > -40.0f) {
+					quat.z -= m_movevalue * elap;
+					ptrTrans->SetQuaternion(quat);
+				}
 			}
 			break;
 		case 2://A
@@ -248,7 +284,6 @@ namespace basecross {
 			break;
 		case 3://Y
 			if (angleX < 40.0f) {
-
 				quat.x += m_movevalue * elap;
 				ptrTrans->SetQuaternion(quat);
 			}
@@ -265,8 +300,8 @@ namespace basecross {
 
 	void ParentBox::DrawStrings() {
 		auto quat = GetComponent<Transform>()->GetQuaternion();
-		auto rot = quat.z * (180 / XM_PI);
-		//auto Rot = GetComponent<Transform>()->GetRotation();
+		auto rot = quat.z * (180.0f / XM_PI) *3;
+		auto Rot = GetComponent<Transform>()->GetRotation();
 
 		wstring RotationStr(L"Rotation:\t");
 		//RotationStr += L"X=" + Util::FloatToWStr(rot.x, 6, Util::FloatModify::Fixed) + L",\t";
