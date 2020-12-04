@@ -206,10 +206,10 @@ namespace basecross{
 		auto pos = player->GetPosition();
 		
 		if (abs(pos.y) > limitY) {
-			player->SetPosition(m_Position);
-			auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
-			gamestage->resetCount();
-			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+			//player->SetPosition(m_Position);
+			//auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
+			//gamestage->resetCount();
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 
 		}
 	}

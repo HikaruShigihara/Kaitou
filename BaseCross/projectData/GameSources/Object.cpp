@@ -185,17 +185,6 @@ namespace basecross {
 
 		ptrDraw->SetDrawActive(true);
 
-		auto ptrParent = m_Parent.lock();
-		if (ptrParent) {
-			auto posTarget = ptrParent->GetComponent<Transform>()->GetPosition();
-			posTarget += m_VecToParent;
-			ptrTransform->SetPosition(posTarget);
-			//auto posTarget = ptrParent->GetComponent<Transform>()->GetRotation();
-			//posTarget += m_VecToParent;
-			//ptrTransform->SetRotation(posTarget);
-			ptrTransform->SetParent(ptrParent);
-
-		}
 
 		auto ptrString = AddComponent<StringSprite>();
 		ptrString->SetText(L"");
@@ -245,10 +234,10 @@ namespace basecross {
 					ptrTrans->SetQuaternion(quat);
 					
 				}
-				else {
-					rot.z = 1.0f;
-					ptrTrans->SetQuaternion(quat);
-				}
+				//else {
+				//	rot.z = 1.0f;
+				//	ptrTrans->SetQuaternion(quat);
+				//}
 			}
 			else if (m_Keycount == 3) {
 

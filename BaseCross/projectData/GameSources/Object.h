@@ -80,8 +80,6 @@ namespace basecross {
 		Vec3 m_Scale;
 		Vec3 m_Rotation;
 		Vec3 m_Position;
-		weak_ptr<GameObject> m_Parent;
-		Vec3 m_VecToParent;
 
 		int m_Key = 5;
 		int m_Keycount = NULL;
@@ -96,16 +94,12 @@ namespace basecross {
 			const Vec3& Scale,
 			const Vec3& Rotation,
 			const Vec3& Position
-			//const shared_ptr<GameObject>& Parent,
-			//const Vec3& VecToParent
 
 		) :
 			GameObject(StagePtr),
 			m_Scale(Scale),
 			m_Rotation(Rotation),
 			m_Position(Position)
-			//m_Parent(Parent),
-			//m_VecToParent(VecToParent)
 
 		{}
 
