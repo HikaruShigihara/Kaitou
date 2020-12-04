@@ -219,6 +219,13 @@ namespace basecross{
 		//float elapsedTime = App::GetApp()->GetElapsedTime();
 		//auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		//ptrDraw->UpdateAnimation(elapsedTime);
+		auto cnlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto grav = GetComponent<Gravity>();
+
+		if (cnlVec[0].wButtons & XINPUT_GAMEPAD_B) {
+			grav->SetUpdateActive(false);
+		}
+
 
 		Respawn();
 	}
@@ -227,7 +234,8 @@ namespace basecross{
 		//auto PtrPs = GetComponent<RigidbodySphere>();
 		//auto Ptr = GetComponent<Transform>();
 		//Ptr->SetPosition(PtrPs->GetPosition());
-
+		auto grav = GetComponent<Gravity>();
+		grav->SetUpdateActive(true);
 		//DrawStrings();
 
 	}
