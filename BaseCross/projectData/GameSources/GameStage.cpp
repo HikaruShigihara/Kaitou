@@ -106,7 +106,7 @@ namespace basecross {
 		auto Width = m_XmlDocReader->GetSelectSingleNode(L"width");
 
 		
-		for (int f = 0; f < 2; f++) {
+		for (int f = 0; f < 2 ; f++) {
 			switch (f) {
 			case 0:
 				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map1");
@@ -125,7 +125,6 @@ namespace basecross {
 			//トークン（カラム）の配列
 			vector<wstring> Tokens;
 			//トークン（カラム）単位で文字列を抽出(L','をデリミタとして区分け)
-			Util::WStrToTokenVector(Tokens, LineVec[i], L',');
 				for (size_t j = 0; j < 10; j++) {
 				//XとZの位置を計算
 					float XPos = (float)((int)j - 5);
