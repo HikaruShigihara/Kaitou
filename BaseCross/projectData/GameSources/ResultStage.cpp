@@ -138,7 +138,7 @@ namespace basecross {
 					m_Endlogo
 					);
 
-	switch (1){
+	switch (m_StarQuantity){
 		case 3:
 			AddGameObject<Result_Star3>(
 				Vec2(190.0f, 180.0f),
@@ -186,9 +186,11 @@ namespace basecross {
 	void ResultStage::OnCreate() {
 		try {
 			CreateViewLight();
-			CreateUI();
 			m_SelectChoices = 0;
 			m_SelectQuantity = 3;
+			m_StarQuantity = 2;
+			CreateUI();
+
 		}
 		catch (...) {
 			throw;

@@ -49,6 +49,13 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
+
+		void PlaySE(wstring key, float vol) {
+			auto se = App::GetApp()->GetXAudio2Manager();
+			se->Start(key, 0, vol);
+		}
+
+
 	};
 
 

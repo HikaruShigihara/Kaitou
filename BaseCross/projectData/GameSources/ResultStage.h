@@ -26,6 +26,7 @@ namespace basecross {
 	public:
 		int m_SelectChoices;
 		int m_SelectQuantity;//‘I‘ğˆ‚ÌŒÂ”
+		int m_StarQuantity;
 
 		//float x = 1.0f;
 		std::shared_ptr<basecross::Result_UI> m_Star01;
@@ -48,7 +49,7 @@ namespace basecross {
 			m_Result_StarOnly(L"StarOnly.png"),
 			m_titleflame(L"Frame.png"),
 			m_Selectlogo(L"SelectStage.png"),
-			m_Nextlogo(L"Next.png"),
+			m_Nextlogo(L"next.png"),
 			m_Endlogo(L"Titlelogo.png")
 
 

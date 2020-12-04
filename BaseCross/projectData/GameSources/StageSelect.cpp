@@ -112,11 +112,15 @@ namespace basecross {
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
 			m_StageSelectNumber += 1;
 			m_StageArrowRight->SetTexture(m_StageSelect_Arrow_yellow);
+			PlaySE(L"Motion-Pop36-1.wav", 0.5f);
 			time = 0;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
 			m_StageSelectNumber -= 1;
 			m_StageArrowLeft->SetTexture(m_StageSelect_Arrow_yellow);
+			PlaySE(L"Motion-Pop36-1.wav", 0.5f);
+
+			time = 0;
 
 		}
 
