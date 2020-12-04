@@ -183,19 +183,19 @@ namespace basecross{
 		//auto elap = App::GetApp()->GetElapsedTime();
 		//time += elap;
 		if (Other->FindTag(L"Goal")) {
-			if (!m_clearflag) {
-				auto clear = GetStage()->AddGameObject<Clear>(
-					Vec2(137.0f, 64.0f),
-					Vec3(0.0f, 200.0f, 0.0f),
-					Vec3(3.0f),
-					10,
-					Col4(1.0f),
-					m_clear
-					);
-				m_clearflag = true;
-			}
+			//if (!m_clearflag) {
+			//	auto clear = GetStage()->AddGameObject<Clear>(
+			//		Vec2(137.0f, 64.0f),
+			//		Vec3(0.0f, 200.0f, 0.0f),
+			//		Vec3(3.0f),
+			//		10,
+			//		Col4(1.0f),
+			//		m_clear
+			//		);
+			//	m_clearflag = true;
+			//}
 			//if (time > 1.0f) {
-			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
 			//}
 		}
 	}
