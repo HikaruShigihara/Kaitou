@@ -61,6 +61,25 @@ namespace basecross {
 			m_StageSelect_Stage03
 			);
 
+		m_StageArrowRight =
+			AddGameObject<StageSelect_ArrowRight>(
+			Vec2(230.0f, 159.0f),
+			Vec3(650.0f, 0.0f, 0.0f),
+			Vec3(1.0f),
+			3,
+			Col4(1.0f),
+			m_StageSelect_Arrow
+			);
+		m_StageArrowLeft =
+			AddGameObject<StageSelect_ArrowLeft>(
+				Vec2(230.0f, 159.0f),
+				Vec3(-650.0f, 0.0f, 0.0f),
+				Vec3(-1.0f,1.0f,1.0f),
+				3,
+				Col4(1.0f),
+				m_StageSelect_Arrow
+				);
+
 
 	}
 
@@ -84,13 +103,20 @@ namespace basecross {
 	}
 
 	void StageSelect::OnUpdate() {
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		time += elapsedTime;
+
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
 			m_StageSelectNumber += 1;
+			m_StageArrowRight->SetTexture(m_StageSelect_Arrow_yellow);
+			time = 0;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
 			m_StageSelectNumber -= 1;
+			m_StageArrowLeft->SetTexture(m_StageSelect_Arrow_yellow);
+
 		}
 
 		switch (m_StageSelectNumber)
@@ -129,6 +155,14 @@ namespace basecross {
 		{
 			m_StageSelectNumber = m_StageQuantity-1;
 		}
+
+		if (time >= 0.2f) {
+
+			m_StageArrowRight->SetTexture(m_StageSelect_Arrow);
+			m_StageArrowLeft->SetTexture(m_StageSelect_Arrow);
+		}
+
+
 	}
 
 

@@ -215,4 +215,40 @@ namespace basecross {
 	
 
 
+	void StageSelect_ArrowRight::SetTexture(const wstring& textures) {
+		auto ptrDraw = GetComponent<PCTSpriteDraw>();
+		ptrDraw->SetTextureResource(textures);
+
+	}
+	void StageSelect_ArrowRight::OnCreate() {
+		
+		Draw();
+		auto PtrAction = AddComponent<Action>();
+		PtrAction->AddMoveTo(1.0f, Vec3(680.0f, 0.0f, 0.0f));
+		PtrAction->AddMoveTo(1.0f, Vec3(650.0f, 0.0f, 0.0f));
+		PtrAction->SetLooped(true);
+
+		PtrAction->Run();
+
+
+	}
+
+	void StageSelect_ArrowLeft::SetTexture(const wstring& textures) {
+		auto ptrDraw = GetComponent<PCTSpriteDraw>();
+		ptrDraw->SetTextureResource(textures);
+
+	}
+	void StageSelect_ArrowLeft::OnCreate() {
+
+		Draw();
+		auto PtrAction = AddComponent<Action>();
+		PtrAction->AddMoveTo(1.0f, Vec3(-680.0f, 0.0f, 0.0f));
+		PtrAction->AddMoveTo(1.0f, Vec3(-650.0f, 0.0f, 0.0f));
+		PtrAction->SetLooped(true);
+
+		PtrAction->Run();
+
+
+	}
+
 }

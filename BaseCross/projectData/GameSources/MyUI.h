@@ -356,6 +356,7 @@ namespace basecross {
 	};
 
 
+
 	class Title_Arrow : public UI_Base {
 	public:
 
@@ -377,10 +378,71 @@ namespace basecross {
 				textures
 			)
 		{}
-		~Title_Arrow() {}
+			~Title_Arrow() {}
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 	};
+
+	class StageSelect_ArrowRight : public UI_Base {
+	public:
+
+		StageSelect_ArrowRight(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~StageSelect_ArrowRight() {}
+
+		void SetTexture(const wstring& textures);
+		virtual void OnCreate() override;
+
+	};
+
+
+
+
+	class StageSelect_ArrowLeft : public UI_Base {
+	public:
+
+		StageSelect_ArrowLeft(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~StageSelect_ArrowLeft() {}
+
+		void SetTexture(const wstring& textures);
+		virtual void OnCreate() override;
+
+	};
+
+
 
 }
