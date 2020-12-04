@@ -289,7 +289,7 @@ namespace basecross {
 
 	void ParentBox::DrawStrings() {
 		auto quat = GetComponent<Transform>()->GetQuaternion();
-		auto rot = quat.z * (180.0f / XM_PI) *3;
+		auto rot = quat.z * (180.0f / XM_PI) * XM_PI;
 		auto Rot = GetComponent<Transform>()->GetRotation();
 
 		wstring RotationStr(L"Rotation:\t");
