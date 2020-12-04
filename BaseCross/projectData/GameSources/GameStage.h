@@ -23,7 +23,7 @@ namespace basecross {
 		shared_ptr<GameObject> m_numbers[3];
 		shared_ptr<GameObject> m_Target;
 		shared_ptr<GameObject> m_Goal;
-		
+		shared_ptr<GameObject> m_player;
 		wstring m_back;
 		wstring m_number_UI;
 		wstring m_goal;

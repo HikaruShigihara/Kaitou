@@ -313,9 +313,10 @@ namespace basecross {
 	}
 
 	void GameStage::CreatePlayer() {
-		auto player = AddGameObject<Player>(
+		m_player = AddGameObject<Player>(
 			Vec3(0.0f, 2.0f, 0.0f)
 			);
+
 	}
 
 
@@ -339,8 +340,9 @@ namespace basecross {
 		
 			//ビューとライトの作成
 			CreateViewLight();
-			CreateXmlObjects();
 			CreatePlayer();
+
+			CreateXmlObjects();
 			CreateBack();
 			CreateCloud();
 			CreateUI();
