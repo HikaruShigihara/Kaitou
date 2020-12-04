@@ -22,7 +22,6 @@ namespace basecross {
 
 
 	public :
-		int m_StageSelectNumber;
 		int m_StageQuantity;//ステージの個数
 		float time;
 		std::shared_ptr<basecross::StageSelect_UI> m_Stage01;
@@ -30,7 +29,7 @@ namespace basecross {
 		std::shared_ptr<basecross::StageSelect_UI> m_Stage03;
 		std::shared_ptr<basecross::StageSelect_ArrowRight> m_StageArrowRight;
 		std::shared_ptr<basecross::StageSelect_ArrowLeft> m_StageArrowLeft;
-
+		int m_StageSelectNumber;
 
 
 		StageSelect() : Stage(),
@@ -51,6 +50,22 @@ namespace basecross {
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 	};
-	
+
+
+	//class SelectStageClass : public GameObject {
+	//public:
+	//	//構築と破棄
+	//	SelectStageClass(const shared_ptr<Stage>& StagePtr
+	//	) :
+	//		GameObject(StagePtr)
+	//	{}
+
+	//	virtual ~SelectStageClass()
+	//	{}
+	//	//初期化
+	//	int SelectStage();
+
+	//};
+
 }
 //end basecross

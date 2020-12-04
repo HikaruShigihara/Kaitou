@@ -65,7 +65,6 @@ namespace basecross {
 		virtual void OnCreate()override;
 		virtual void OnUpdate()override;
 		virtual void OnUpdate2()override;
-
 		int GetCount() const {
 			return m_number;
 		}

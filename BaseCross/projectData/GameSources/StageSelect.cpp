@@ -89,6 +89,7 @@ namespace basecross {
 		m_Stage03->SetDrawActive(false);
 
 	}
+	
 
 	void StageSelect::OnCreate() {
 		try {
@@ -101,7 +102,7 @@ namespace basecross {
 			throw;
 		}
 	}
-
+	
 	void StageSelect::OnUpdate() {
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		time += elapsedTime;
@@ -121,29 +122,31 @@ namespace basecross {
 
 		switch (m_StageSelectNumber)
 		{
-			case 0:
-				BoolCheck();
-				m_Stage01->SetDrawActive(true);
-				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-					App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
-				}
+		case 0:
+			BoolCheck();
+			m_Stage01->SetDrawActive(true);
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 
-				break;
-			case 1:
-				BoolCheck();
-				m_Stage02->SetDrawActive(true);
-				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-					App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
-				}
-				break;
-			case 2:
-				BoolCheck();
-				m_Stage03->SetDrawActive(true);
-				if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-					App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
-				}
+			}
 
-				break;
+			break;
+		case 1:
+			BoolCheck();
+			m_Stage02->SetDrawActive(true);
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+
+			}
+			break;
+		case 2:
+			BoolCheck();
+			m_Stage03->SetDrawActive(true);
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
+			}
+
+			break;
 
 
 		}
@@ -153,7 +156,7 @@ namespace basecross {
 		}
 		if (m_StageSelectNumber < 0)
 		{
-			m_StageSelectNumber = m_StageQuantity-1;
+			m_StageSelectNumber = m_StageQuantity - 1;
 		}
 
 		if (time >= 0.2f) {
@@ -161,9 +164,15 @@ namespace basecross {
 			m_StageArrowRight->SetTexture(m_StageSelect_Arrow);
 			m_StageArrowLeft->SetTexture(m_StageSelect_Arrow);
 		}
-
-
 	}
+
+	//int SelectStageClass::SelectStage()
+	//{
+	//	auto a = shared_ptr<StageSelect>()->m_StageSelectNumber;
+	//	return a;
+	//}
+
+
 
 
 }

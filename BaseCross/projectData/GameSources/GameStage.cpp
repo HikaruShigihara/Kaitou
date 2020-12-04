@@ -35,7 +35,6 @@ namespace basecross {
 			);
 		SetSharedGameObject(L"ParentBox", m_Parentbox);
 		m_Parentbox->AddTag(L"ParentBox");
-
 		//ゴール
 		//m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
 		//m_Goal = AddGameObject<Goal>(
@@ -320,13 +319,24 @@ namespace basecross {
 	}
 
 
+
 	void GameStage::OnCreate() {
 		try {
 			SetPhysicsActive(true);
 			wstring DataDir;
 			App::GetApp()->GetDataDirectory(DataDir);
+			//m_Select = AddGameObject<SelectStageClass>();
+			//auto a=m_Select->SelectStage();
 			//XMLの読み込み
+			//switch (a) {
+			//case 1:
 			m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
+			//	break;
+			//case 2:
+			//	m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test2.xml"));
+			//	break;
+
+		
 			//ビューとライトの作成
 			CreateViewLight();
 			CreateXmlObjects();
