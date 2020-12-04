@@ -26,50 +26,6 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
-	//--------------------------------------------------------------------------------------
-	//	class MoveBox : public GameObject;
-	//--------------------------------------------------------------------------------------
-	//構築と破棄
-	//MoveBox::MoveBox(const shared_ptr<Stage>& StagePtr,
-	//	const Vec3& Scale,
-	//	const Vec3& Rotation,
-	//	const Vec3& Position
-	//) :
-	//	GameObject(StagePtr),
-	//	m_Scale(Scale),
-	//	m_Rotation(Rotation),
-	//	m_Position(Position)
-	//{
-	//}
-	//MoveBox::~MoveBox() {}
-
-	//初期化
-	//void MoveBox::OnCreate() {
-	//	auto ptrTransform = GetComponent<Transform>();
-	//	ptrTransform->SetScale(m_Scale);
-	//	ptrTransform->SetRotation(m_Rotation);
-	//	ptrTransform->SetPosition(m_Position);
-	//	//OBB衝突j判定を付ける
-	//	auto ptrColl = AddComponent<CollisionObb>();
-	//	ptrColl->SetSleepActive(true);
-	//	//影をつける
-	//	auto shadowPtr = AddComponent<Shadowmap>();
-	//	shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
-	//	//描画処理
-	//	auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-	//	ptrDraw->SetFogEnabled(true);
-	//	ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-	//	ptrDraw->SetOwnShadowActive(true);
-	//}
-
-	void GameStage::CreateFixedBox() {		
-		//AddGameObject<ParentBox>(
-		//	Vec3(0.25f, 0.25f, 0.25f),
-		//	Vec3(0.0f, 0.0f, 0.0f),
-		//	Vec3(0.0f, 1.0f, 0.0f)
-		//	);
-
-	}
 	void GameStage::CreateXmlObjects() {
 		//親
 		m_Parentbox = AddGameObject<ParentBox>(
@@ -80,15 +36,16 @@ namespace basecross {
 		SetSharedGameObject(L"ParentBox", m_Parentbox);
 		m_Parentbox->AddTag(L"ParentBox");
 
-		m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
-		m_Target = AddGameObject<Goal>(
-			Vec3(0.45f, 0.45f, 0.45f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.19f, 2.1f),
-			m_Target,
-			Vec3(0, 0, 0)
-			);
-
+		//ゴール
+		//m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
+		//m_Goal = AddGameObject<Goal>(
+		//	Vec3(0.55f, 0.55f, 0.55f),
+		//	Vec3(0.0f, 0.0f, 0.0f),
+		//	Vec3(-1.98f, 1.0f, 3.2f),
+		//	m_Target,
+		//	Vec3(0, 0, 0)
+		//	);
+		//m_Goal->AddTag(L"Goal");
 
 		m_group = CreateSharedObjectGroup(L"FixedBoxes");
 		auto group = CreateSharedObjectGroup(L"SeekGroup");
@@ -106,13 +63,37 @@ namespace basecross {
 		auto Width = m_XmlDocReader->GetSelectSingleNode(L"width");
 
 		
-		for (int f = 0; f < 2; f++) {
+		for (int f = 0; f < 10; f++) {
 			switch (f) {
 			case 0:
 				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map1");
 				break;
 			case 1:
 				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map2");
+				break;
+			case 2:
+				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map3");
+				break;
+			case 3:
+				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map4");
+				break;
+			case 4:
+				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map5");
+				break;
+			case 5:
+				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map6");
+				break;
+			case 6:
+				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map7");
+				break;
+			case 7:
+				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map8");
+				break;
+			case 8:
+				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map9");
+				break;
+			case 9:
+				CellmapNode = m_XmlDocReader->GetSelectSingleNode(L"field/maps/map10");
 				break;
 			}
 		
@@ -122,41 +103,49 @@ namespace basecross {
 			Util::WStrToTokenVector(LineVec, MapStr, L'\n');
 
 			for (size_t i = 0; i < 10; i++) {
-			//トークン（カラム）の配列
-			vector<wstring> Tokens;
-			//トークン（カラム）単位で文字列を抽出(L','をデリミタとして区分け)
-			Util::WStrToTokenVector(Tokens, LineVec[i], L',');
+				//トークン（カラム）の配列
+				vector<wstring> Tokens;
+				//トークン（カラム）単位で文字列を抽出(L','をデリミタとして区分け)
+				Util::WStrToTokenVector(Tokens, LineVec[i], L',');
 				for (size_t j = 0; j < 10; j++) {
-				//XとZの位置を計算
+					//XとZの位置を計算
 					float XPos = (float)((int)j - 5);
 					float ZPos = (float)(5 - (int)i);
 					if (Tokens[j] == L"1") {
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
 						m_Target = AddGameObject<FixedBox>(
-						Vec3(0.13f, 0.13f, 0.13f),
-						Vec3(0.0f, 0.0f, 0.0f),
-						Vec3(XPos*0.6f, f*0.6f, ZPos*0.6f),
+							Vec3(XPos*m_position, f*m_position, ZPos*m_position),
 							m_Target,
-							Vec3(0,0,0)
+							Vec3(0, 0, 0)
 							);
-					//Group = GetSharedObjectGroup(L"FixedBoxes");
-					m_group->IntoGroup(m_fixedbox);
+						//Group = GetSharedObjectGroup(L"FixedBoxes");
+						m_group->IntoGroup(m_fixedbox);
 					}
 					else if (Tokens[j] == L"2") {
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
 						m_Target = AddGameObject<FixedBox>(
-						Vec3(0.15f, 0.15f, 0.15f),
-						Vec3(0.0f, 0.0f, 0.0f),
-						Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
-						m_Target,
-						Vec3(0,0,0)
-						);
-					//Group = GetSharedObjectGroup(L"FixedBoxes");
-					m_group->IntoGroup(m_fixedbox);
+							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
+							Vec3(XPos*m_position, 0.5f, ZPos*m_position),
+							m_Target,
+							Vec3(0, 0, 0)
+							);
+						//Group = GetSharedObjectGroup(L"FixedBoxes");
+						m_group->IntoGroup(m_fixedbox);
+					}
+					else if (Tokens[j] == L"3") {
+						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
+						m_Target = AddGameObject<Goal>(
+							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
+							Vec3(XPos*m_position, 0.5f, ZPos*m_position),
+							m_Target,
+							Vec3(0, 0, 0)
+							);
+						//Group = GetSharedObjectGroup(L"FixedBoxes");
+						m_group->IntoGroup(m_fixedbox);
 
 					}
 				}
-
+			}
 					//for (int z = 0; z < 10; z++) {
 					//	//トークン（カラム）の配列
 					//	vector<wstring> Tokens;
@@ -194,7 +183,6 @@ namespace basecross {
 							//}
 				
 
-			}
 			
 		}
 	}
@@ -327,60 +315,18 @@ namespace basecross {
 
 	void GameStage::CreatePlayer() {
 		auto player = AddGameObject<Player>(
-			Vec3(0.1f, 0.1f, 0.1f),
-			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0, 2, 0)
+			Vec3(0.0f, 2.0f, 0.0f)
 			);
 	}
 
-	void GameStage::MoveStage() {
-		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		//auto stageGroup = GetSharedObjectGroup(L"FixedBoxes");
-		//std::vector<std::shared_ptr<FixedBox>> fixedboxes;
-		//for (auto& v : stageGroup->GetGroupVector()) {
-		//	auto shptr = v.lock();
-		//	if (shptr) {
-		//		auto fixedBox = dynamic_pointer_cast<FixedBox>(shptr);
-		//		if (fixedBox) {
-		//			fixedboxes.push_back(fixedBox);
-		//		}
-		//	}
-		//}
-		////FixedBoxesを使った何かの処理
-		//auto i = fixedboxes.size();
-		//auto stageTrans = fixedboxes[i]->GetComponent<Transform>();
-		//if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
-
-
-		//}
-		//auto gameObjects = GetGameObjectVec();
-		//auto GroupPtr = dynamic_pointer_cast<GameObject>(m_group);
-		//auto PtrAction = m_fixedbox->AddComponent<Action>();
-		//PtrAction->AddRotateBy(1.0f, Vec3(0, 0, 90));
-		//PtrAction->SetLooped(false);
-
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-
-			//PtrAction->Run();
-			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
-
-		}
-		//if (KeyState.m_bPushKeyTbl['W']) {
-		//	PtrAction->Run();
-
-		//}
-
-
-	}
 
 	void GameStage::OnCreate() {
 		try {
+			SetPhysicsActive(true);
 			wstring DataDir;
 			App::GetApp()->GetDataDirectory(DataDir);
 			//XMLの読み込み
 			m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
-			CreateFixedBox();
 			//ビューとライトの作成
 			CreateViewLight();
 			CreateXmlObjects();
@@ -396,7 +342,6 @@ namespace basecross {
 	}
 
 	void GameStage::OnUpdate() {
-		MoveStage();
 		
 	}
 

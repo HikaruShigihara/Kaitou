@@ -5,12 +5,18 @@ namespace basecross {
 	//初期化
 	void FixedBox::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();
-		ptrTransform->SetScale(m_Scale);
-		ptrTransform->SetRotation(m_Rotation);
+		ptrTransform->SetScale(m_scale);
+		ptrTransform->SetRotation(Vec3(0.0f,0.0f,0.0f));
 		ptrTransform->SetPosition(m_Position);
 		//OBB衝突j判定を付ける
 		//auto ptrColl = AddComponent<CollisionObb>();
 		//ptrColl->SetFixed(true);
+
+		auto ptrColl = AddComponent<CollisionObb>();
+		//ptrColl->SetMakedSize(Vec3(2.0f, 2.5f, 2.5f));
+		ptrColl->SetAfterCollision(AfterCollision::Auto);
+		//ptrColl->SetDrawActive(true);
+		ptrColl->SetFixed(true);
 
 
 		//タグをつける
@@ -25,10 +31,10 @@ namespace basecross {
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
 		spanMat.affineTransformation(
-			Vec3(1.0f, 1.0f, 1.0f),
+			Vec3(0.231f, 0.231f, 0.231f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f)
+			Vec3(0.0f, -0.5f, 0.0f)
 		);
 
 		//影をつける（シャドウマップを描画する）
@@ -41,11 +47,8 @@ namespace basecross {
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetMeshResource(L"Grass.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
+		ptrDraw->SetDrawActive(true);
 
-		auto ptrColl = AddComponent<CollisionObb>();
-		ptrColl->SetAfterCollision(AfterCollision::Auto);	
-		ptrColl->SetMakedSize(Vec3(2.0f, 2.0f, 2.0f));
-		ptrColl->SetFixed(true);
 
 		auto ptrParent = m_Parent.lock();
 		if (ptrParent) {
@@ -60,18 +63,19 @@ namespace basecross {
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
-		//PsBoxParam param(ptrTransform->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeActive);
+		//PsBoxParam param(ptrTransform->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		//auto PsPtr = AddComponent<RigidbodyBox>(param);
 		//PsPtr->SetDrawActive(false);
 
 	}
 	void Goal::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();
-		ptrTransform->SetScale(m_Scale);
-		ptrTransform->SetRotation(m_Rotation);
+		ptrTransform->SetScale(Vec3(1.0f, 1.0f, 1.0f));
+		ptrTransform->SetRotation(Vec3(0.0f, 0.0f, 0.0f));
 		ptrTransform->SetPosition(m_Position);
 		//OBB衝突j判定を付ける
 		auto ptrColl = AddComponent<CollisionObb>();
+
 		ptrColl->SetFixed(true);
 
 
@@ -99,7 +103,7 @@ namespace basecross {
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
-		//PsBoxParam param(ptrTransform->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeActive);
+		//PsBoxParam param(ptrTransform->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		//auto PsPtr = AddComponent<RigidbodyBox>(param);
 		//PsPtr->SetDrawActive(false);
 
@@ -179,26 +183,104 @@ namespace basecross {
 
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
+		ptrDraw->SetDrawActive(false);
 
+		auto ptrString = AddComponent<StringSprite>();
+		ptrString->SetText(L"");
+		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
 	}
-	void ParentBox::OnUpdate() {
+
+	void ParentBox::MoveBox() {
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto elap = App::GetApp()->GetElapsedTime();
 		m_time += elap;
-
-		auto PtrAction = AddComponent<Action>();
-		PtrAction->AddRotateBy(5.0f, Vec3(0, 0, 3));
-		PtrAction->SetLooped(false);
+		
+		auto ptrTrans = GetComponent<Transform>();
+		auto quat = ptrTrans->GetQuaternion();
+		auto rot = ptrTrans->GetRotation();
+		auto angleX = quat.x * (180 / XM_PI);
+		auto angleZ = quat.z * (180 / XM_PI);
 
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+			m_Key = 0;
+			m_Keycount++;
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
+			m_Key = 1;
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+			m_Key = 2;
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_Y) {
+			m_Key = 3;
+		}
 
-			if (m_time < 1.0f) {
-				PtrAction->Run();
+		switch (m_Key)
+		{
+		case 0://B
+			if (m_Keycount == 1) {
+				if (angleZ < 40.0f) {
+					quat.z += m_movevalue * elap;
+					ptrTrans->SetQuaternion(quat);
+				}
 			}
+			else if (m_Keycount == 2) {
+				if (angleZ < 57.29f) {
+					quat.z += m_movevalue * elap;
+					ptrTrans->SetQuaternion(quat);
+					
+				}
+			}
+			break;
+		case 1://X
+			if (angleZ > -40.0f) {
+				quat.z -= m_movevalue * elap;
+				ptrTrans->SetQuaternion(quat);
+			}
+			break;
+		case 2://A
+			if (angleX > -40.0f) {
+				quat.x -= m_movevalue * elap;
+				ptrTrans->SetQuaternion(quat);
+
+			}
+			break;
+		case 3://Y
+			if (angleX < 40.0f) {
+
+				quat.x += m_movevalue * elap;
+				ptrTrans->SetQuaternion(quat);
+			}
+			break;
+
 		}
-		if (m_time > 3.0f) {
-			PtrAction->Stop();
-		}
+
+
+	}
+
+	void ParentBox::OnUpdate() {
+		MoveBox();
+	}
+
+	void ParentBox::DrawStrings() {
+		auto quat = GetComponent<Transform>()->GetQuaternion();
+		auto rot = quat.z * (180 / XM_PI);
+		//auto Rot = GetComponent<Transform>()->GetRotation();
+
+		wstring RotationStr(L"Rotation:\t");
+		//RotationStr += L"X=" + Util::FloatToWStr(rot.x, 6, Util::FloatModify::Fixed) + L",\t";
+		//RotationStr += L"Y=" + Util::FloatToWStr(rot.y, 6, Util::FloatModify::Fixed) + L",\t";
+		RotationStr += L"Z=" + Util::FloatToWStr(rot, 6, Util::FloatModify::Fixed) + L"\n";
+
+		wstring str = RotationStr;
+
+		auto PtrString = GetComponent<StringSprite>();
+		PtrString->SetText(str);
+
+	}
+
+	void ParentBox::OnUpdate2() {
+		DrawStrings();
 	}
 }
