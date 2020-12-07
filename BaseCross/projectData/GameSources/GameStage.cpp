@@ -27,6 +27,10 @@ namespace basecross {
 	}
 
 	void GameStage::CreateXmlObjects() {
+		wstring DataDir;
+		App::GetApp()->GetDataDirectory(DataDir);
+		m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
+
 		//親
 		m_Parentbox = AddGameObject<ParentBox>(
 			Vec3(0.25f, 0.25f, 0.25f),
@@ -100,6 +104,8 @@ namespace basecross {
 			vector<wstring> LineVec;
 			//最初に「改行」をデリミタとした文字列の配列にする
 			Util::WStrToTokenVector(LineVec, MapStr, L'\n');
+
+			//[,]を10個で区切る方法？
 
 			for (size_t i = 0; i < 10; i++) {
 				//トークン（カラム）の配列
@@ -324,14 +330,12 @@ namespace basecross {
 	void GameStage::OnCreate() {
 		try {
 			SetPhysicsActive(true);
-			wstring DataDir;
-			App::GetApp()->GetDataDirectory(DataDir);
 			//m_Select = AddGameObject<SelectStageClass>();
 			//auto a=m_Select->SelectStage();
 			//XMLの読み込み
 			//switch (a) {
 			//case 1:
-			m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
+			//m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
 			//	break;
 			//case 2:
 			//	m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test2.xml"));

@@ -20,7 +20,7 @@ namespace basecross{
 		//ptrColl->SetMakedHeight(3.0f);
 		//ptrColl->SetMakedSize(Vec3(2.0f, 5.0f, 2.0f));
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
-		//ptrColl->SetDrawActive(true);
+		ptrColl->SetDrawActive(true);
 		//d—Í‚ğ‚Â‚¯‚é
 		auto ptrGra = AddComponent<Gravity>();
 
@@ -182,20 +182,24 @@ namespace basecross{
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		//auto elap = App::GetApp()->GetElapsedTime();
 		//time += elap;
+		auto cntVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (Other->FindTag(L"Goal")) {
-			//if (!m_clearflag) {
-			//	auto clear = GetStage()->AddGameObject<Clear>(
-			//		Vec2(137.0f, 64.0f),
-			//		Vec3(0.0f, 200.0f, 0.0f),
-			//		Vec3(3.0f),
-			//		10,
-			//		Col4(1.0f),
-			//		m_clear
-			//		);
-			//	m_clearflag = true;
-			//}
+			if (!m_clearflag) {
+				auto clear = GetStage()->AddGameObject<Clear>(
+					Vec2(137.0f, 64.0f),
+					Vec3(0.0f, 200.0f, 0.0f),
+					Vec3(3.0f),
+					10,
+					Col4(1.0f),
+					m_clear
+					);
+				m_clearflag = true;
+			}
+			if (cntVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
+
+			}
 			//if (time > 1.0f) {
-			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
 			//}
 		}
 	}
