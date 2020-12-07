@@ -170,6 +170,17 @@ namespace basecross {
 		}
 	}
 
+
+	int StageSelect::SelectStage()
+	{
+		auto a = m_StageSelectNumber;
+		return a;
+	}
+
+
+
+
+
 	//int SelectStageClass::SelectStage()
 	//{
 	//	auto a = shared_ptr<StageSelect>()->m_StageSelectNumber;

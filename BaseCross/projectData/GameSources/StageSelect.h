@@ -30,7 +30,7 @@ namespace basecross {
 		std::shared_ptr<basecross::StageSelect_ArrowRight> m_StageArrowRight;
 		std::shared_ptr<basecross::StageSelect_ArrowLeft> m_StageArrowLeft;
 		int m_StageSelectNumber;
-
+		int SelectStage();
 
 		StageSelect() : Stage(),
 			m_StageSelect_image(L"StageSelect 3.png"),

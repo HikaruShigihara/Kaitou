@@ -148,6 +148,7 @@ namespace basecross {
 				Col4(1.0f),
 				m_Result_StarOnly
 				);
+			PlaySE(L"Shortbridge27-01.wav", 0.2f);
 		case 2:
 		
 			AddGameObject<Result_Star2>(
@@ -158,6 +159,7 @@ namespace basecross {
 				Col4(1.0f),
 				m_Result_StarOnly
 				);
+			PlaySE(L"Shortbridge27-01.wav", 0.2f);
 
 		case 1:
 			AddGameObject<Result_Star1>(
@@ -168,6 +170,8 @@ namespace basecross {
 				Col4(1.0f),
 				m_Result_StarOnly
 				);
+			PlaySE(L"Shortbridge27-01.wav", 0.2f);
+
 		}
 
 	}
@@ -188,7 +192,7 @@ namespace basecross {
 			CreateViewLight();
 			m_SelectChoices = 0;
 			m_SelectQuantity = 3;
-			m_StarQuantity = 2;
+			m_StarQuantity = 3;
 			CreateUI();
 
 		}
