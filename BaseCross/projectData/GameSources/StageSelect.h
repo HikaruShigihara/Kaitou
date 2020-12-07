@@ -7,6 +7,7 @@
 #include "stdafx.h"
 
 namespace basecross {
+
 	class StageSelect : public Stage {
 
 		void CreateViewLight();
