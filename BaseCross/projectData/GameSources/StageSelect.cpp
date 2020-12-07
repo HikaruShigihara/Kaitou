@@ -81,6 +81,8 @@ namespace basecross {
 				);
 
 
+
+
 	}
 
 	void StageSelect::BoolCheck() {
@@ -173,8 +175,7 @@ namespace basecross {
 
 	int StageSelect::SelectStage()
 	{
-		auto a = m_StageSelectNumber;
-		return a;
+		return m_StageSelectNumber;
 	}
 
 

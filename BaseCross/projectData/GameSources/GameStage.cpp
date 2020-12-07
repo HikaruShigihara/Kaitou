@@ -341,7 +341,6 @@ namespace basecross {
 			//	m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test2.xml"));
 			//	break;
 
-		
 			//ビューとライトの作成
 			CreateViewLight();
 			CreatePlayer();
@@ -358,7 +357,9 @@ namespace basecross {
 	}
 
 	void GameStage::OnUpdate() {
-		
+		auto a=m_StageSelectNumber;
+
+
 	}
 
 	void GameStage::OnUpdate2() {

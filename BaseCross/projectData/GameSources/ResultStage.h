@@ -23,6 +23,8 @@ namespace basecross {
 		wstring m_Selectlogo;
 		wstring m_Endlogo;
 		wstring m_next;
+		wstring m_SelectArrow;
+
 	public:
 		int m_SelectChoices;
 		int m_SelectQuantity;//ëIëéàÇÃå¬êî
@@ -39,6 +41,10 @@ namespace basecross {
 		std::shared_ptr<basecross::Result_UI> m_NextLogoObject;
 		std::shared_ptr<basecross::Result_UI> m_SelectLogoObject;
 		std::shared_ptr<basecross::Result_UI> m_EndLogoObject;
+		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber1;
+		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber2;
+		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber3;
+
 
 
 		ResultStage() : Stage(),
@@ -50,7 +56,8 @@ namespace basecross {
 			m_titleflame(L"Frame.png"),
 			m_Selectlogo(L"SelectStage.png"),
 			m_Nextlogo(L"next.png"),
-			m_Endlogo(L"Titlelogo.png")
+			m_Endlogo(L"Titlelogo.png"),
+			m_SelectArrow(L"Select_Arrow.png")
 
 
 
