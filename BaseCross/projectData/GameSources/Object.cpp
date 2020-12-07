@@ -82,12 +82,34 @@ namespace basecross {
 		//タグをつける
 		AddTag(L"Goal");
 		//影をつける（シャドウマップを描画する）
-		auto shadowPtr = AddComponent<Shadowmap>();
+		//auto shadowPtr = AddComponent<Shadowmap>();
+		////影の形（メッシュ）を設定
+		//shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+		//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		//ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+		//ptrDraw->SetTextureResource(L"red.png");
+
+
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(0.231f, 0.231f, 0.231f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, -0.5f, 0.0f)
+		);
+
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
-		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
-		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		ptrDraw->SetTextureResource(L"red.png");
+		ptrShadow->SetMeshResource(L"Stone_Block.bmf");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
+		ptrDraw->SetFogEnabled(true);
+		ptrDraw->SetMeshResource(L"Stone_Block.bmf");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+		ptrDraw->SetDrawActive(true);
+
 
 		auto ptrParent = m_Parent.lock();
 		if (ptrParent) {
@@ -183,7 +205,7 @@ namespace basecross {
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
-		ptrDraw->SetDrawActive(true);
+		ptrDraw->SetDrawActive(false);
 
 
 		auto ptrString = AddComponent<StringSprite>();

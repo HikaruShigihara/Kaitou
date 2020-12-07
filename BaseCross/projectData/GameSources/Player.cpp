@@ -20,7 +20,6 @@ namespace basecross{
 		//ptrColl->SetMakedHeight(3.0f);
 		//ptrColl->SetMakedSize(Vec3(2.0f, 5.0f, 2.0f));
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
-		ptrColl->SetDrawActive(true);
 		//d—Í‚ğ‚Â‚¯‚é
 		auto ptrGra = AddComponent<Gravity>();
 
