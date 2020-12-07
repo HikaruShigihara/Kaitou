@@ -29,7 +29,7 @@ namespace basecross {
 	void GameStage::CreateXmlObjects() {
 		wstring DataDir;
 		App::GetApp()->GetDataDirectory(DataDir);
-		m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
+		m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/stage10.xml"));
 
 		//親
 		m_Parentbox = AddGameObject<ParentBox>(
@@ -108,8 +108,11 @@ namespace basecross {
 			//[,]を10個で区切る方法？
 
 			for (size_t i = 0; i < 10; i++) {
+
+
 				//トークン（カラム）の配列
 				vector<wstring> Tokens;
+
 				//トークン（カラム）単位で文字列を抽出(L','をデリミタとして区分け)
 				Util::WStrToTokenVector(Tokens, LineVec[i], L',');
 				for (size_t j = 0; j < 10; j++) {
@@ -130,24 +133,28 @@ namespace basecross {
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
 						m_Target = AddGameObject<FixedBox>(
 							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
-							Vec3(XPos*m_position, 0.5f, ZPos*m_position),
+							Vec3(XPos*m_position, f*m_position, ZPos*m_position),
 							m_Target,
 							Vec3(0, 0, 0)
 							);
 						//Group = GetSharedObjectGroup(L"FixedBoxes");
 						m_group->IntoGroup(m_fixedbox);
+						
+						m_player = AddGameObject<Player>(
+							Vec3(XPos*m_position, 2.0f, ZPos*m_position)
+							);
+
 					}
 					else if (Tokens[j] == L"3") {
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
 						m_Target = AddGameObject<Goal>(
 							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
-							Vec3(XPos*m_position, 0.5f, ZPos*m_position),
+							Vec3(XPos*m_position, f*m_position, ZPos*m_position),
 							m_Target,
 							Vec3(0, 0, 0)
 							);
 						//Group = GetSharedObjectGroup(L"FixedBoxes");
 						m_group->IntoGroup(m_fixedbox);
-
 					}
 				}
 			}
@@ -343,7 +350,7 @@ namespace basecross {
 
 			//ビューとライトの作成
 			CreateViewLight();
-			CreatePlayer();
+			//CreatePlayer();
 
 			CreateXmlObjects();
 			CreateBack();
