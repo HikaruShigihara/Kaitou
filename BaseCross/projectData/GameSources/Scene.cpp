@@ -153,5 +153,18 @@ namespace basecross{
 		return m_StarNumber;
 	}
 
+	int Scene::SetStageStar(int StageNumber, int StarQuantity)
+	{
+		m_star[StageNumber] = StarQuantity;
+		return 0;
+	}
+
+	int Scene::GetStageStar(int StageNumber)
+	{
+		auto a = m_star[StageNumber];
+		return a;
+	}
+
+
 }
 //end basecross

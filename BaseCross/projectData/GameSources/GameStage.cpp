@@ -326,6 +326,7 @@ namespace basecross {
 
 	}
 
+
 	void GameStage::OnCreate() {
 		try {
 			SetPhysicsActive(true);
@@ -346,8 +347,6 @@ namespace basecross {
 			}
 			//ビューとライトの作成
 			CreateViewLight();
-			//CreatePlayer();
-
 			CreateXmlObjects();
 			CreateBack();
 			CreateCloud();

@@ -199,9 +199,11 @@ namespace basecross{
 				m_clearflag = true;
 			}
 			if (cntVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
 
 			}
+			StarResult();
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
+
 			//if (time > 1.0f) {
 			//}
 		}
@@ -273,6 +275,27 @@ namespace basecross{
 
 		auto PtrString = GetComponent<StringSprite>();
 		PtrString->SetText(str);
+
+	}
+
+
+	void Player::StarResult() {
+		auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
+		auto a = gamestage->GetCount();
+		auto SelectNumber=App::GetApp()->GetScene<Scene>()->GetSelectNumber();
+
+		if (a<10) {
+			App::GetApp()->GetScene<Scene>()->SetStageStar(SelectNumber, 3);
+		}
+		if (10 < a&&a < 20) {
+			App::GetApp()->GetScene<Scene>()->SetStageStar(SelectNumber, 2);
+
+		}
+		if (20 < a) {
+			App::GetApp()->GetScene<Scene>()->SetStageStar(SelectNumber, 1);
+
+		}
+
 
 	}
 }

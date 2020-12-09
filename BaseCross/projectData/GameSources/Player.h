@@ -15,7 +15,6 @@ namespace basecross{
 		weak_ptr<GameObject> m_Parent;
 
 		//Vec3 m_Respawn = Vec3(0.0f, 3.0f, 0.0f);
-
 		bool m_clearflag = false;
 		float time;
 		int a;
@@ -50,6 +49,8 @@ namespace basecross{
 		virtual void OnUpdate2() override;
 
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
+
+		void StarResult();
 
 		bool GetClearFlag() {
 			return m_clearflag;
