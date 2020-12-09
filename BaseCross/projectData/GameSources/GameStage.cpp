@@ -140,7 +140,7 @@ namespace basecross {
 						m_player = AddGameObject<Player>(
 							Vec3(XPos*m_position, 2.0f, ZPos*m_position)
 							//親子関係↓
-							//m_Target
+							//,m_Target
 						);
 													
 
@@ -208,7 +208,7 @@ namespace basecross {
 				Vec2(500.0f, 100.0f),
 				Vec3(1300.0f * 0.5f - n * 64.0f - 64.0f, 1000.0f * 0.5f, 0.0f),
 				Vec3(1.5f, 1.5f, 1.5f),
-				1,
+				0,
 				Col4(1.0f, 1.0f, 1.0f, 1.0f),
 				m_number_UI,
 				static_cast<int>((powf(10.0f, n))),
@@ -325,7 +325,27 @@ namespace basecross {
 				//);
 
 	}
+	void GameStage::CreateMask() {
+		m_mask = AddGameObject<Mask_UI>(
+			Vec2(1920.0f, 1080.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(1.0f),
+			1,
+			Col4(1.0f, 1.0f, 1.0f, 0.5f),
+			m_mask_UI
+			);
+		m_text = AddGameObject<UI_Text>(
+			L"メイリオ",
+			100.0f,
+			Col4(1.0f, 1.0f, 1.0f, 1.0f),
+			Rect2D<float>(0.0f, 0.0f, 1920.0f, 500.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_text_UI,
+			5,
+			false
+			);
 
+	}
 
 	void GameStage::OnCreate() {
 		try {
@@ -333,7 +353,7 @@ namespace basecross {
 			wstring DataDir;
 			App::GetApp()->GetDataDirectory(DataDir);
 			auto a = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
-			m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
+			m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage10.xml"));
 
 			//XMLの読み込み
 			switch (a) {
@@ -348,6 +368,7 @@ namespace basecross {
 			//ビューとライトの作成
 			CreateViewLight();
 			CreateXmlObjects();
+			CreateMask();
 			CreateBack();
 			CreateCloud();
 			CreateUI();
@@ -361,7 +382,12 @@ namespace basecross {
 
 	void GameStage::OnUpdate() {
 		//auto a=m_StageSelectNumber;
+		auto cntVec = App::GetApp()->GetInputDevice().GetControlerVec();
 
+		if (cntVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
+			m_mask->SetDrawActive(false);
+			m_text->SetDrawActive(false);
+		}
 
 	}
 
