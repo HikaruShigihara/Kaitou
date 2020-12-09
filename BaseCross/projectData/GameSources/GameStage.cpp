@@ -27,9 +27,6 @@ namespace basecross {
 	}
 
 	void GameStage::CreateXmlObjects() {
-		wstring DataDir;
-		App::GetApp()->GetDataDirectory(DataDir);
-		m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
 
 		//親
 		m_Parentbox = AddGameObject<ParentBox>(
@@ -338,17 +335,21 @@ namespace basecross {
 	void GameStage::OnCreate() {
 		try {
 			SetPhysicsActive(true);
-			//m_Select = AddGameObject<SelectStageClass>();
-			//auto a=m_Select->SelectStage();
-			//XMLの読み込み
-			//switch (a) {
-			//case 1:
-			//m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
-			//	break;
-			//case 2:
-			//	m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test2.xml"));
-			//	break;
+			wstring DataDir;
+			App::GetApp()->GetDataDirectory(DataDir);
+			auto a = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
+			m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
 
+			//XMLの読み込み
+			switch (a) {
+			case 0:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
+				break;
+			case 1:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage1.xml"));
+				break;
+
+			}
 			//ビューとライトの作成
 			CreateViewLight();
 			//CreatePlayer();
@@ -359,6 +360,7 @@ namespace basecross {
 			CreateUI();
 			//PlayBGM(L"Title.wav", 0.5f);
 		}
+
 		catch (...) {
 			throw;
 		}

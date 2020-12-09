@@ -158,8 +158,9 @@ namespace basecross {
 		case 0:
 			BoolCheck();
 			m_Stage01->SetDrawActive(true);
+			App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
+
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 
 			}
@@ -168,8 +169,8 @@ namespace basecross {
 		case 1:
 			BoolCheck();
 			m_Stage02->SetDrawActive(true);
+			App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 
 			}
@@ -177,8 +178,8 @@ namespace basecross {
 		case 2:
 			BoolCheck();
 			m_Stage03->SetDrawActive(true);
+			App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-			    App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
 			}
 
