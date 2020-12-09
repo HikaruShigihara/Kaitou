@@ -327,7 +327,7 @@ namespace basecross {
 		m_player = AddGameObject<Player>(
 			Vec3(0.0f, 2.0f, 0.0f)
 			);
-
+		
 	}
 
 
@@ -352,7 +352,7 @@ namespace basecross {
 			}
 			//ビューとライトの作成
 			CreateViewLight();
-			//CreatePlayer();
+			CreatePlayer();
 
 			CreateXmlObjects();
 			CreateBack();

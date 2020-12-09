@@ -36,6 +36,9 @@ namespace basecross{
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
 		int m_SelectStageNumber;
 		int m_StarNumber;
+		int m_star[10];
+		int SetStageStar(int StageNumber,int StarQuantity);
+		int GetStageStar(int StageNumber);
 		int GetStarNumber();
 		int SetStarNumber(int star);
 		int GetSelectNumber();

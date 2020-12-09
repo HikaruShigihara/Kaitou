@@ -166,7 +166,8 @@ namespace basecross {
 					m_SelectArrow
 					);
 
-
+			auto SelectNumber = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
+			m_StarQuantity=App::GetApp()->GetScene<Scene>()->GetStageStar(SelectNumber);
 	switch (m_StarQuantity){
 		case 3:
 			AddGameObject<Result_Star3>(
