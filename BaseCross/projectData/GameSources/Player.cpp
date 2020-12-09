@@ -49,7 +49,7 @@ namespace basecross{
 		auto ptrShadow = AddComponent<Shadowmap>();
 
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"Player_4.bmf");
+		ptrShadow->SetMeshResource(L"Player_7.bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 
@@ -57,7 +57,7 @@ namespace basecross{
 		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
 		ptrDraw->SetFogEnabled(true);
 		//描画するメッシュを設定
-		ptrDraw->SetMeshResource(L"Player_4.bmf");
+		ptrDraw->SetMeshResource(L"Player_7.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetDrawActive(true);
 
