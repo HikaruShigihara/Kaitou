@@ -225,7 +225,7 @@ namespace basecross{
 		auto cnlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto grav = GetComponent<Gravity>();
 
-		if (cnlVec[0].wButtons & XINPUT_GAMEPAD_B) {
+		if (cnlVec[0].wButtons & XINPUT_GAMEPAD_X) {
 			grav->SetUpdateActive(false);
 		}
 
