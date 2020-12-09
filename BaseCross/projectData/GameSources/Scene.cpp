@@ -101,7 +101,7 @@ namespace basecross{
 
 			//•ÏX‚ÅƒV[ƒ“‘JˆÚ
 
-			SetGameStage(GameStageKey::game);
+			SetGameStage(GameStageKey::stageSelect);
 
 		}
 		catch (...) {
@@ -130,6 +130,27 @@ namespace basecross{
 			break;
 		}
 
+	}
+
+	int Scene::SetSelectNumber(int select)
+	{
+		m_SelectStageNumber = select;
+		return 0;
+	}
+
+	int Scene::GetSelectNumber() 
+	{
+		return m_SelectStageNumber;
+	}
+	int Scene::SetStarNumber(int star)
+	{
+		m_StarNumber = star;
+		return 0;
+	}
+
+	int Scene::GetStarNumber()
+	{
+		return m_StarNumber;
 	}
 
 }

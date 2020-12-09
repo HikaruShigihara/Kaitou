@@ -34,6 +34,12 @@ namespace basecross{
 		virtual ~Scene() {};
 		virtual void OnCreate() override;
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
+		int m_SelectStageNumber;
+		int m_StarNumber;
+		int GetStarNumber();
+		int SetStarNumber(int star);
+		int GetSelectNumber();
+		int SetSelectNumber(int select);
 
 		void SetGameStage(GameStageKey key) {
 			m_gameStageKey = key;
