@@ -283,15 +283,15 @@ namespace basecross{
 		auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
 		auto a = gamestage->GetCount();
 		auto SelectNumber=App::GetApp()->GetScene<Scene>()->GetSelectNumber();
-
-		if (a<10) {
+	
+		if (a<m_StarQuantityLow[SelectNumber]) {
 			App::GetApp()->GetScene<Scene>()->SetStageStar(SelectNumber, 3);
 		}
-		if (10 < a&&a < 20) {
+		if (m_StarQuantityLow[SelectNumber] < a&&a < m_StarQuantityHigh[SelectNumber]) {
 			App::GetApp()->GetScene<Scene>()->SetStageStar(SelectNumber, 2);
 
 		}
-		if (20 < a) {
+		if (m_StarQuantityHigh[SelectNumber] < a) {
 			App::GetApp()->GetScene<Scene>()->SetStageStar(SelectNumber, 1);
 
 		}

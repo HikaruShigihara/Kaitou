@@ -51,6 +51,8 @@ namespace basecross{
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
 
 		void StarResult();
+		int m_StarQuantityLow[10] = { 10,10,10,10,10,10,10,10,10,10 };
+		int m_StarQuantityHigh[10] = { 20,20,20,20,20,20,20,20,20,20 };
 
 		bool GetClearFlag() {
 			return m_clearflag;
