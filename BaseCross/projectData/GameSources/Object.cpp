@@ -217,22 +217,14 @@ namespace basecross {
 	void ParentBox::MoveBox() {
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		auto elap = App::GetApp()->GetElapsedTime();
-		m_time += elap;
 		
 		auto ptrTrans = GetComponent<Transform>();
-		auto quat = ptrTrans->GetQuaternion();
-		auto rot = ptrTrans->GetRotation();
-		auto angleX = quat.x * (180.0f / XM_PI);
-		auto angleZ = quat.z * (0.2f / XM_2PI) * 3;
 
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 			m_Key = 0;
-			//m_Keycount++;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
 			m_Key = 1;
-			//m_Keycount++;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 			m_Key = 2;
@@ -240,103 +232,58 @@ namespace basecross {
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_Y) {
 			m_Key = 3;
 		}
+		Quat spanQtZp(Vec3(0, 0, 1.0), m_RotSpan);
+		Quat spanQtZm(Vec3(0, 0, -1.0), m_RotSpan);
+		Quat spanQtXp(Vec3(1.0, 0, 0), m_RotSpan);
+		Quat spanQtXm(Vec3(-1.0, 0, 0), m_RotSpan);
 
 		switch (m_Key)
 		{
-		case 0://B
-			//if (m_Keycount == 1) {
+		case 0://Bボタン
 			qt = ptrTrans->GetQuaternion();
-			Quat spanQt(Vec3(0, 0, 1.0), m_RotSpan);
-			qt *= spanQt;
+			qt *= spanQtZm;
 			ptrTrans->SetQuaternion(qt);
 			m_TotalRot += m_RotSpan;
 			if (m_TotalRot >= (XM_PI / 2.0f)) {
-				//m_RotSpan = 0.0f;
 				m_TotalRot = 0.0f;
-				m_RotSpan = 0.01f;
+				m_RotSpan = m_RotSpan;
 				m_Key = 99;
 			}
 			break;
+		case 1://Xボタン
+			qt = ptrTrans->GetQuaternion();
+			qt *= spanQtZp;
+			ptrTrans->SetQuaternion(qt);
+			m_TotalRot += m_RotSpan;
+			if (m_TotalRot >= (XM_PI / 2.0f)) {
+				m_TotalRot = 0.0f;
+				m_RotSpan = m_RotSpan;
+				m_Key = 99;
+			}
+			break;
+		case 2://Aボタン
+			qt = ptrTrans->GetQuaternion();
+			qt *= spanQtXm;
+			ptrTrans->SetQuaternion(qt);
+			m_TotalRot += m_RotSpan;
+			if (m_TotalRot >= (XM_PI / 2.0f)) {
+				m_TotalRot = 0.0f;
+				m_RotSpan = m_RotSpan;
+				m_Key = 99;
+			}
+			break;
+		case 3://Yボタン
+			qt = ptrTrans->GetQuaternion();
+			qt *= spanQtXp;
+			ptrTrans->SetQuaternion(qt);
 
-		//case 1:
-		//	qt = ptrTrans->GetQuaternion();
-		//	Quat spanQtm(Vec3(0, 0, -1.0), m_RotSpan);
-		//	qt *= spanQtm;
-		//	ptrTrans->SetQuaternion(qt);
-
-		//	m_TotalRot += m_RotSpan;
-		//	if (m_TotalRot >= (XM_PI / 2.0f)) {
-		//		//m_RotSpan = 0.0f;
-		//		m_TotalRot = 0.0f;
-		//		m_RotSpan = 0.01f;
-		//		m_Key = 99;
-		//	}
-
-		//	break;
-				//if (angleZ < 120.1f) {
-					
-					//quat.z += m_movevalue * elap;
-//					ptrTrans->SetQuaternion(Quat(0.0f,0.0f,(XM_PI/2),0.0f));
-				//}
-			//}
-			//else if (m_Keycount == 2) {
-			//	m_RotSpan = 0.01f;
-			//	auto qt = ptrTrans->GetQuaternion();
-			//	Quat spanQt(Vec3(0, 0, 1.0), m_RotSpan);
-			//	qt *= spanQt;
-			//	ptrTrans->SetQuaternion(qt);
-
-			//	m_TotalRot += m_RotSpan;
-			//	if (m_TotalRot >= (XM_PI)) {
-			//		m_RotSpan = 0.0f;
-			//		m_TotalRot = 0.0f;
-			//	}
-			//	//else {
-			//	//	rot.z = 1.0f;
-			//	//	ptrTrans->SetQuaternion(quat);
-			//	//}
-			//}
-			//else if (m_Keycount == 3) {
-
-			//	//if (angleZ == 60.0f) {
-			//	//	quat.normalize();
-			//	//	quat.z += m_movevalue * elap;
-			//	//	ptrTrans->SetQuaternion(quat);
-			//	//}
-			//	
-			//}
-		//case 1://X
-		//	if (m_Keycount == 1) {
-		//		if (angleZ > -40.0f) {
-		//			quat.z -= m_movevalue * elap;
-		//			ptrTrans->SetQuaternion(quat);
-		//		}
-
-		//	}
-		//	else if (m_Keycount == 2) {
-		//		if (angleZ > -40.0f) {
-		//			quat.z -= m_movevalue * elap;
-		//			ptrTrans->SetQuaternion(quat);
-		//		}
-		//	}
-		//	break;
-		//case 2://A
-		//	if (angleX > -40.0f) {
-		//		quat.x -= m_movevalue * elap;
-		//		ptrTrans->SetQuaternion(quat);
-
-		//	}
-		//	break;
-		//case 3://Y
-		//	if (angleX < 40.0f) {
-		//		quat.x += m_movevalue * elap;
-		//		ptrTrans->SetQuaternion(quat);
-		//	}
-		//	break;
-
-		//case 4:
-		//	break;
-
+			m_TotalRot += m_RotSpan;
+			if (m_TotalRot >= (XM_PI / 2.0f)) {
+				m_TotalRot = 0.0f;
+				m_RotSpan = m_RotSpan;
+				m_Key = 99;
+			}
+			break;
 		}
 
 	}

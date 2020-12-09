@@ -82,7 +82,7 @@ namespace basecross {
 		Vec3 m_Position;
 
 		float m_TotalRot = 0.0f;
-		float m_RotSpan = 0.01f;
+		float m_RotSpan = 0.02f;
 		Quat qt;
 		float x = 2.0f;
 		int m_Key = 5;

@@ -140,9 +140,9 @@ namespace basecross {
 						//Group = GetSharedObjectGroup(L"FixedBoxes");
 						m_group->IntoGroup(m_fixedbox);
 						
-						m_player = AddGameObject<Player>(
-							Vec3(XPos*m_position, 2.0f, ZPos*m_position)
-							);
+						//m_player = AddGameObject<Player>(
+						//	Vec3(XPos*m_position, 2.0f, ZPos*m_position)
+						//	);
 
 					}
 					else if (Tokens[j] == L"3") {
