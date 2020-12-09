@@ -11,10 +11,14 @@ namespace basecross{
 		Vec3 m_Scale = Vec3(0.3f, 0.5f, 0.3f);
 		Vec3 m_Rotation = Vec3(0.0f);
 		Vec3 m_Position;
+
+		weak_ptr<GameObject> m_Parent;
+
 		//Vec3 m_Respawn = Vec3(0.0f, 3.0f, 0.0f);
 
 		bool m_clearflag = false;
 		float time;
+		int a;
 		Vec3 GetPlayerMoveVec() const;
 
 		wstring m_clear = wstring(L"Clear.png");
@@ -26,14 +30,15 @@ namespace basecross{
 	public:
 		Player(
 			const shared_ptr<Stage>& StagePtr,
-			//Vec3& scale,
-			//Vec3& rotation,
 			Vec3& position
+			//const shared_ptr<GameObject>& Parent
+
 			) :
 			GameObject(StagePtr),
-			//m_Scale(scale),
-			//m_Rotation(rotation),
 			m_Position(position)
+			//m_Parent(Parent)
+
+
 		{}
 
 		virtual ~Player() {}

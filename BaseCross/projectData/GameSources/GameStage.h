@@ -37,7 +37,6 @@ namespace basecross {
 		void CreateViewLight();
 		//ボックスの作成
 		void CreateUI();
-		void CreatePlayer();
 		void CreateBack();
 		void CreateCloud();
 

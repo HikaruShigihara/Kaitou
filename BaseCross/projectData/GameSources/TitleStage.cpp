@@ -291,62 +291,6 @@ namespace basecross {
 
 
 	}
-
-
-	//void TitleStage::CreateStage() {
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.0f, 0.0f, 0.0f)
-	//		);
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.25f, 0.0f, 0.0f)
-	//		);
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.50f, 0.0f, 0.0f)
-	//		);
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.75f, 0.0f, 0.0f)
-	//		);
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.75f, 0.25f, 0.0f)
-	//		);
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.50f, 0.0f, 0.25f)
-	//		);
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.75f, 0.0f, 0.25f)
-	//		);
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.25f, 0.0f, 0.25f)
-	//		);
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.0f, 0.0f, 0.25f)
-	//		);
-	//	AddGameObject<FixedBox>(
-	//		Vec3(0.25f, 0.25f, 0.25f),
-	//		Vec3(0.0f, 0.0f, 0.0f),
-	//		Vec3(0.75f, 0.25f, 0.25f)
-	//		);
-
-	//}
-
 	
 	void TitleStage::OnCreate() {
 		try {

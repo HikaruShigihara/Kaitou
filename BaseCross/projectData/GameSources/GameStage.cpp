@@ -137,9 +137,12 @@ namespace basecross {
 						//Group = GetSharedObjectGroup(L"FixedBoxes");
 						m_group->IntoGroup(m_fixedbox);
 						
-						//m_player = AddGameObject<Player>(
-						//	Vec3(XPos*m_position, 2.0f, ZPos*m_position)
-						//	);
+						m_player = AddGameObject<Player>(
+							Vec3(XPos*m_position, 2.0f, ZPos*m_position)
+							//êeéqä÷åWÅ´
+							//m_Target
+						);
+													
 
 					}
 					else if (Tokens[j] == L"3") {
@@ -323,15 +326,6 @@ namespace basecross {
 
 	}
 
-	void GameStage::CreatePlayer() {
-		m_player = AddGameObject<Player>(
-			Vec3(0.0f, 2.0f, 0.0f)
-			);
-
-	}
-
-
-
 	void GameStage::OnCreate() {
 		try {
 			SetPhysicsActive(true);
@@ -358,7 +352,7 @@ namespace basecross {
 			CreateBack();
 			CreateCloud();
 			CreateUI();
-			//PlayBGM(L"Title.wav", 0.5f);
+			PlayBGM(L"Title.wav", 0.5f);
 		}
 
 		catch (...) {

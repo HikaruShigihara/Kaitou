@@ -126,6 +126,9 @@ namespace basecross {
 			m_StageQuantity = 3;
 			CreateViewLight();
 			CreateUI();
+
+			PlayBGM(L"Stage.wav", 0.5f);
+
 		}
 		catch (...) {
 			throw;
@@ -161,6 +164,7 @@ namespace basecross {
 			App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				StopBGM();
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 
 			}
@@ -171,6 +175,7 @@ namespace basecross {
 			m_Stage02->SetDrawActive(true);
 			App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				StopBGM();
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 
 			}
@@ -180,6 +185,7 @@ namespace basecross {
 			m_Stage03->SetDrawActive(true);
 			App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				StopBGM();
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
 			}
 

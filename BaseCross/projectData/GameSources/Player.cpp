@@ -10,10 +10,10 @@ namespace basecross{
 
 	void Player::OnCreate() {
 		//初期位置などの設定
-		auto ptr = AddComponent<Transform>();
-		ptr->SetScale(m_Scale);	//直径25センチの球体
-		ptr->SetRotation(m_Rotation);
-		ptr->SetPosition(m_Position);
+		auto ptrTrans = AddComponent<Transform>();
+		ptrTrans->SetScale(m_Scale);	//直径25センチの球体
+		ptrTrans->SetRotation(m_Rotation);
+		ptrTrans->SetPosition(m_Position);
 
 		//衝突判定を付ける
 		auto ptrColl = AddComponent<CollisionCapsule>();
@@ -26,7 +26,6 @@ namespace basecross{
 		GetStage()->SetCollisionPerformanceActive(true);
 		GetStage()->SetUpdatePerformanceActive(true);
 		GetStage()->SetDrawPerformanceActive(true);
-
 		//PsCylinderParam param(ptr->GetWorldMatrix(), 1.0f, false, PsMotionType::MotionTypeActive);
 		//auto psPtr = AddComponent<RigidbodyCylinder>(param);
 		//psPtr->SetAutoTransform(false);
@@ -49,7 +48,7 @@ namespace basecross{
 		auto ptrShadow = AddComponent<Shadowmap>();
 
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"Player_7.bmf");
+		ptrShadow->SetMeshResource(L"Player_8.bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 
@@ -57,13 +56,18 @@ namespace basecross{
 		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
 		ptrDraw->SetFogEnabled(true);
 		//描画するメッシュを設定
-		ptrDraw->SetMeshResource(L"Player_7.bmf");
+		ptrDraw->SetMeshResource(L"Player_8.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetDrawActive(true);
 
 		//ptrDraw->AddAnimation(L"Default", 0, 20, true, 20.0f);
 		//ptrDraw->ChangeCurrentAnimation(L"Default");
 
+		auto ptrParent = m_Parent.lock();
+		if (ptrParent) {
+			ptrTrans->SetParent(NULL);
+			
+		}
 
 		//透明処理
 		SetAlphaActive(true);
@@ -224,21 +228,37 @@ namespace basecross{
 		//ptrDraw->UpdateAnimation(elapsedTime);
 		auto cnlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto grav = GetComponent<Gravity>();
+		auto ptrTrans = GetComponent<Transform>();
 
-		if (cnlVec[0].wButtons & XINPUT_GAMEPAD_X) {
-			grav->SetUpdateActive(false);
-		}
+		//auto ptrParent = m_Parent.lock();
+		//if (cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
+		//	a = 0;
+		//	grav->SetUpdateActive(false);
+		//}
 
+		//switch (a) {
+		//case 0:
+		//	
+		//	if (ptrParent) {
+		//		ptrTrans->SetParent(ptrParent);
+		//	}
 
+		//	break;
+		//}
 		Respawn();
 	}
 
 	void Player::OnUpdate2() {
 		//auto PtrPs = GetComponent<RigidbodySphere>();
-		//auto Ptr = GetComponent<Transform>();
+		auto ptrTrans = GetComponent<Transform>();
 		//Ptr->SetPosition(PtrPs->GetPosition());
-		auto grav = GetComponent<Gravity>();
-		grav->SetUpdateActive(true);
+		//auto grav = GetComponent<Gravity>();
+		//grav->SetUpdateActive(true);
+		auto ptrParent = m_Parent.lock();
+		if (ptrParent) {
+			ptrTrans->SetParent(NULL);
+
+		}
 		//DrawStrings();
 
 	}

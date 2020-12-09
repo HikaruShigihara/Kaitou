@@ -52,14 +52,9 @@ namespace basecross {
 
 		auto ptrParent = m_Parent.lock();
 		if (ptrParent) {
-			//auto posTarget = ptrParent->GetComponent<Transform>()->GetPosition();
-			//posTarget += m_VecToParent;
-			//ptrTransform->SetPosition(posTarget);
-			auto rotTarget = ptrParent->GetComponent<Transform>()->GetRotation();
-			rotTarget += m_VecToParent;
-			ptrTransform->SetRotation(rotTarget);
 			ptrTransform->SetParent(ptrParent);
 		}
+
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
@@ -113,14 +108,7 @@ namespace basecross {
 
 		auto ptrParent = m_Parent.lock();
 		if (ptrParent) {
-			//auto posTarget = ptrParent->GetComponent<Transform>()->GetPosition();
-			//posTarget += m_VecToParent;
-			//ptrTransform->SetPosition(posTarget);
-			auto posTarget = ptrParent->GetComponent<Transform>()->GetRotation();
-			posTarget += m_VecToParent;
-			ptrTransform->SetRotation(posTarget);
 			ptrTransform->SetParent(ptrParent);
-
 		}
 		
 		ptrDraw->SetFogEnabled(true);
@@ -134,7 +122,6 @@ namespace basecross {
 
 	void FixedBox::SeekParent() {
 		auto ptrTrans = GetComponent<Transform>();
-		//auto pos = ptrTrans->GetPosition();
 		auto ptrParent = m_Parent.lock();
 		if (ptrParent) {
 			auto matParent = ptrParent->GetComponent<Transform>()->GetWorldMatrix();
@@ -149,6 +136,7 @@ namespace basecross {
 			mat *= matParent;
 
 			//ptrTrans->SetQuaternion(mat.quatInMatrix());
+
 		}
 	}
 
@@ -197,12 +185,13 @@ namespace basecross {
 		//auto shadowPtr = AddComponent<Shadowmap>();
 		////影の形（メッシュ）を設定
 		//shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+
 		auto ptrDraw = AddComponent<BcPCTStaticDraw>();
 		ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
 
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
-
+		
 		ptrDraw->SetDrawActive(false);
 
 
@@ -214,6 +203,7 @@ namespace basecross {
 	void ParentBox::MoveBox() {
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		
 		
 		auto ptrTrans = GetComponent<Transform>();
 
@@ -245,6 +235,7 @@ namespace basecross {
 				m_TotalRot = 0.0f;
 				m_RotSpan = m_RotSpan;
 				m_Key = 99;
+
 			}
 			break;
 		case 1://Xボタン
