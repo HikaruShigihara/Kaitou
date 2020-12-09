@@ -55,9 +55,9 @@ namespace basecross {
 			//auto posTarget = ptrParent->GetComponent<Transform>()->GetPosition();
 			//posTarget += m_VecToParent;
 			//ptrTransform->SetPosition(posTarget);
-			auto posTarget = ptrParent->GetComponent<Transform>()->GetRotation();
-			posTarget += m_VecToParent;
-			ptrTransform->SetRotation(posTarget);
+			auto rotTarget = ptrParent->GetComponent<Transform>()->GetRotation();
+			rotTarget += m_VecToParent;
+			ptrTransform->SetRotation(rotTarget);
 			ptrTransform->SetParent(ptrParent);
 		}
 		ptrDraw->SetFogEnabled(true);
@@ -122,6 +122,7 @@ namespace basecross {
 			ptrTransform->SetParent(ptrParent);
 
 		}
+		
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
 
@@ -223,15 +224,15 @@ namespace basecross {
 		auto quat = ptrTrans->GetQuaternion();
 		auto rot = ptrTrans->GetRotation();
 		auto angleX = quat.x * (180.0f / XM_PI);
-		auto angleZ = quat.z * (180.0f / XM_PI) * 3;
+		auto angleZ = quat.z * (0.2f / XM_2PI) * 3;
 
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
 			m_Key = 0;
-			m_Keycount++;
+			//m_Keycount++;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
 			m_Key = 1;
-			m_Keycount++;
+			//m_Keycount++;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 			m_Key = 2;
@@ -243,65 +244,100 @@ namespace basecross {
 		switch (m_Key)
 		{
 		case 0://B
-			if (m_Keycount == 1) {
-				if (angleZ < 120.1f) {
+			//if (m_Keycount == 1) {
+			qt = ptrTrans->GetQuaternion();
+			Quat spanQt(Vec3(0, 0, 1.0), m_RotSpan);
+			qt *= spanQt;
+			ptrTrans->SetQuaternion(qt);
+			m_TotalRot += m_RotSpan;
+			if (m_TotalRot >= (XM_PI / 2.0f)) {
+				//m_RotSpan = 0.0f;
+				m_TotalRot = 0.0f;
+				m_RotSpan = 0.01f;
+				m_Key = 99;
+			}
+			break;
+
+		//case 1:
+		//	qt = ptrTrans->GetQuaternion();
+		//	Quat spanQtm(Vec3(0, 0, -1.0), m_RotSpan);
+		//	qt *= spanQtm;
+		//	ptrTrans->SetQuaternion(qt);
+
+		//	m_TotalRot += m_RotSpan;
+		//	if (m_TotalRot >= (XM_PI / 2.0f)) {
+		//		//m_RotSpan = 0.0f;
+		//		m_TotalRot = 0.0f;
+		//		m_RotSpan = 0.01f;
+		//		m_Key = 99;
+		//	}
+
+		//	break;
+				//if (angleZ < 120.1f) {
 					
-					quat.z += m_movevalue * elap;
-					ptrTrans->SetQuaternion(quat);
-				}
-			}
-			else if (m_Keycount == 2) {
-				if (angleZ < 172.0f) {
-					quat.z += m_movevalue * elap;
-					ptrTrans->SetQuaternion(quat);
-					
-				}
-				//else {
-				//	rot.z = 1.0f;
-				//	ptrTrans->SetQuaternion(quat);
+					//quat.z += m_movevalue * elap;
+//					ptrTrans->SetQuaternion(Quat(0.0f,0.0f,(XM_PI/2),0.0f));
 				//}
-			}
-			else if (m_Keycount == 3) {
+			//}
+			//else if (m_Keycount == 2) {
+			//	m_RotSpan = 0.01f;
+			//	auto qt = ptrTrans->GetQuaternion();
+			//	Quat spanQt(Vec3(0, 0, 1.0), m_RotSpan);
+			//	qt *= spanQt;
+			//	ptrTrans->SetQuaternion(qt);
 
-				//if (angleZ == 60.0f) {
-				//	quat.normalize();
-				//	quat.z += m_movevalue * elap;
-				//	ptrTrans->SetQuaternion(quat);
-				//}
-				
-			}
-			break;
-		case 1://X
-			if (m_Keycount == 1) {
-				if (angleZ > -40.0f) {
-					quat.z -= m_movevalue * elap;
-					ptrTrans->SetQuaternion(quat);
-				}
+			//	m_TotalRot += m_RotSpan;
+			//	if (m_TotalRot >= (XM_PI)) {
+			//		m_RotSpan = 0.0f;
+			//		m_TotalRot = 0.0f;
+			//	}
+			//	//else {
+			//	//	rot.z = 1.0f;
+			//	//	ptrTrans->SetQuaternion(quat);
+			//	//}
+			//}
+			//else if (m_Keycount == 3) {
 
-			}
-			else if (m_Keycount == 2) {
-				if (angleZ > -40.0f) {
-					quat.z -= m_movevalue * elap;
-					ptrTrans->SetQuaternion(quat);
-				}
-			}
-			break;
-		case 2://A
-			if (angleX > -40.0f) {
-				quat.x -= m_movevalue * elap;
-				ptrTrans->SetQuaternion(quat);
+			//	//if (angleZ == 60.0f) {
+			//	//	quat.normalize();
+			//	//	quat.z += m_movevalue * elap;
+			//	//	ptrTrans->SetQuaternion(quat);
+			//	//}
+			//	
+			//}
+		//case 1://X
+		//	if (m_Keycount == 1) {
+		//		if (angleZ > -40.0f) {
+		//			quat.z -= m_movevalue * elap;
+		//			ptrTrans->SetQuaternion(quat);
+		//		}
 
-			}
-			break;
-		case 3://Y
-			if (angleX < 40.0f) {
-				quat.x += m_movevalue * elap;
-				ptrTrans->SetQuaternion(quat);
-			}
-			break;
+		//	}
+		//	else if (m_Keycount == 2) {
+		//		if (angleZ > -40.0f) {
+		//			quat.z -= m_movevalue * elap;
+		//			ptrTrans->SetQuaternion(quat);
+		//		}
+		//	}
+		//	break;
+		//case 2://A
+		//	if (angleX > -40.0f) {
+		//		quat.x -= m_movevalue * elap;
+		//		ptrTrans->SetQuaternion(quat);
+
+		//	}
+		//	break;
+		//case 3://Y
+		//	if (angleX < 40.0f) {
+		//		quat.x += m_movevalue * elap;
+		//		ptrTrans->SetQuaternion(quat);
+		//	}
+		//	break;
+
+		//case 4:
+		//	break;
 
 		}
-
 
 	}
 
@@ -310,14 +346,15 @@ namespace basecross {
 	}
 
 	void ParentBox::DrawStrings() {
+		auto ptrTrans = GetComponent<Transform>();
 		auto quat = GetComponent<Transform>()->GetQuaternion();
-		auto rot = quat.z * (180.0f / XM_PI) * XM_PI;
+		auto rot = quat.z * ( 0.2f/ XM_2PI );
 		auto Rot = GetComponent<Transform>()->GetRotation();
 
 		wstring RotationStr(L"Rotation:\t");
 		//RotationStr += L"X=" + Util::FloatToWStr(rot.x, 6, Util::FloatModify::Fixed) + L",\t";
 		//RotationStr += L"Y=" + Util::FloatToWStr(rot.y, 6, Util::FloatModify::Fixed) + L",\t";
-		RotationStr += L"Z=" + Util::FloatToWStr(rot, 6, Util::FloatModify::Fixed) + L"\n";
+		RotationStr += L"Z=" + Util::FloatToWStr(Rot.z, 6, Util::FloatModify::Fixed) + L"\n";
 
 		wstring str = RotationStr;
 

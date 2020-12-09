@@ -29,7 +29,7 @@ namespace basecross {
 	void GameStage::CreateXmlObjects() {
 		wstring DataDir;
 		App::GetApp()->GetDataDirectory(DataDir);
-		m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/stage10.xml"));
+		m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
 
 		//親
 		m_Parentbox = AddGameObject<ParentBox>(
@@ -105,11 +105,10 @@ namespace basecross {
 			//最初に「改行」をデリミタとした文字列の配列にする
 			Util::WStrToTokenVector(LineVec, MapStr, L'\n');
 
+			
 			//[,]を10個で区切る方法？
 
 			for (size_t i = 0; i < 10; i++) {
-
-
 				//トークン（カラム）の配列
 				vector<wstring> Tokens;
 
@@ -130,6 +129,7 @@ namespace basecross {
 						m_group->IntoGroup(m_fixedbox);
 					}
 					else if (Tokens[j] == L"2") {
+						//スタート
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
 						m_Target = AddGameObject<FixedBox>(
 							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
@@ -146,6 +146,7 @@ namespace basecross {
 
 					}
 					else if (Tokens[j] == L"3") {
+						//ゴール
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
 						m_Target = AddGameObject<Goal>(
 							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
@@ -364,7 +365,7 @@ namespace basecross {
 	}
 
 	void GameStage::OnUpdate() {
-		auto a=m_StageSelectNumber;
+		//auto a=m_StageSelectNumber;
 
 
 	}

@@ -81,11 +81,15 @@ namespace basecross {
 		Vec3 m_Rotation;
 		Vec3 m_Position;
 
+		float m_TotalRot = 0.0f;
+		float m_RotSpan = 0.01f;
+		Quat qt;
+		float x = 2.0f;
 		int m_Key = 5;
 		int m_Keycount = NULL;
 		int m_flag = 0;
 		float m_time;
-		float m_movevalue = 1.0f;
+		float m_movevalue = 0.5f;
 		void MoveBox();
 		void DrawStrings();
 	public:
