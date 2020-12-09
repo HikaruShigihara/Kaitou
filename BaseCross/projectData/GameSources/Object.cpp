@@ -148,9 +148,6 @@ namespace basecross {
 			);
 			mat *= matParent;
 
-			//auto posTarget = mat.transInMatrix();
-			//auto v = Lerp::CalculateLerp(pos, posTarget, 0.0f, 1.0f, 0.2f, Lerp::rate::Linear);
-			//ptrTrans->SetPosition(v);
 			//ptrTrans->SetQuaternion(mat.quatInMatrix());
 		}
 	}

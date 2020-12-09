@@ -49,6 +49,7 @@ namespace basecross {
 		Vec3 m_VecToParent;
 
 		void SeekParentGoal();
+		
 	public:
 		//ç\ízÇ∆îjä¸
 		Goal(const shared_ptr<Stage>& StagePtr,
@@ -90,6 +91,7 @@ namespace basecross {
 		int m_flag = 0;
 		float m_time;
 		float m_movevalue = 0.5f;
+
 		void MoveBox();
 		void DrawStrings();
 	public:
