@@ -357,7 +357,6 @@ namespace basecross {
 	}
 
 	void GameStage::OnUpdate() {
-		auto a=m_StageSelectNumber;
 
 
 	}
