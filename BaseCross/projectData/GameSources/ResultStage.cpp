@@ -254,6 +254,8 @@ namespace basecross {
 			m_SelectArrowNumber1->SetDrawActive(true);
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				auto a = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
+				App::GetApp()->GetScene<Scene>()->SetSelectNumber(a+1);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 			}
 

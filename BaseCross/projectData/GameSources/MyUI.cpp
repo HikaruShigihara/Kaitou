@@ -251,4 +251,17 @@ namespace basecross {
 
 	}
 
+
+	void StageSlect_Star::SetTexture(const wstring& textures) {
+		auto ptrDraw = GetComponent<PCTSpriteDraw>();
+		ptrDraw->SetTextureResource(textures);
+
+	}
+	void StageSlect_Star::OnCreate() {
+
+		Draw();
+
+
+	}
+
 }
