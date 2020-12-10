@@ -361,7 +361,7 @@ namespace basecross {
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/stage12.xml"));
 				break;
 			case 1:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage1.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
 				break;
 
 			}
