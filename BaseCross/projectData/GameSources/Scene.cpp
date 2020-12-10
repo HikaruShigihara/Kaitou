@@ -101,7 +101,7 @@ namespace basecross{
 
 			//•ÏX‚ÅƒV[ƒ“‘JˆÚ
 
-			SetGameStage(GameStageKey::game);
+			SetGameStage(GameStageKey::title);
 
 		}
 		catch (...) {
@@ -164,7 +164,5 @@ namespace basecross{
 		auto a = m_star[StageNumber];
 		return a;
 	}
-
-
 }
 //end basecross

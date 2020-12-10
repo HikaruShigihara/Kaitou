@@ -305,9 +305,8 @@ namespace basecross {
 			CreateCloud();
 			//CreateStage();
 			//ƒV[ƒ“‘JˆÚ‚ÌŽd•û(OnUpdate‚É)
-			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
-
-			PlayBGM(L"Stage.wav", 0.5f);
+			App::GetApp()->GetScene<Scene>()->StopBGM();
+			App::GetApp()->GetScene<Scene>()->PlayBGM(L"Stage.wav", 0.5f);
 		}
 		catch (...) {
 			throw;
@@ -335,7 +334,7 @@ namespace basecross {
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
-				StopBGM();
+				//StopBGM();
 			}
 
 			break;
@@ -348,7 +347,7 @@ namespace basecross {
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
-				StopBGM();
+				//StopBGM();
 			}
 
 			break;
@@ -362,7 +361,7 @@ namespace basecross {
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
-				StopBGM();
+				//StopBGM();
 			}
 			break;
 

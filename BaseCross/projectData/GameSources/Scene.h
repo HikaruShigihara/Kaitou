@@ -21,6 +21,7 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
 		vector<wstring> m_stageName;
+		shared_ptr<SoundItem> m_bgm;
 
 		void CreateResourses();
 		void FindFile(wstring dir);
@@ -50,6 +51,27 @@ namespace basecross{
 			m_gameStageKey = key;
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), m_stageKey[m_gameStageKey]);
 		}
+
+
+		//SE‚ÌŠÖ”
+		void PlaySE(wstring key, float vol) {
+			auto se = App::GetApp()->GetXAudio2Manager();
+			se->Start(key, 0, vol);
+		}
+
+		//BGM
+		void PlayBGM(wstring key, float vol) {
+			auto bgm = App::GetApp()->GetXAudio2Manager();
+			m_bgm = bgm->Start(key, XAUDIO2_LOOP_INFINITE, vol);
+		}
+
+		//BGM‚ðŽ~‚ß‚é
+		void StopBGM() {
+			auto bgm = App::GetApp()->GetXAudio2Manager();
+			bgm->Stop(m_bgm);
+		}
+
+
 	};
 
 }

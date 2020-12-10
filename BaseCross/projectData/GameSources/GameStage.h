@@ -15,7 +15,6 @@ namespace basecross {
 		//XMLリーダー
 		unique_ptr<XmlDocReader> m_XmlDocReader;
 
-		shared_ptr<SoundItem> m_bgm;
 
 		shared_ptr<GameObjectGroup> m_group;
 		shared_ptr<GameObject> m_fixedbox;
@@ -62,8 +61,7 @@ namespace basecross {
 			m_clear(L"Clear.png"),
 			m_text_UI(L"スタートボタンで開始！"),
 			m_number(000),
-			m_position(0.65f),
-			m_bgm(NULL)
+			m_position(0.65f)
 		{}
 		virtual ~GameStage() {}
 		//初期化
@@ -80,11 +78,6 @@ namespace basecross {
 		void resetCount() {
 			m_number = 0;
 		}
-		void PlayBGM(wstring key, float vol) {
-			auto bgm = App::GetApp()->GetXAudio2Manager();
-			m_bgm = bgm->Start(key, XAUDIO2_LOOP_INFINITE, vol);
-		}
-
 	};
 }
 //end basecross

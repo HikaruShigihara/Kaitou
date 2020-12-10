@@ -127,8 +127,8 @@ namespace basecross {
 			CreateViewLight();
 			CreateUI();
 
-			PlayBGM(L"Stage.wav", 0.5f);
-
+			App::GetApp()->GetScene<Scene>()->StopBGM();
+			App::GetApp()->GetScene<Scene>()->PlayBGM(L"Stage.wav", 0.5f);
 		}
 		catch (...) {
 			throw;

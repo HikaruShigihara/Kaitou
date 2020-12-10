@@ -372,7 +372,9 @@ namespace basecross {
 			CreateBack();
 			CreateCloud();
 			CreateUI();
-			PlayBGM(L"Title.wav", 0.5f);
+			
+			App::GetApp()->GetScene<Scene>()->StopBGM();
+			App::GetApp()->GetScene<Scene>()->PlayBGM(L"hikousen.wav", 0.5f);
 		}
 
 		catch (...) {

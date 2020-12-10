@@ -138,14 +138,14 @@ namespace basecross {
 		auto PtrAction = AddComponent<Action>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		time += elapsedTime;
-		PtrAction->AddRotateBy(5.0f, Vec3(0.0f, 0.0f, XM_PI));
+		PtrAction->AddRotateBy(3.0f, Vec3(0.0f, 0.0f, XM_PI));
 
 		PtrAction->SetLooped(true);
-		if (time >= 3.0f) {
+		if (time >= 2.0f) {
 			PtrAction->Run();
 
 		}
-		if (time >= 4.0f) {
+		if (time >= 3.0f) {
 			PtrAction->Stop();
 			time = 0;
 		}

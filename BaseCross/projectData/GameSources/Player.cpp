@@ -205,6 +205,8 @@ namespace basecross{
 
 			}
 			StarResult();
+			//auto stage = App::GetApp()->GetScene<GameStage>();
+			//stage->StopBGM();
 			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
 
 			//if (time > 1.0f) {
