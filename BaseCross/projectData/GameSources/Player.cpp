@@ -78,6 +78,7 @@ namespace basecross{
 			//MyCameraである
 			//MyCameraに注目するオブジェクト（プレイヤー）の設定
 			ptrCamera->SetTargetObject(GetThis<GameObject>());
+			ptrCamera->SetEye(Vec3(0.0f, 3.0f, 0.0f));
 			ptrCamera->SetTargetToAt(Vec3(0, 0.25f, 0));
 		}
 	}
@@ -167,12 +168,14 @@ namespace basecross{
 	}
 
 	void Player::PlayerMove() {
+
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto angle = GetPlayerMoveVec();
+		
 		if (angle.length() > 0.0f) {
-			auto pos = GetComponent<Transform>()->GetPosition();
-			pos += angle * elapsedTime * 6.0f;
-			GetComponent<Transform>()->SetPosition(pos);
+				auto pos = GetComponent<Transform>()->GetPosition();
+				pos += angle * elapsedTime * 6.0f;
+				GetComponent<Transform>()->SetPosition(pos);
 		}
 
 		//回転の計算
@@ -224,11 +227,17 @@ namespace basecross{
 	}
 
 	void Player::OnUpdate() {
-		PlayerMove();
+		auto cnlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		if (cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
+			m_start = true;
+		}
+		if (m_start) {
+			PlayerMove();
+
+		}
 		//float elapsedTime = App::GetApp()->GetElapsedTime();
 		//auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		//ptrDraw->UpdateAnimation(elapsedTime);
-		auto cnlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		auto grav = GetComponent<Gravity>();
 		auto ptrTrans = GetComponent<Transform>();
 

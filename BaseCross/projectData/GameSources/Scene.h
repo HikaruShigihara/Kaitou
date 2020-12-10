@@ -28,6 +28,7 @@ namespace basecross{
 		wstring m_stageKey[GameStageKey::Max];
 		GameStageKey m_gameStageKey;
 
+
 	public:
 
 		Scene() {};
@@ -36,6 +37,7 @@ namespace basecross{
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
 		int m_SelectStageNumber;
 		int m_StarNumber;
+		bool m_Start;
 		int m_star[10];
 		int SetStageStar(int StageNumber,int StarQuantity);
 		int GetStageStar(int StageNumber);

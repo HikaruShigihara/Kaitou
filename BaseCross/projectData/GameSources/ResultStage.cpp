@@ -223,6 +223,7 @@ namespace basecross {
 
 	void ResultStage::OnCreate() {
 		try {
+			StopBGM();
 			CreateViewLight();
 			m_SelectChoices = 0;
 			m_SelectQuantity = 3;

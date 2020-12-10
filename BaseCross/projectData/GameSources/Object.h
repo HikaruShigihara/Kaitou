@@ -88,6 +88,7 @@ namespace basecross {
 		float x = 2.0f;
 		int m_Key = 5;
 		int m_Keycount = NULL;
+		bool m_start;
 		int m_flag = 0;
 		float m_time;
 		float m_movevalue = 0.5f;

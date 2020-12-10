@@ -354,11 +354,11 @@ namespace basecross {
 			App::GetApp()->GetDataDirectory(DataDir);
 			auto a = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
 			m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage10.xml"));
-
+			
 			//XML‚Ì“Ç‚Ýž‚Ý
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/stage12.xml"));
 				break;
 			case 1:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage1.xml"));
@@ -381,9 +381,7 @@ namespace basecross {
 	}
 
 	void GameStage::OnUpdate() {
-		//auto a=m_StageSelectNumber;
 		auto cntVec = App::GetApp()->GetInputDevice().GetControlerVec();
-
 		if (cntVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
 			m_mask->SetDrawActive(false);
 			m_text->SetDrawActive(false);

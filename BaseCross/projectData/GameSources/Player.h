@@ -16,13 +16,14 @@ namespace basecross{
 
 		//Vec3 m_Respawn = Vec3(0.0f, 3.0f, 0.0f);
 		bool m_clearflag = false;
+		bool m_start;
 		float time;
 		int a;
 		Vec3 GetPlayerMoveVec() const;
 
 		wstring m_clear = wstring(L"Clear.png");
 
-		float m_WalkSpeed = 6.7f;
+		float m_WalkSpeed = 7.0f;
 		void PlayerMove();
 		void Respawn();
 		void DrawStrings();
