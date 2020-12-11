@@ -94,7 +94,7 @@ namespace basecross {
 		float m_movevalue = 0.5f;
 
 		void MoveBox();
-		void DrawStrings();
+		//void DrawStrings();
 	public:
 		//\’z‚Æ”jŠü
 		ParentBox(const shared_ptr<Stage>& StagePtr,
@@ -115,6 +115,6 @@ namespace basecross {
 		//‰Šú‰»
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
-		virtual void OnUpdate2() override;
+		//virtual void OnUpdate2() override;
 	};
 }

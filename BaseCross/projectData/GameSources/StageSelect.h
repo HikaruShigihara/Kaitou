@@ -13,12 +13,16 @@ namespace basecross {
 		void CreateViewLight();
 		void CreateUI();
 		void BoolCheck();
+		void CreateText();
 
 		wstring m_StageSelect_image;
 		wstring m_StageSelect_Stage01,m_StageSelect_Stage02,m_StageSelect_Stage03;
 		wstring m_StageSelect_Arrow,m_StageSelect_Arrow_yellow;
 		wstring m_Star,m_BlackStar,m_starframe;
 
+		wstring m_BlackStar;
+		wstring m_textA;
+		wstring m_textB;
 
 	public :
 		int m_StageQuantity;//ステージの個数
@@ -39,7 +43,9 @@ namespace basecross {
 			m_StageSelect_Arrow_yellow(L"Select_Arrow_yellow.png"),
 			m_starframe(L"Star_Frame.png"),
 			m_Star(L"StarOnly.png"),
-			m_BlackStar(L"Black_Star.png")
+			m_BlackStar(L"Black_Star.png"),
+			m_textA(L"A：決定！"),
+			m_textB(L"B：タイトルに戻る")
 		{}
 
 

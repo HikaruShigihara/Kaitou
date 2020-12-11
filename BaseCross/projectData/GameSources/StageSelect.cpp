@@ -179,6 +179,28 @@ namespace basecross {
 		}
 
 		
+	void StageSelect::CreateText() {
+		AddGameObject<UI_Text>(
+			L"メイリオ",
+			50.0f,
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(1350.0f, 1000.0f, 500.0f, 500.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_textA,
+			5,
+			false
+			);
+
+		AddGameObject<UI_Text>(
+			L"メイリオ",
+			50.0f,
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(0.0f, 1000.0f, 500.0f, 500.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_textB,
+			5,
+			false
+			);
 
 	}
 
@@ -188,7 +210,7 @@ namespace basecross {
 			m_StageQuantity = 3;
 			CreateViewLight();
 			CreateUI();
-
+			CreateText();
 			App::GetApp()->GetScene<Scene>()->StopBGM();
 			App::GetApp()->GetScene<Scene>()->PlayBGM(L"Stage.wav", 0.5f);
 		}
@@ -206,16 +228,19 @@ namespace basecross {
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
 			m_StageSelectNumber += 1;
 			m_StageArrowRight->SetTexture(m_StageSelect_Arrow_yellow);
-			PlaySE(L"Motion-Pop36-1.wav", 0.5f);
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"Motion-Pop36-1.wav", 0.2f);
 			time = 0;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
 			m_StageSelectNumber -= 1;
 			m_StageArrowLeft->SetTexture(m_StageSelect_Arrow_yellow);
-			PlaySE(L"Motion-Pop36-1.wav", 0.5f);
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"Motion-Pop36-1.wav", 0.2f);
 
 			time = 0;
 
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
 		}
 
 
@@ -226,7 +251,6 @@ namespace basecross {
 			m_Stage01->SetDrawActive(true);
 			StarDisplay();
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-				StopBGM();
 
 				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 	            App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
@@ -239,7 +263,6 @@ namespace basecross {
 			m_Stage02->SetDrawActive(true);
 			StarDisplay();
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-				StopBGM();
 				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 
@@ -250,9 +273,7 @@ namespace basecross {
 			m_Stage03->SetDrawActive(true);
 			StarDisplay();
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-				StopBGM();
 				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
-			
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
 			}
 
