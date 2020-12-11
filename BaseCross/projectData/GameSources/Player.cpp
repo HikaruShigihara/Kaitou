@@ -78,7 +78,7 @@ namespace basecross{
 			//MyCameraである
 			//MyCameraに注目するオブジェクト（プレイヤー）の設定
 			ptrCamera->SetTargetObject(GetThis<GameObject>());
-			ptrCamera->SetEye(Vec3(0.0f, 10.0f, 0.0f));
+			ptrCamera->SetEye(Vec3(0.0f, 0.0f, 0.0f));
 			ptrCamera->SetTargetToAt(Vec3(0, 0.25f, 0));
 		}
 	}
