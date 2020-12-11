@@ -178,7 +178,7 @@ namespace basecross {
 				Col4(1.0f),
 				m_Result_StarOnly
 				);
-			PlaySE(L"Shortbridge27-01.wav", 0.2f);
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"Shortbridge27-01.wav", 0.2f);
 		case 2:
 		
 			AddGameObject<Result_Star2>(
@@ -189,7 +189,7 @@ namespace basecross {
 				Col4(1.0f),
 				m_Result_StarOnly
 				);
-			PlaySE(L"Shortbridge27-01.wav", 0.2f);
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"Shortbridge27-01.wav", 0.2f);
 
 		case 1:
 			AddGameObject<Result_Star1>(
@@ -200,7 +200,7 @@ namespace basecross {
 				Col4(1.0f),
 				m_Result_StarOnly
 				);
-			PlaySE(L"Shortbridge27-01.wav", 0.2f);
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"Shortbridge27-01.wav", 0.2f);
 
 		}
 
@@ -223,13 +223,14 @@ namespace basecross {
 
 	void ResultStage::OnCreate() {
 		try {
-			StopBGM();
 			CreateViewLight();
 			m_SelectChoices = 0;
 			m_SelectQuantity = 3;
 			m_StarQuantity = 3;
 			CreateUI();
-
+			App::GetApp()->GetScene<Scene>()->StopBGM();
+			App::GetApp()->GetScene<Scene>()->PlayBGM(L"after_war.wav", 0.5f);
+			
 		}
 		catch (...) {
 			throw;

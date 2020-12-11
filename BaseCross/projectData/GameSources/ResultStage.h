@@ -8,7 +8,6 @@
 
 namespace basecross {
 	class ResultStage : public Stage {
-		shared_ptr<SoundItem> m_bgm;
 
 
 		void CreateViewLight();
@@ -59,8 +58,7 @@ namespace basecross {
 			m_Selectlogo(L"SelectStage.png"),
 			m_Nextlogo(L"next.png"),
 			m_Endlogo(L"Titlelogo.png"),
-			m_SelectArrow(L"Select_Arrow.png"),
-			m_bgm(NULL)
+			m_SelectArrow(L"Select_Arrow.png")
 
 
 
@@ -70,26 +68,6 @@ namespace basecross {
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
-
-		//SE‚ÌŠÖ”
-		void PlaySE(wstring key, float vol) {
-			auto se = App::GetApp()->GetXAudio2Manager();
-			se->Start(key, 0, vol);
-		}
-
-		//BGM
-		void PlayBGM(wstring key, float vol) {
-			auto bgm = App::GetApp()->GetXAudio2Manager();
-			m_bgm = bgm->Start(key, XAUDIO2_LOOP_INFINITE, vol);
-		}
-
-		//BGM‚ðŽ~‚ß‚é
-		void StopBGM() {
-			auto bgm = App::GetApp()->GetXAudio2Manager();
-			bgm->Stop(m_bgm);
-		}
-
-
 	};
 
 }

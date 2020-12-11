@@ -353,7 +353,7 @@ namespace basecross {
 			wstring DataDir;
 			App::GetApp()->GetDataDirectory(DataDir);
 			auto a = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
-			m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage10.xml"));
+			//m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage10.xml"));
 			
 			//XML‚Ì“Ç‚Ýž‚Ý
 			switch (a) {
@@ -374,7 +374,7 @@ namespace basecross {
 			CreateUI();
 			
 			App::GetApp()->GetScene<Scene>()->StopBGM();
-			App::GetApp()->GetScene<Scene>()->PlayBGM(L"hikousen.wav", 0.5f);
+			App::GetApp()->GetScene<Scene>()->PlayBGM(L"hikousen.wav", 0.3f);
 		}
 
 		catch (...) {
@@ -388,7 +388,6 @@ namespace basecross {
 			m_mask->SetDrawActive(false);
 			m_text->SetDrawActive(false);
 		}
-
 	}
 
 	void GameStage::OnUpdate2() {

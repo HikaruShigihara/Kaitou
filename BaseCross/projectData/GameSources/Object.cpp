@@ -195,9 +195,9 @@ namespace basecross {
 		ptrDraw->SetDrawActive(false);
 
 
-		auto ptrString = AddComponent<StringSprite>();
-		ptrString->SetText(L"");
-		ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
+		//auto ptrString = AddComponent<StringSprite>();
+		//ptrString->SetText(L"");
+		//ptrString->SetTextRect(Rect2D<float>(16.0f, 16.0f, 640.0f, 480.0f));
 	}
 
 	void ParentBox::MoveBox() {
@@ -282,25 +282,25 @@ namespace basecross {
 		MoveBox();
 	}
 
-	void ParentBox::DrawStrings() {
-		auto ptrTrans = GetComponent<Transform>();
-		auto quat = GetComponent<Transform>()->GetQuaternion();
-		auto rot = quat.z * ( 0.2f/ XM_2PI );
-		auto Rot = GetComponent<Transform>()->GetRotation();
+	//void ParentBox::DrawStrings() {
+	//	auto ptrTrans = GetComponent<Transform>();
+	//	auto quat = GetComponent<Transform>()->GetQuaternion();
+	//	auto rot = quat.z * ( 0.2f/ XM_2PI );
+	//	auto Rot = GetComponent<Transform>()->GetRotation();
 
-		wstring RotationStr(L"Rotation:\t");
-		//RotationStr += L"X=" + Util::FloatToWStr(rot.x, 6, Util::FloatModify::Fixed) + L",\t";
-		//RotationStr += L"Y=" + Util::FloatToWStr(rot.y, 6, Util::FloatModify::Fixed) + L",\t";
-		RotationStr += L"Z=" + Util::FloatToWStr(Rot.z, 6, Util::FloatModify::Fixed) + L"\n";
+	//	wstring RotationStr(L"Rotation:\t");
+	//	//RotationStr += L"X=" + Util::FloatToWStr(rot.x, 6, Util::FloatModify::Fixed) + L",\t";
+	//	//RotationStr += L"Y=" + Util::FloatToWStr(rot.y, 6, Util::FloatModify::Fixed) + L",\t";
+	//	RotationStr += L"Z=" + Util::FloatToWStr(Rot.z, 6, Util::FloatModify::Fixed) + L"\n";
 
-		wstring str = RotationStr;
+	//	wstring str = RotationStr;
 
-		auto PtrString = GetComponent<StringSprite>();
-		PtrString->SetText(str);
+	//	auto PtrString = GetComponent<StringSprite>();
+	//	PtrString->SetText(str);
 
-	}
+	//}
 
-	void ParentBox::OnUpdate2() {
-		DrawStrings();
-	}
+	//void ParentBox::OnUpdate2() {
+	//	DrawStrings();
+	//}
 }

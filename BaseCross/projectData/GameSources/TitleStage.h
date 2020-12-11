@@ -55,8 +55,7 @@ namespace basecross {
 			m_cloud3(L"Cloud Parts 3.png"),
 			m_cloud4(L"Cloud Parts 4.png"),
 			m_Kai(L"Title text.png"),
-			m_Tou(L"Title text2.png"),
-			m_bgm(NULL)
+			m_Tou(L"Title text2.png")
 		{}
 
 
