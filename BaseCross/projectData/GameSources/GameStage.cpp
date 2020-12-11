@@ -363,6 +363,12 @@ namespace basecross {
 			case 1:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
 				break;
+			case 2:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage3.xml"));
+				break;
+			case 3:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage4.xml"));
+				break;
 
 			}
 			//ビューとライトの作成

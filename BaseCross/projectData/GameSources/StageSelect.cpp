@@ -102,7 +102,7 @@ namespace basecross {
 			AddGameObject<StageSelect_UI>(
 			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(1.0f),
+			Vec3(0.75f),
 			-1,
 			Col4(1.0f),
 			m_StageSelect_Stage02
@@ -112,11 +112,21 @@ namespace basecross {
 			AddGameObject<StageSelect_UI>(
 			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(1.0f),
+			Vec3(0.75f),
 			-1,
 			Col4(1.0f),
 			m_StageSelect_Stage03
 			);
+		m_Stage04 =
+			AddGameObject<StageSelect_UI>(
+				Vec2(1920.0f, 1080.0f),
+				Vec3(0.0f, 0.0f, 0.0f),
+				Vec3(0.75f),
+				-1,
+				Col4(1.0f),
+				m_StageSelect_Stage04
+				);
+
 
 		m_StageArrowRight =
 			AddGameObject<StageSelect_ArrowRight>(
@@ -146,6 +156,8 @@ namespace basecross {
 		m_Stage01->SetDrawActive(false);
 		m_Stage02->SetDrawActive(false);
 		m_Stage03->SetDrawActive(false);
+		m_Stage04->SetDrawActive(false);
+
 
 	}
 	
@@ -208,7 +220,7 @@ namespace basecross {
 	void StageSelect::OnCreate() {
 		try {
 			m_StageSelectNumber = 0;
-			m_StageQuantity = 3;
+			m_StageQuantity = 4;
 			CreateViewLight();
 			CreateUI();
 			CreateText();
@@ -275,7 +287,17 @@ namespace basecross {
 			StarDisplay();
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
-				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+			}
+
+			break;
+		case 3:
+			BoolCheck();
+			m_Stage04->SetDrawActive(true);
+			StarDisplay();
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 			}
 
 			break;
