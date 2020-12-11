@@ -178,7 +178,8 @@ namespace basecross {
 
 		}
 
-		
+	}
+
 	void StageSelect::CreateText() {
 		AddGameObject<UI_Text>(
 			L"ƒƒCƒŠƒI",

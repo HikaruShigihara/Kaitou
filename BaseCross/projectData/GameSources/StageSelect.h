@@ -20,7 +20,6 @@ namespace basecross {
 		wstring m_StageSelect_Arrow,m_StageSelect_Arrow_yellow;
 		wstring m_Star,m_BlackStar,m_starframe;
 
-		wstring m_BlackStar;
 		wstring m_textA;
 		wstring m_textB;
 
