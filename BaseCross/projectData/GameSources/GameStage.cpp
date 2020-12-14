@@ -142,8 +142,6 @@ namespace basecross {
 							//親子関係↓
 							//,m_Target
 						);
-													
-
 					}
 					else if (Tokens[j] == L"3") {
 						//ゴール
@@ -156,6 +154,19 @@ namespace basecross {
 							);
 						//Group = GetSharedObjectGroup(L"FixedBoxes");
 						m_group->IntoGroup(m_fixedbox);
+					}
+					else if (Tokens[j] == L"4") {
+						//スイッチ
+						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
+						m_Target = AddGameObject<SwitchBox>(
+							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
+							Vec3(XPos*m_position, f*m_position, ZPos*m_position),
+							m_Target,
+							Vec3(0, 0, 0)
+							);
+						//Group = GetSharedObjectGroup(L"FixedBoxes");
+						m_group->IntoGroup(m_fixedbox);
+
 					}
 				}
 			}
@@ -206,7 +217,7 @@ namespace basecross {
 			float n = static_cast<float>(i);
 			m_numbers[i] = AddGameObject<Number_UI>(
 				Vec2(500.0f, 100.0f),
-				Vec3(1300.0f * 0.5f - n * 64.0f - 64.0f, 1000.0f * 0.5f, 0.0f),
+				Vec3(1300.0f * 0.5f - n * 64.0f - 64.0f, 900.0f * 0.5f, 0.0f),
 				Vec3(1.5f, 1.5f, 1.5f),
 				0,
 				Col4(1.0f, 1.0f, 1.0f, 1.0f),
@@ -340,8 +351,18 @@ namespace basecross {
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
 			Rect2D<float>(0.0f, 0.0f, 1920.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
-			m_text_UI,
+			m_text_UI1,
 			5,
+			false
+			);
+		AddGameObject<UI_Text>(
+			L"メイリオ",
+			100.0f,
+			Col4(1.0f, 1.0f, 1.0f, 1.0f),
+			Rect2D<float>(1100.0f, 0.0f, 1920.0f, 500.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_text_UI2,
+			0,
 			false
 			);
 
@@ -358,7 +379,7 @@ namespace basecross {
 			//XMLの読み込み
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/stage12.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage12.xml"));
 				break;
 			case 1:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
@@ -378,7 +399,6 @@ namespace basecross {
 			CreateBack();
 			CreateCloud();
 			CreateUI();
-						
 			App::GetApp()->GetScene<Scene>()->StopBGM();
 			App::GetApp()->GetScene<Scene>()->PlayBGM(L"hikousen.wav", 0.3f);
 		}
