@@ -256,6 +256,7 @@ namespace basecross {
 			m_SelectArrowNumber1->SetDrawActive(true);
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
 				auto a = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
 				App::GetApp()->GetScene<Scene>()->SetSelectNumber(a+1);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
@@ -269,6 +270,7 @@ namespace basecross {
 			m_SelectArrowNumber2->SetDrawActive(true);
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
 			}
 
@@ -281,6 +283,7 @@ namespace basecross {
 			m_SelectArrowNumber3->SetDrawActive(true);
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
 			}
 			break;

@@ -333,8 +333,8 @@ namespace basecross {
 
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
-				//StopBGM();
 			}
 
 			break;
@@ -346,6 +346,7 @@ namespace basecross {
 
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::stageSelect);
 				//StopBGM();
 			}
@@ -360,6 +361,7 @@ namespace basecross {
 
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::title);
 				//StopBGM();
 			}
