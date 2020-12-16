@@ -42,6 +42,7 @@ namespace basecross {
 		void CreateUI();
 		void CreateBack();
 		void CreateCloud();
+		void CreateEffect();
 		void CreateMask();
 		//XMLのオブジェクトの作成
 		void CreateXmlObjects();

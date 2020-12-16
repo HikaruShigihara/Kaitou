@@ -49,20 +49,20 @@ namespace basecross{
 		auto ptrShadow = AddComponent<Shadowmap>();
 
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"Player_8.bmf");
+		ptrShadow->SetMeshResource(L"player_Walk_Motion (1).bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 
 		//描画コンポーネントの設定
-		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
+		auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
 		ptrDraw->SetFogEnabled(true);
 		//描画するメッシュを設定
-		ptrDraw->SetMeshResource(L"Player_8.bmf");
+		ptrDraw->SetMeshResource(L"player_Walk_Motion (1).bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetDrawActive(true);
 
-		//ptrDraw->AddAnimation(L"Default", 0, 20, true, 20.0f);
-		//ptrDraw->ChangeCurrentAnimation(L"Default");
+		ptrDraw->AddAnimation(L"Default", 0, 20, true, 20.0f);
+		ptrDraw->ChangeCurrentAnimation(L"Default");
 
 		auto ptrParent = m_Parent.lock();
 		if (ptrParent) {
@@ -238,9 +238,9 @@ namespace basecross{
 			PlayerMove();
 
 		}
-		//float elapsedTime = App::GetApp()->GetElapsedTime();
-		//auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
-		//ptrDraw->UpdateAnimation(elapsedTime);
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		ptrDraw->UpdateAnimation(elapsedTime);		
 		auto grav = GetComponent<Gravity>();
 		auto ptrTrans = GetComponent<Transform>();
 

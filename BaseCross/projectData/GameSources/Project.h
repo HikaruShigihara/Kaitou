@@ -16,6 +16,7 @@
 #include "MyCamera.h"
 #include "EditStage.h"
 #include "Object.h"
+#include "Effect.h"
 
 
 #include "ResultStage.h"
