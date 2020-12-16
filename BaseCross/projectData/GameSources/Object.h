@@ -151,4 +151,43 @@ namespace basecross {
 		virtual void OnUpdate() override;
 		//virtual void OnUpdate2() override;
 	};
+
+	class SwitchButton : public GameObject {
+		Vec3 m_Scale;
+		Vec3 m_Rotation;
+		Vec3 m_Position;
+
+		weak_ptr<GameObject> m_Parent;
+		Vec3 m_VecToParent;
+
+
+	public:
+		//ç\ízÇ∆îjä¸
+		SwitchButton(const shared_ptr<Stage>& StagePtr,
+			//const Vec3& Scale,
+			//const Vec3& Rotation,
+			const Vec3& Position,
+			const shared_ptr<GameObject>& Parent,
+			const Vec3& VecToParent
+
+		) :
+			GameObject(StagePtr),
+			//m_Scale(Scale),
+			//m_Rotation(Rotation),
+			m_Position(Position),
+			m_Parent(Parent),
+			m_VecToParent(VecToParent)
+
+		{}
+
+		virtual ~SwitchButton()
+		{}
+		 void OnCollisionEnter(shared_ptr<GameObject>& Other, shared_ptr<GameObject>& a) ;
+
+		//èâä˙âª
+		virtual void OnCreate() override;
+	};
+
+
+
 }
