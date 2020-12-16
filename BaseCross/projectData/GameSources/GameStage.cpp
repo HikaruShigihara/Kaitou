@@ -146,7 +146,7 @@ namespace basecross {
 					else if (Tokens[j] == L"3") {
 						//ゴール
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
-						m_Target = AddGameObject<Goal>(
+						m_Goal = AddGameObject<Goal>(
 							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
 							Vec3(XPos*m_position, f*m_position, ZPos*m_position),
 							m_Target,
@@ -368,6 +368,34 @@ namespace basecross {
 
 	}
 
+	void GameStage::CreateEffect() {
+		//RingEffect::InitParams params;
+		//params.textureKey = L"aura.png";
+		//params.sides = 30;
+		//params.height = 1.0f;
+		//params.topRadius = 1.5f;
+		//params.bottomRadius = 1.0f;
+		//params.topColor = Col4(1.0f, 0.0f, 1.0f, 0.0f);
+		//params.bottomColor = Col4(1.0f, 0.0f, 1.0f, 1.0f);
+		//params.uvOffsetSpeed = Vec2(0.1f, 0.0f);
+		//params.textureLoops = 1.0f;
+		//AddGameObject<RingEffect>(params); // 1つ目のオーラ
+
+		//params.uvOffsetSpeed.x = -0.01f; // 1つ目のオーラの10分の1のスピードで逆回転させる
+		//params.height = 0.9f; // 高さを少し小さくする
+		//AddGameObject<RingEffect>(params); // 2つ目のオーラ（重ねることで「揺らぎ」を表現し、逆回転を加えることで回転させてるだけだと気づかれにくくなる）
+
+		// //リスポーン地点的なエフェクト
+		//auto respawnArea = AddGameObject<RingEffect>(RingEffect::InitParams(L"line.png", 30, 1.0f, 1.0f, 1.0f, Col4(1.0f, 1.0f, 1.0f, 0.0f), Col4(1.0f, 1.0f, 1.0f, 1.0f), Vec2(0.0f, 2.0f), 4.0f));
+		//auto goalpos = m_Goal->GetComponent<Transform>()->GetPosition();
+		//goalpos.y = 0.0f;
+
+		//enemyPositions[0].y = 0.0f;
+		//respawnArea->GetComponent<Transform>()->SetPosition(goalpos);
+
+
+	}
+
 	void GameStage::OnCreate() {
 		try {
 			SetPhysicsActive(true);
@@ -399,6 +427,7 @@ namespace basecross {
 			CreateBack();
 			CreateCloud();
 			CreateUI();
+			CreateEffect();
 			App::GetApp()->GetScene<Scene>()->StopBGM();
 			App::GetApp()->GetScene<Scene>()->PlayBGM(L"hikousen.wav", 0.3f);
 		}

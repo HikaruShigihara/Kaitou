@@ -1,4 +1,3 @@
-
 /*!
 @file Scene.cpp
 @brief シーン実体
@@ -22,8 +21,6 @@ namespace basecross{
 		FindFile(mediaDir + L"Model/");
 		FindFile(mediaDir + L"BGM/");
 
-		//bmfモデルのリソース作成
-		//ステージ
 
 	}
 
@@ -60,7 +57,7 @@ namespace basecross{
 					// テクスチャーを登録
 					App::GetApp()->RegisterTexture(fileName, texture);
 				}
-
+				//音だった場合
 				if (exe == L".wav") {
 					wstring wav = dir + fileName;
 
@@ -68,14 +65,16 @@ namespace basecross{
 				}
 
 
-				//例外処理
+				//例外(bmf)
 				if (exe == L".bmf") {
-					// 例外の登録,ボーンモデルだから
-					if ((fileName == L"Player.bmf")){
+					// 例外登録
+					//ボーンモデルの場合
+					if ((fileName == L"player_Walk_Motion (1).bmf")){
 						auto modelMesh = MeshResource::CreateBoneModelMesh(dir, fileName);
 						App::GetApp()->RegisterResource(fileName, modelMesh);
 					}
 					else
+						//スタティックモデル
 					{
 						auto modelMesh = MeshResource::CreateStaticModelMesh(dir, fileName);
 						App::GetApp()->RegisterResource(fileName, modelMesh);
