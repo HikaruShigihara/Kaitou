@@ -346,26 +346,48 @@ namespace basecross {
 	//	DrawStrings();
 	//}
 
-	void SwitchButton::OnCreate() {
+
+	void SwitchBox::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+			//auto a=shared_ptr<SwitchMoveBox>();
+		if (Other->FindTag(L"Player")) {
+			auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+			auto gameobject = stage->GetGameObjectVec();
+			for (auto obj : gameobject) {
+				auto movebox = dynamic_pointer_cast<SwitchMoveBox>(obj);
+				if (movebox) {
+					movebox->MoveBoxCheck(1);
+				}
+
+			}
+		}
+			//a->MoveBoxCheck(1);
+	}
+
+
+	void SwitchMoveBox::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();
-		ptrTransform->SetScale(Vec3(0.65f, 0.65f, 0.65f));
+		ptrTransform->SetScale(m_scale);
 		ptrTransform->SetRotation(Vec3(0.0f, 0.0f, 0.0f));
 		ptrTransform->SetPosition(m_Position);
 		//OBB衝突j判定を付ける
-		auto ptrColl = AddComponent<CollisionObb>();
+		//auto ptrColl = AddComponent<CollisionObb>();
+		//ptrColl->SetFixed(true);
 
+		auto ptrColl = AddComponent<CollisionObb>();
+		//ptrColl->SetMakedSize(Vec3(2.0f, 2.5f, 2.5f));
+		ptrColl->SetAfterCollision(AfterCollision::Auto);
+		//ptrColl->SetDrawActive(true);
 		ptrColl->SetFixed(true);
 
 
 		//タグをつける
-		AddTag(L"Player");
+		AddTag(L"SwitchMoveBox");
 		//影をつける（シャドウマップを描画する）
 		//auto shadowPtr = AddComponent<Shadowmap>();
 		////影の形（メッシュ）を設定
 		//shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
 		//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
 		//ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-		//ptrDraw->SetTextureResource(L"red.png");
 
 
 		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
@@ -379,37 +401,43 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"Goal_Spot.bmf");
+		ptrShadow->SetMeshResource(L"Grass_2.bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
 		ptrDraw->SetFogEnabled(true);
-		ptrDraw->SetMeshResource(L"Goal_Spot.bmf");
+		ptrDraw->SetMeshResource(L"Grass_2.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetDrawActive(true);
-
-
 		auto ptrParent = m_Parent.lock();
 		if (ptrParent) {
 			ptrTransform->SetParent(ptrParent);
 		}
 
+
+
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
-
-
-		ptrDraw->SetDrawActive(false);
 
 		//PsBoxParam param(ptrTransform->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
 		//auto PsPtr = AddComponent<RigidbodyBox>(param);
 		//PsPtr->SetDrawActive(false);
 
+		
+
+	}
+	void SwitchMoveBox::OnUpdate() {
+		if (m_a == 1) {
+			auto Trans = GetComponent<Transform>();
+			auto pos = Trans->GetPosition();
+			Trans->SetPosition(pos.x+0.001,pos.y,pos.z);
+		}
+
+	}
+	int SwitchMoveBox::MoveBoxCheck(int a)
+	{
+		m_a=a;
+		return 0;
 	}
 
-	void SwitchButton::OnCollisionEnter(shared_ptr<GameObject>& Other, shared_ptr<GameObject>& a) {
-		if (Other->FindTag(L"Player")) {
-			auto b = a->GetComponent();
-			
-		}
-	}
 }

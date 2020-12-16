@@ -146,7 +146,7 @@ namespace basecross {
 					else if (Tokens[j] == L"3") {
 						//ÉSÅ[Éã
 						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
-						m_Target = AddGameObject<Goal>(
+						m_Target = AddGameObject<SwitchMoveBox>(
 							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
 							Vec3(XPos*m_position, f*m_position, ZPos*m_position),
 							m_Target,
