@@ -303,4 +303,71 @@ namespace basecross {
 	//void ParentBox::OnUpdate2() {
 	//	DrawStrings();
 	//}
+
+	void SwitchButton::OnCreate() {
+		auto ptrTransform = GetComponent<Transform>();
+		ptrTransform->SetScale(Vec3(0.65f, 0.65f, 0.65f));
+		ptrTransform->SetRotation(Vec3(0.0f, 0.0f, 0.0f));
+		ptrTransform->SetPosition(m_Position);
+		//OBB衝突j判定を付ける
+		auto ptrColl = AddComponent<CollisionObb>();
+
+		ptrColl->SetFixed(true);
+
+
+		//タグをつける
+		AddTag(L"Player");
+		//影をつける（シャドウマップを描画する）
+		//auto shadowPtr = AddComponent<Shadowmap>();
+		////影の形（メッシュ）を設定
+		//shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+		//auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		//ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+		//ptrDraw->SetTextureResource(L"red.png");
+
+
+		Mat4x4 spanMat; // モデルとトランスフォームの間の差分行列
+		spanMat.affineTransformation(
+			Vec3(0.231f, 0.231f, 0.231f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, -0.5f, 0.0f)
+		);
+
+		//影をつける（シャドウマップを描画する）
+		auto ptrShadow = AddComponent<Shadowmap>();
+		//影の形（メッシュ）を設定
+		ptrShadow->SetMeshResource(L"Goal_Spot.bmf");
+		ptrShadow->SetMeshToTransformMatrix(spanMat);
+
+		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
+		ptrDraw->SetFogEnabled(true);
+		ptrDraw->SetMeshResource(L"Goal_Spot.bmf");
+		ptrDraw->SetMeshToTransformMatrix(spanMat);
+		ptrDraw->SetDrawActive(true);
+
+
+		auto ptrParent = m_Parent.lock();
+		if (ptrParent) {
+			ptrTransform->SetParent(ptrParent);
+		}
+
+		ptrDraw->SetFogEnabled(true);
+		ptrDraw->SetOwnShadowActive(true);
+
+
+		ptrDraw->SetDrawActive(false);
+
+		//PsBoxParam param(ptrTransform->GetWorldMatrix(), 0.0f, true, PsMotionType::MotionTypeFixed);
+		//auto PsPtr = AddComponent<RigidbodyBox>(param);
+		//PsPtr->SetDrawActive(false);
+
+	}
+
+	void SwitchButton::OnCollisionEnter(shared_ptr<GameObject>& Other, shared_ptr<GameObject>& a) {
+		if (Other->FindTag(L"Player")) {
+			auto b = a->GetComponent();
+			
+		}
+	}
 }

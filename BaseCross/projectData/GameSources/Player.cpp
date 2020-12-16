@@ -22,6 +22,7 @@ namespace basecross{
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
 		//d—Í‚ğ‚Â‚¯‚é
 		auto ptrGra = AddComponent<Gravity>();
+		AddTag(L"Player");
 
 		GetStage()->SetCollisionPerformanceActive(true);
 		GetStage()->SetUpdatePerformanceActive(true);
