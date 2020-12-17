@@ -275,7 +275,8 @@ namespace basecross {
 				qt *= spanQtZm;
 				ptrTrans->SetQuaternion(qt);
 				m_TotalRot += m_RotSpan;
-				if (m_TotalRot >= (XM_PI / 2.0f)) {
+				if (m_TotalRot > (XM_PI / 2.0f)) {
+
 					m_TotalRot = 0.0f;
 					m_RotSpan = m_RotSpan;
 					m_Key = 99;
@@ -287,7 +288,7 @@ namespace basecross {
 				qt *= spanQtZp;
 				ptrTrans->SetQuaternion(qt);
 				m_TotalRot += m_RotSpan;
-				if (m_TotalRot >= (XM_PI / 2.0f)) {
+				if (m_TotalRot > (XM_PI / 2.0f)) {
 					m_TotalRot = 0.0f;
 					m_RotSpan = m_RotSpan;
 					m_Key = 99;
@@ -298,7 +299,7 @@ namespace basecross {
 				qt *= spanQtXm;
 				ptrTrans->SetQuaternion(qt);
 				m_TotalRot += m_RotSpan;
-				if (m_TotalRot >= (XM_PI / 2.0f)) {
+				if (m_TotalRot > (XM_PI / 2.0f)) {
 					m_TotalRot = 0.0f;
 					m_RotSpan = m_RotSpan;
 					m_Key = 99;
@@ -310,7 +311,7 @@ namespace basecross {
 				ptrTrans->SetQuaternion(qt);
 
 				m_TotalRot += m_RotSpan;
-				if (m_TotalRot >= (XM_PI / 2.0f)) {
+				if (m_TotalRot > (XM_PI / 2.0f)) {
 					m_TotalRot = 0.0f;
 					m_RotSpan = m_RotSpan;
 					m_Key = 99;

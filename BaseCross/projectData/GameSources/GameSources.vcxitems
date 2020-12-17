@@ -14,6 +14,7 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Aura.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EditStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h" />
@@ -31,6 +32,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Aura.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EditStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp" />

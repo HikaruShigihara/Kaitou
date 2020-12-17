@@ -17,7 +17,7 @@
 #include "EditStage.h"
 #include "Object.h"
 #include "Effect.h"
-
+#include "Aura.h"
 
 #include "ResultStage.h"
 #include "TitleStage.h"

@@ -119,7 +119,7 @@ namespace basecross {
 		Vec3 m_Position;
 
 		float m_TotalRot = 0.0f;
-		float m_RotSpan = 0.02f;
+		float m_RotSpan = 0.015f;
 		Quat qt;
 		float x = 2.0f;
 		int m_Key = 5;
@@ -128,7 +128,6 @@ namespace basecross {
 		int m_flag = 0;
 		float m_time;
 		float m_movevalue = 0.5f;
-
 		void MoveBox();
 		//void DrawStrings();
 	public:

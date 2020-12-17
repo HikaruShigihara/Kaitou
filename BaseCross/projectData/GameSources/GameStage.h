@@ -22,13 +22,13 @@ namespace basecross {
 		shared_ptr<GameObject> m_numbers[3];
 		shared_ptr<GameObject> m_Target;
 		shared_ptr<GameObject> m_Goal;
+		shared_ptr<GameObject> m_Switch;
 		shared_ptr<GameObject> m_player;
 		shared_ptr<GameObject> m_mask;
 		shared_ptr<GameObject> m_text;
 		wstring m_back;
 		wstring m_number_UI;
 		wstring m_mask_UI;
-		wstring m_goal;
 		wstring m_text_UI1,m_text_UI2;
 
 		wstring m_cloud,m_cloud1, m_cloud2, m_cloud3, m_cloud4;
@@ -52,7 +52,6 @@ namespace basecross {
 		GameStage() : Stage(),
 			m_back(L"Blue_Back.png"),
 			m_number_UI(L"number.png"),
-			m_goal(L"red.png"),
 			m_mask_UI(L"Base.png"),
 			m_cloud1(L"Cloud Parts 1.png"),
 			m_cloud2(L"Cloud Parts 2.png"),

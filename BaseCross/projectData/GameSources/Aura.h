@@ -1,15 +1,10 @@
-/*!
-@file Effect.h
-@brief エフェクト関連
-*/
-
 #pragma once
 #include "stdafx.h"
 
-namespace basecross{
-	//リングエフェクト
-	class RingEffect : GameObject {
-	public:
+namespace basecross {
+	class Aura : public GameObject
+	{
+	public :
 		struct InitParams
 		{
 			std::wstring textureKey; // テクスチャリソースのキー
@@ -64,26 +59,23 @@ namespace basecross{
 
 		};
 
-	private:
+	private :
 		std::vector<VertexPositionColorTexture> vertices;
 
 		InitParams params;
-
+		weak_ptr<GameObject> m_parent;
 	public:
-		RingEffect(const std::shared_ptr<Stage>& stage)
-			: GameObject(stage)
+		Aura(const std::shared_ptr<Stage>& stage, const shared_ptr<GameObject>& Parent)
+			: GameObject(stage), m_parent(Parent)
 		{
 		}
 
-		RingEffect(const std::shared_ptr<Stage>& stage, const RingEffect::InitParams& initParams)
-			: GameObject(stage), params(initParams)
+		Aura(const std::shared_ptr<Stage>& stage, const Aura::InitParams& initParams, const shared_ptr<GameObject>& Parent)
+			: GameObject(stage), params(initParams), m_parent(Parent)
 		{
 		}
 
 		void OnCreate() override;
 		void OnUpdate() override;
-
 	};
-
 }
-//end basecross

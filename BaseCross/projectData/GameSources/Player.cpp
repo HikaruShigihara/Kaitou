@@ -74,14 +74,14 @@ namespace basecross{
 		SetAlphaActive(true);
 
 
-		auto ptrCamera = dynamic_pointer_cast<MyCamera>(OnGetDrawCamera());
-		if (ptrCamera) {
-			//MyCameraである
-			//MyCameraに注目するオブジェクト（プレイヤー）の設定
-			ptrCamera->SetTargetObject(GetThis<GameObject>());
-			ptrCamera->SetEye(Vec3(0.0f, 7.0f, 0.0f));
-			ptrCamera->SetTargetToAt(Vec3(0, 0.25f, 0));
-		}
+		//auto ptrCamera = dynamic_pointer_cast<MyCamera>(OnGetDrawCamera());
+		//if (ptrCamera) {
+		//	//MyCameraである
+		//	//MyCameraに注目するオブジェクト（プレイヤー）の設定
+		//	ptrCamera->SetTargetObject(GetThis<GameObject>());
+		//	ptrCamera->SetEye(Vec3(0.0f, 7.0f, 0.0f));
+		//	ptrCamera->SetTargetToAt(Vec3(0, 0.25f, 0));
+		//}
 	}
 
 	Vec3 Player::GetPlayerMoveVec() const {
