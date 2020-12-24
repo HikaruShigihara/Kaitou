@@ -57,9 +57,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyCamera.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
@@ -104,8 +102,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyCamera.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp" />
   </ItemGroup>
 </Project>

@@ -174,9 +174,13 @@ namespace basecross{
 		auto angle = GetPlayerMoveVec();
 		
 		if (angle.length() > 0.0f) {
+			for (int i = 0; i < 60; i++) {
 				auto pos = GetComponent<Transform>()->GetPosition();
-				pos += angle * elapsedTime * 6.0f;
+				pos += angle * elapsedTime * 6.0f / 60;
+
 				GetComponent<Transform>()->SetPosition(pos);
+			}
+
 		}
 
 		//‰ñ“]‚ÌŒvŽZ
