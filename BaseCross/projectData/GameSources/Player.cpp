@@ -3,6 +3,7 @@
 @brief ÉvÉåÉCÉÑÅ[Ç»Ç«é¿ëÃ
 */
 
+
 #include "stdafx.h"
 #include "Project.h"
 
@@ -169,17 +170,31 @@ namespace basecross{
 	}
 
 	void Player::PlayerMove() {
+			auto PtrAction = AddComponent<Action>();
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto angle = GetPlayerMoveVec();
-		
-		if (angle.length() > 0.0f) {
-			for (int i = 0; i < 60; i++) {
-				auto pos = GetComponent<Transform>()->GetPosition();
-				pos += angle * elapsedTime * 6.0f / 60;
+		if (PtrAction->IsArrived()) {
+				PtrAction->AllActionClear();
+		}
 
-				GetComponent<Transform>()->SetPosition(pos);
-			}
+		if (angle.length() > 0.0f) {
+			auto pos = GetComponent<Transform>()->GetPosition();
+			//auto startpos = pos;
+			pos += angle * elapsedTime * 6.0f;
+
+			//Easing<Vec3> easing;
+			//pos = easing.EaseInOut(EasingType::Exponential, pos, startpos, 0.0f, 10.0f);
+			//GetComponent<Transform>()->SetPosition(pos);
+			//auto ptrTrans = GetComponent<Transform>();
+
+		
+			PtrAction->AddMoveTo(1.0f, pos);
+			PtrAction->SetLooped(false);
+			PtrAction->Run();
+
+			PtrAction->ReStart();
+
 
 		}
 
@@ -187,7 +202,10 @@ namespace basecross{
 		if (angle.length() > 0.0f) {
 			auto utilPtr = GetBehavior<UtilBehavior>();
 			utilPtr->RotToHead(angle, 1.0f);
-		}
+		}	
+		//auto PtrAction = AddComponent<Action>();
+
+
 	}
 
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {

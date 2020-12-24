@@ -18,7 +18,8 @@ namespace basecross{
 		bool m_clearflag = false;
 		bool m_start;
 		float time;
-		int a;
+		float runtime;
+		int a,b=0;
 		Vec3 GetPlayerMoveVec() const;
 
 		wstring m_clear = wstring(L"Clear.png");
