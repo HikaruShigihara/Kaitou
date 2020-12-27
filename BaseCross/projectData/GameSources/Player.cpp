@@ -50,7 +50,7 @@ namespace basecross{
 		auto ptrShadow = AddComponent<Shadowmap>();
 
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"player_Walk_Motion (1).bmf");
+		ptrShadow->SetMeshResource(L"player_Walk_Motion.bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 
@@ -58,12 +58,15 @@ namespace basecross{
 		auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
 		ptrDraw->SetFogEnabled(true);
 		//描画するメッシュを設定
-		ptrDraw->SetMeshResource(L"player_Walk_Motion (1).bmf");
+		ptrDraw->SetMeshResource(L"player_Walk_Motion.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetDrawActive(true);
 
-		ptrDraw->AddAnimation(L"Default", 0, 20, true, 20.0f);
-		ptrDraw->ChangeCurrentAnimation(L"Default");
+		ptrDraw->AddAnimation(L"Stop", 0, 20, true, 20.0f);
+		ptrDraw->AddAnimation(L"Walk", 20, 20, false, 20.0f);
+		ptrDraw->AddAnimation(L"Fall", 40, 20, true, 20.0f);
+		
+		ptrDraw->ChangeCurrentAnimation(L"Stop");
 
 		auto ptrParent = m_Parent.lock();
 		if (ptrParent) {
@@ -172,6 +175,7 @@ namespace basecross{
 	void Player::PlayerMove() {
 
 		auto PtrAction = AddComponent<Action>();
+		auto PtrDraw = GetComponent<BcPNTBoneModelDraw>();
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto angle = GetPlayerMoveVec();
@@ -188,7 +192,10 @@ namespace basecross{
 			//pos = easing.EaseInOut(EasingType::Exponential, pos, startpos, 0.0f, 10.0f);
 			//GetComponent<Transform>()->SetPosition(pos);
 			//auto ptrTrans = GetComponent<Transform>();
-		
+			auto PtrDraw = GetComponent<BcPNTBoneModelDraw>();
+			PtrDraw->ChangeCurrentAnimation(L"Walk");
+
+			//Animation(Anime::walk);
 			PtrAction->AddMoveTo(0.5f, pos);
 			PtrAction->SetLooped(false);
 			PtrAction->Run();
@@ -206,7 +213,50 @@ namespace basecross{
 
 
 	}
+	void Player::Control() {
+		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
+		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
+		auto PtrDraw = GetComponent<BcPNTBoneModelDraw>();
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
+			m_start = true;
+		}
+		if (m_start) {
+			auto ptrTrans = GetComponent<Transform>();
 
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+				m_Key = 0;
+			}
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
+				m_Key = 1;
+			}
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				m_Key = 2;
+			}
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_Y) {
+				m_Key = 3;
+			}
+
+			switch (m_Key)
+			{
+			case 0://Bボタン
+				PtrDraw->ChangeCurrentAnimation(L"Fall");
+				break;
+			case 1://Xボタン
+				PtrDraw->ChangeCurrentAnimation(L"Fall");
+
+				break;
+			case 2://Aボタン
+				PtrDraw->ChangeCurrentAnimation(L"Fall");
+
+				break;
+			case 3://Yボタン
+				PtrDraw->ChangeCurrentAnimation(L"Fall");
+
+				break;
+			}
+		}
+
+	}
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		//auto elap = App::GetApp()->GetElapsedTime();
 		//time += elap;
@@ -281,6 +331,7 @@ namespace basecross{
 		//	break;
 		//}
 		Respawn();
+		//Control();
 	}
 
 	void Player::OnUpdate2() {

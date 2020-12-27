@@ -69,7 +69,7 @@ namespace basecross{
 				if (exe == L".bmf") {
 					// —áŠO“o˜^
 					//ƒ{[ƒ“ƒ‚ƒfƒ‹‚Ìê‡
-					if ((fileName == L"player_Walk_Motion (1).bmf")){
+					if ((fileName == L"player_Walk_Motion.bmf")){
 						auto modelMesh = MeshResource::CreateBoneModelMesh(dir, fileName);
 						App::GetApp()->RegisterResource(fileName, modelMesh);
 					}
