@@ -168,6 +168,20 @@ namespace basecross {
 						m_group->IntoGroup(m_fixedbox);
 
 					}
+					else if (Tokens[j] == L"5") {
+						//スイッチで動くブロック
+						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
+						m_Switch = AddGameObject<SwitchMoveBox>(
+							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
+							Vec3(XPos*m_position, f*m_position, ZPos*m_position),
+							m_Target,
+							Vec3(0, 0, 0)
+							);
+						//Group = GetSharedObjectGroup(L"FixedBoxes");
+						m_group->IntoGroup(m_fixedbox);
+
+					}
+
 				}
 			}
 					//for (int z = 0; z < 10; z++) {
@@ -400,7 +414,7 @@ namespace basecross {
 			//XMLの読み込み
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage12.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test10.xml"));
 				break;
 			case 1:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));

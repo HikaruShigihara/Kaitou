@@ -178,8 +178,14 @@ namespace basecross {
 		ptrTransform->SetPosition(m_Position);
 		//OBB衝突j判定を付ける
 		auto ptrColl = AddComponent<CollisionObb>();
+		ptrColl->SetAfterCollision(AfterCollision::Auto);
+		
+		ptrColl->SetFixed(false);
+		
 
-		ptrColl->SetFixed(true);
+		//GetStage()->SetCollisionPerformanceActive(true);
+		//GetStage()->SetUpdatePerformanceActive(true);
+		//GetStage()->SetDrawPerformanceActive(true);
 
 		//タグをつける
 		AddTag(L"Switch");
@@ -211,6 +217,25 @@ namespace basecross {
 
 		ptrDraw->SetFogEnabled(true);
 		ptrDraw->SetOwnShadowActive(true);
+	}
+
+	void SwitchBox::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		auto trans = GetComponent<Transform>();
+		//auto a = shared_ptr<SwitchMoveBox>();
+		if (Other->FindTag(L"Player")) {
+			auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+			auto gameobject = stage->GetGameObjectVec();
+			for (auto obj : gameobject) {
+				auto movebox = dynamic_pointer_cast<SwitchMoveBox>(obj);
+				if (movebox) {
+					movebox->MoveBoxCheck(1);
+				}
+
+			}
+		}
+		//a->MoveBoxCheck(1);
+
+
 	}
 
 	void ParentBox::OnCreate() {
@@ -348,23 +373,6 @@ namespace basecross {
 	//}
 
 
-	void SwitchBox::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-			//auto a=shared_ptr<SwitchMoveBox>();
-		if (Other->FindTag(L"Player")) {
-			auto stage = dynamic_pointer_cast<GameStage>(GetStage());
-			auto gameobject = stage->GetGameObjectVec();
-			for (auto obj : gameobject) {
-				auto movebox = dynamic_pointer_cast<SwitchMoveBox>(obj);
-				if (movebox) {
-					movebox->MoveBoxCheck(1);
-				}
-
-			}
-		}
-			//a->MoveBoxCheck(1);
-	}
-
-
 	void SwitchMoveBox::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();
 		ptrTransform->SetScale(m_scale);
@@ -402,12 +410,12 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"Grass_2.bmf");
+		ptrShadow->SetMeshResource(L"Stone_Block_2.bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
 		ptrDraw->SetFogEnabled(true);
-		ptrDraw->SetMeshResource(L"Grass_2.bmf");
+		ptrDraw->SetMeshResource(L"Stone_Block_2.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetDrawActive(true);
 		auto ptrParent = m_Parent.lock();
@@ -431,13 +439,16 @@ namespace basecross {
 		if (m_a == 1) {
 			auto Trans = GetComponent<Transform>();
 			auto pos = Trans->GetPosition();
-			Trans->SetPosition(pos.x+0.001,pos.y,pos.z);
+			totalmove += movevalue;
+			if (totalmove <= 0.65f) {
+				Trans->SetPosition(pos.x - movevalue, pos.y, pos.z);
+			}
 		}
 
 	}
 	int SwitchMoveBox::MoveBoxCheck(int a)
 	{
-		m_a=a;
+		m_a = a;
 		return 0;
 	}
 

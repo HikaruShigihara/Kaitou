@@ -187,7 +187,8 @@ namespace basecross {
 		//‰Šú‰»
 		int m_a;
 		int MoveBoxCheck(int a);
-
+		float movevalue = 0.01f;
+		float totalmove;
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
 

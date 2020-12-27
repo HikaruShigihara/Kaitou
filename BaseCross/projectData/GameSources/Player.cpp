@@ -25,11 +25,11 @@ namespace basecross{
 		auto ptrGra = AddComponent<Gravity>();
 		AddTag(L"Player");
 
-		GetStage()->SetCollisionPerformanceActive(true);
-		GetStage()->SetUpdatePerformanceActive(true);
-		GetStage()->SetDrawPerformanceActive(true);
-		//PsCylinderParam param(ptr->GetWorldMatrix(), 1.0f, false, PsMotionType::MotionTypeActive);
-		//auto psPtr = AddComponent<RigidbodyCylinder>(param);
+		//GetStage()->SetCollisionPerformanceActive(true);
+		//GetStage()->SetUpdatePerformanceActive(true);
+		//GetStage()->SetDrawPerformanceActive(true);
+		//PsBoxParam param(ptrTrans->GetWorldMatrix(), 1.0f, false, PsMotionType::MotionTypeActive);
+		//auto psPtr = AddComponent<RigidbodyBox>(param);
 		//psPtr->SetAutoTransform(false);
 		//psPtr->SetDrawActive(true);
 
@@ -75,14 +75,14 @@ namespace basecross{
 		SetAlphaActive(true);
 
 
-		//auto ptrCamera = dynamic_pointer_cast<MyCamera>(OnGetDrawCamera());
-		//if (ptrCamera) {
-		//	//MyCameraである
-		//	//MyCameraに注目するオブジェクト（プレイヤー）の設定
-		//	ptrCamera->SetTargetObject(GetThis<GameObject>());
-		//	ptrCamera->SetEye(Vec3(0.0f, 7.0f, 0.0f));
-		//	ptrCamera->SetTargetToAt(Vec3(0, 0.25f, 0));
-		//}
+		auto ptrCamera = dynamic_pointer_cast<MyCamera>(OnGetDrawCamera());
+		if (ptrCamera) {
+			//MyCameraである
+			//MyCameraに注目するオブジェクト（プレイヤー）の設定
+			ptrCamera->SetTargetObject(GetThis<GameObject>());
+			ptrCamera->SetEye(Vec3(0.0f, 7.0f, 0.0f));
+			ptrCamera->SetTargetToAt(Vec3(0, 0.25f, 0));
+		}
 	}
 
 	Vec3 Player::GetPlayerMoveVec() const {
@@ -170,7 +170,8 @@ namespace basecross{
 	}
 
 	void Player::PlayerMove() {
-			auto PtrAction = AddComponent<Action>();
+
+		auto PtrAction = AddComponent<Action>();
 
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		auto angle = GetPlayerMoveVec();
@@ -187,14 +188,12 @@ namespace basecross{
 			//pos = easing.EaseInOut(EasingType::Exponential, pos, startpos, 0.0f, 10.0f);
 			//GetComponent<Transform>()->SetPosition(pos);
 			//auto ptrTrans = GetComponent<Transform>();
-
 		
-			PtrAction->AddMoveTo(1.0f, pos);
+			PtrAction->AddMoveTo(0.5f, pos);
 			PtrAction->SetLooped(false);
 			PtrAction->Run();
 
 			PtrAction->ReStart();
-
 
 		}
 
@@ -263,7 +262,7 @@ namespace basecross{
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		ptrDraw->UpdateAnimation(elapsedTime);		
-		auto grav = GetComponent<Gravity>();
+		//auto grav = GetComponent<Gravity>();
 		auto ptrTrans = GetComponent<Transform>();
 
 		//auto ptrParent = m_Parent.lock();
