@@ -359,6 +359,14 @@ namespace basecross {
 			Col4(1.0f, 1.0f, 1.0f, 0.5f),
 			m_mask_UI
 			);
+		m_text2 = AddGameObject<Title_UI>(
+			Vec2(1720.0f, 1080.0f),
+			Vec3(0.0f, -20.0f, 0.0f),
+			Vec3(1.0f),
+			6,
+			Col4(1.0f, 1.0f, 1.0f, 1.0f),
+			m_text_UI3
+			);
 		m_text = AddGameObject<UI_Text>(
 			L"ƒƒCƒŠƒI",
 			100.0f,
@@ -414,7 +422,7 @@ namespace basecross {
 			//XML‚Ì“Ç‚Ýž‚Ý
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test10.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/stage14.xml"));
 				break;
 			case 1:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
@@ -449,6 +457,7 @@ namespace basecross {
 		if (cntVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
 			m_mask->SetDrawActive(false);
 			m_text->SetDrawActive(false);
+			m_text2->SetDrawActive(false);
 		}
 	}
 

@@ -65,8 +65,8 @@ namespace basecross{
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
 
 		void StarResult();
-		int m_StarQuantityLow[10] = { 10,10,10,10,10,10,10,10,10,10 };
-		int m_StarQuantityHigh[10] = { 20,20,20,20,20,20,20,20,20,20 };
+		int m_StarQuantityLow[10] = { 4,10,10,10,10,10,10,10,10,10 };
+		int m_StarQuantityHigh[10] = { 8,20,20,20,20,20,20,20,20,20 };
 
 		void Animation(Anime state) {
 			//m_eAnime = state;
