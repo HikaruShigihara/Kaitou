@@ -359,14 +359,37 @@ namespace basecross {
 			Col4(1.0f, 1.0f, 1.0f, 0.5f),
 			m_mask_UI
 			);
-		m_text2 = AddGameObject<Title_UI>(
-			Vec2(1720.0f, 1080.0f),
-			Vec3(0.0f, -20.0f, 0.0f),
-			Vec3(1.0f),
-			6,
+		m_text_joken1 = AddGameObject<UI_Text>(
+			L"メイリオ",
+			100.0f,
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
-			m_text_UI3
+			Rect2D<float>(0.0f, 200.0f, 1920.0f, 500.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_text_UI_joken1,
+			5,
+			false
+			);		
+		m_text_joken2 = AddGameObject<UI_Text>(
+			L"メイリオ",
+			100.0f,
+			Col4(1.0f, 1.0f, 1.0f, 1.0f),
+			Rect2D<float>(0.0f, 400.0f, 1920.0f, 500.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_text_UI_joken2,
+			5,
+			false
 			);
+		m_text_joken3 = AddGameObject<UI_Text>(
+			L"メイリオ",
+			100.0f,
+			Col4(1.0f, 1.0f, 1.0f, 1.0f),
+			Rect2D<float>(0.0f, 600.0f, 1920.0f, 500.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_text_UI_joken3,
+			5,
+			false
+			);
+
 		m_text = AddGameObject<UI_Text>(
 			L"メイリオ",
 			100.0f,
@@ -457,7 +480,9 @@ namespace basecross {
 		if (cntVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
 			m_mask->SetDrawActive(false);
 			m_text->SetDrawActive(false);
-			m_text2->SetDrawActive(false);
+			m_text_joken1->SetDrawActive(false);
+			m_text_joken2->SetDrawActive(false);
+			m_text_joken3->SetDrawActive(false);
 		}
 	}
 

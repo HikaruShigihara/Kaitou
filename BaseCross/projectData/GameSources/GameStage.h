@@ -25,12 +25,13 @@ namespace basecross {
 		shared_ptr<GameObject> m_Switch;
 		shared_ptr<GameObject> m_player;
 		shared_ptr<GameObject> m_mask;
-		shared_ptr<GameObject> m_text, m_text2;
+		shared_ptr<GameObject> m_text, m_text2, m_text_joken1, m_text_joken2, m_text_joken3;
 		wstring m_back;
 		wstring m_number_UI;
 		wstring m_mask_UI;
-		wstring m_text_UI1,m_text_UI2, m_text_UI3;
-
+		wstring m_text_UI1,m_text_UI2;
+		wstring m_text_UI_joken1, m_text_UI_joken2, m_text_UI_joken3;
+		
 		wstring m_cloud,m_cloud1, m_cloud2, m_cloud3, m_cloud4;
 		wstring m_clear;
 		bool m_clearflag;
@@ -61,7 +62,9 @@ namespace basecross {
 			m_clear(L"Clear.png"),
 			m_text_UI1(L"スタートボタンで開始！"),
 			m_text_UI2(L"歩数"),
-			m_text_UI3(L"zyoukenn.png"),
+			m_text_UI_joken1(L"★★★：4歩以内でクリア"),
+			m_text_UI_joken2(L"★★：8歩以内でクリア"),
+			m_text_UI_joken3(L"★：12歩以内でクリア"),
 			m_number(000),
 			m_position(0.65f)
 		{}

@@ -441,7 +441,7 @@ namespace basecross {
 			auto pos = Trans->GetPosition();
 			totalmove += movevalue;
 			if (totalmove <= 0.65f) {
-				Trans->SetPosition(pos.x - movevalue, pos.y, pos.z);
+				Trans->SetPosition(pos.x , pos.y, pos.z + movevalue);
 			}
 		}
 
