@@ -231,7 +231,7 @@ namespace basecross {
 			float n = static_cast<float>(i);
 			m_numbers[i] = AddGameObject<Number_UI>(
 				Vec2(500.0f, 100.0f),
-				Vec3(1300.0f * 0.5f - n * 64.0f - 64.0f, 900.0f * 0.5f, 0.0f),
+				Vec3(1500.0f * 0.5f - n * 64.0f - 64.0f, 900.0f * 0.5f, 0.0f),
 				Vec3(1.5f, 1.5f, 1.5f),
 				0,
 				Col4(1.0f, 1.0f, 1.0f, 1.0f),
@@ -363,9 +363,9 @@ namespace basecross {
 			L"メイリオ",
 			100.0f,
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
-			Rect2D<float>(0.0f, 200.0f, 1920.0f, 500.0f),
+			Rect2D<float>(0.0f, 200.0f, 1820.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
-			a[1]+m_text_UI_joken1,
+			m_text_UI_joken1,
 			5,
 			false
 			);		
@@ -383,7 +383,7 @@ namespace basecross {
 			L"メイリオ",
 			100.0f,
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
-			Rect2D<float>(0.0f, 600.0f, 1920.0f, 500.0f),
+			Rect2D<float>(160.0f, 600.0f, 1920.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
 			m_text_UI_joken3,
 			5,
@@ -404,7 +404,7 @@ namespace basecross {
 			L"メイリオ",
 			100.0f,
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
-			Rect2D<float>(1100.0f, 0.0f, 1920.0f, 500.0f),
+			Rect2D<float>(1300.0f, 0.0f, 1920.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
 			m_text_UI2,
 			0,
@@ -426,7 +426,7 @@ namespace basecross {
 		//params.textureLoops = 1.0f;
 
 		auto goalpos = m_Goal->GetComponent<Transform>()->GetPosition();
-		goalpos = Vec3(0.0f,0.4f,0.0f);
+		goalpos = Vec3(0.0f, 0.4f, 0.0f);
 			// リスポーン地点的なエフェクト
 		auto respawnArea = AddGameObject<Aura>(Aura::InitParams(L"line.png", 30, 1.5f, 0.5f, 0.5f, Col4(1.0f, 1.0f, 1.0f, 0.0f), Col4(1.0f, 1.0f, 1.0f, 1.0f), Vec2(0.0f, 1.0f), 6.0f), m_Goal);
 		respawnArea->GetComponent<Transform>()->SetPosition(goalpos);
@@ -445,7 +445,7 @@ namespace basecross {
 			//XMLの読み込み
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/stage14.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/stage12.xml"));
 				break;
 			case 1:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
@@ -455,9 +455,6 @@ namespace basecross {
 				break;
 			case 3:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage4.xml"));
-				break;
-			case 4:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
 				break;
 
 			}
@@ -470,7 +467,7 @@ namespace basecross {
 			CreateUI();
 			CreateEffect();
 			App::GetApp()->GetScene<Scene>()->StopBGM();
-			App::GetApp()->GetScene<Scene>()->PlayBGM(L"hikousen.wav", 0.3f);
+			App::GetApp()->GetScene<Scene>()->PlayBGM(L"hikousen.wav", 0.1f);
 		}
 
 		catch (...) {

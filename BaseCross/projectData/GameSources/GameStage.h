@@ -31,13 +31,12 @@ namespace basecross {
 		wstring m_mask_UI;
 		wstring m_text_UI1,m_text_UI2;
 		wstring m_text_UI_joken1, m_text_UI_joken2, m_text_UI_joken3;
-		
 		wstring m_cloud,m_cloud1, m_cloud2, m_cloud3, m_cloud4;
+
 		wstring m_clear;
 		bool m_clearflag;
 		float m_position;
 		int m_number;
-		wstring a[2] = { L"4",L"8" };
 		//ビューの作成
 		void CreateViewLight();
 		//ボックスの作成
