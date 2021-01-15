@@ -220,7 +220,7 @@ namespace basecross {
 	void StageSelect::OnCreate() {
 		try {
 			m_StageSelectNumber = 0;
-			m_StageQuantity = 4;
+			m_StageQuantity = 10;
 			CreateViewLight();
 			CreateUI();
 			CreateText();

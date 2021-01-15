@@ -365,7 +365,7 @@ namespace basecross {
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
 			Rect2D<float>(0.0f, 200.0f, 1920.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
-			m_text_UI_joken1,
+			a[1]+m_text_UI_joken1,
 			5,
 			false
 			);		
@@ -455,6 +455,9 @@ namespace basecross {
 				break;
 			case 3:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage4.xml"));
+				break;
+			case 4:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
 				break;
 
 			}

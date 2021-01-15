@@ -37,6 +37,7 @@ namespace basecross {
 		bool m_clearflag;
 		float m_position;
 		int m_number;
+		wstring a[2] = { L"4",L"8" };
 		//ビューの作成
 		void CreateViewLight();
 		//ボックスの作成
