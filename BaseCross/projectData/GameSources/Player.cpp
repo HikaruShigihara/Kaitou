@@ -64,7 +64,7 @@ namespace basecross{
 
 		ptrDraw->AddAnimation(L"Stop", 0, 20, true, 20.0f);
 		ptrDraw->AddAnimation(L"Walk", 20, 20, false, 20.0f);
-		ptrDraw->AddAnimation(L"Fall", 40, 20, true, 20.0f);
+		ptrDraw->AddAnimation(L"Fall", 38, 40, false, 20.0f);
 		
 		ptrDraw->ChangeCurrentAnimation(L"Stop");
 
@@ -314,7 +314,14 @@ namespace basecross{
 		ptrDraw->UpdateAnimation(elapsedTime);		
 		//auto grav = GetComponent<Gravity>();
 		auto ptrTrans = GetComponent<Transform>();
+		if ((cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_X)||
+			(cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_Y)||
+			(cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_A)|| 
+			(cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_B))
+		{
+			ptrDraw->ChangeCurrentAnimation(L"Fall");
 
+		}
 		//auto ptrParent = m_Parent.lock();
 		//if (cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
 		//	a = 0;

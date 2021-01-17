@@ -445,7 +445,7 @@ namespace basecross {
 			//XMLÇÃì«Ç›çûÇ›
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/stage12.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage15.xml"));
 				break;
 			case 1:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
