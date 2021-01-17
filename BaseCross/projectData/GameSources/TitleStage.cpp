@@ -159,6 +159,69 @@ namespace basecross {
 			m_SelectArrow
 			);
 
+		//m_start_next = AddGameObject<UI_Text>(
+		//	L"メイリオ",
+		//	50.0f,
+		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
+		//	Rect2D<float>(-1200.0f, 910.0f, 1900.0f, 800.0f),
+		//	StringSprite::TextAlignment::m_Center,
+		//	m_start_text,
+		//	5,
+		//	false
+		//	);
+		//m_start_next2 = AddGameObject<UI_Text>(
+		//	L"メイリオ",
+		//	65.0f,
+		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
+		//	Rect2D<float>(-1200.0f, 900.0f, 1900.0f, 800.0f),
+		//	StringSprite::TextAlignment::m_Center,
+		//	m_start_text,
+		//	5,
+		//	false
+		//	);
+
+		//m_text_stageselect = AddGameObject<UI_Text>(
+		//	L"メイリオ",
+		//	50.0f,
+		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
+		//	Rect2D<float>(10.0f, 910.0f, 1900.0f, 800.0f),
+		//	StringSprite::TextAlignment::m_Center,
+		//	m_stageSelect_text,
+		//	5,
+		//	false
+		//	);
+		//m_text_stageselect2 = AddGameObject<UI_Text>(
+		//	L"メイリオ",
+		//	65.0f,
+		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
+		//	Rect2D<float>(10.0f, 900.0f, 1900.0f, 800.0f),
+		//	StringSprite::TextAlignment::m_Center,
+		//	m_stageSelect_text,
+		//	5,
+		//	false
+		//	);
+
+		//m_text_tutorial = AddGameObject<UI_Text>(
+		//	L"メイリオ",
+		//	50.0f,
+		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
+		//	Rect2D<float>(1200.0f, 910.0f, 1900.0f, 800.0f),
+		//	StringSprite::TextAlignment::m_Center,
+		//	m_tutorial_text,
+		//	5,
+		//	false
+		//	);
+		//m_text_tutorial2 = AddGameObject<UI_Text>(
+		//	L"メイリオ",
+		//	65.0f,
+		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
+		//	Rect2D<float>(1200.0f, 900.0f, 1900.0f, 800.0f),
+		//	StringSprite::TextAlignment::m_Center,
+		//	m_tutorial_text,
+		//	5,
+		//	false
+		//	);
+
 
 	}
 	void TitleStage::CreateCloud() {

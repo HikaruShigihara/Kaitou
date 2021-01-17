@@ -26,6 +26,9 @@ namespace basecross {
 		wstring m_next;
 		wstring m_SelectArrow;
 
+		wstring m_nextStage_text, m_stageSelect_text, m_backTitle_text;
+		shared_ptr<GameObject> m_text_next, m_text_stageselect, m_text_backtitle;
+		shared_ptr<GameObject> m_text_next2, m_text_stageselect2, m_text_backtitle2;
 	public:
 		int m_SelectChoices;
 		int m_SelectQuantity;//選択肢の個数
@@ -58,9 +61,11 @@ namespace basecross {
 			m_Selectlogo(L"SelectStage.png"),
 			m_Nextlogo(L"next.png"),
 			m_Endlogo(L"Titlelogo.png"),
-			m_SelectArrow(L"Select_Arrow.png")
+			m_SelectArrow(L"Select_Arrow.png"),
 
-
+			m_nextStage_text(L"次のステージ"),
+			m_stageSelect_text(L"ステージセレクト"),
+			m_backTitle_text(L"タイトルに戻る")
 
 		{}
 

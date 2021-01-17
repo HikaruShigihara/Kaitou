@@ -85,58 +85,6 @@ namespace basecross {
 					Col4(1.0f),
 					m_titleflame
 					);
-			AddGameObject<Result_UI>(
-				Vec2(581.0f, 132.0f),
-				Vec3(-600.0f, -420.0f, 0.0f),
-				Vec3(0.8f),
-				-2,
-				Col4(1.0f),
-				m_Nextlogo
-				);
-			AddGameObject<Result_UI>(
-				Vec2(581.0f, 132.0f),
-				Vec3(10.0f, -420.0f, 0.0f),
-				Vec3(0.8f),
-				-2,
-				Col4(1.0f),
-				m_Selectlogo
-				);
-			AddGameObject<Result_UI>(
-				Vec2(581.0f, 132.0f),
-				Vec3(620.0f, -420.0f, 0.0f),
-				Vec3(0.8f),
-				-2,
-				Col4(1.0f),
-				m_Endlogo
-				);
-
-			m_NextLogoObject =
-				AddGameObject<Result_UI>(
-					Vec2(581.0f, 132.0f),
-					Vec3(-600.0f, -420.0f, 0.0f),
-					Vec3(1.0f),
-					0,
-					Col4(1.0f),
-					m_Nextlogo
-					);
-			m_SelectLogoObject =
-				AddGameObject<Result_UI>(
-					Vec2(581.0f, 132.0f),
-					Vec3(10.0f, -420.0f, 0.0f),
-					Vec3(1.0f),
-					0,
-					Col4(1.0f),
-					m_Selectlogo
-					);
-			m_EndLogoObject =
-				AddGameObject<Result_UI>(
-					Vec2(581.0f, 132.0f),
-					Vec3(620.0f, -420.0f, 0.0f),
-					Vec3(1.0f),
-					0,
-					Col4(1.0f),
-					m_Endlogo
-					);
 			m_SelectArrowNumber1 =
 				AddGameObject<Title_Arrow>(
 					Vec2(256.0f, 256.0f),
@@ -165,6 +113,69 @@ namespace basecross {
 					Col4(1.0f),
 					m_SelectArrow
 					);
+
+			 m_text_next = AddGameObject<UI_Text>(
+				L"メイリオ",
+				50.0f,
+				Col4(0.0f, 0.0f, 0.0f, 1.0f),
+				Rect2D<float>(-1200.0f, 910.0f, 1900.0f, 800.0f),
+				StringSprite::TextAlignment::m_Center,
+				m_nextStage_text,
+				5,
+				false
+				);
+			 m_text_next2 = AddGameObject<UI_Text>(
+				 L"メイリオ",
+				 65.0f,
+				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
+				 Rect2D<float>(-1200.0f, 900.0f, 1900.0f, 800.0f),
+				 StringSprite::TextAlignment::m_Center,
+				 m_nextStage_text,
+				 5,
+				 false
+				 );
+
+			 m_text_stageselect = AddGameObject<UI_Text>(
+				 L"メイリオ",
+				 50.0f,
+				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
+				 Rect2D<float>(10.0f, 910.0f, 1900.0f, 800.0f),
+				 StringSprite::TextAlignment::m_Center,
+				 m_stageSelect_text,
+				 5,
+				 false
+				 );
+			 m_text_stageselect2 = AddGameObject<UI_Text>(
+				 L"メイリオ",
+				 65.0f,
+				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
+				 Rect2D<float>(10.0f, 900.0f, 1900.0f, 800.0f),
+				 StringSprite::TextAlignment::m_Center,
+				 m_stageSelect_text,
+				 5,
+				 false
+				 );
+
+			 m_text_backtitle = AddGameObject<UI_Text>(
+				 L"メイリオ",
+				 50.0f,
+				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
+				 Rect2D<float>(1200.0f, 910.0f, 1900.0f, 800.0f),
+				 StringSprite::TextAlignment::m_Center,
+				 m_backTitle_text,
+				 5,
+				 false
+				 );
+			 m_text_backtitle2 = AddGameObject<UI_Text>(
+				 L"メイリオ",
+				 65.0f,
+				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
+				 Rect2D<float>(1200.0f, 900.0f, 1900.0f, 800.0f),
+				 StringSprite::TextAlignment::m_Center,
+				 m_backTitle_text,
+				 5,
+				 false
+				 );
 
 			auto SelectNumber = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
 			m_StarQuantity=App::GetApp()->GetScene<Scene>()->GetStageStar(SelectNumber);
@@ -210,14 +221,17 @@ namespace basecross {
 		m_Start->SetDrawActive(false);
 		m_Select->SetDrawActive(false);
 		m_End->SetDrawActive(false);
-		m_NextLogoObject->SetDrawActive(false);
-		m_SelectLogoObject->SetDrawActive(false);
-		m_EndLogoObject->SetDrawActive(false);
 		m_SelectArrowNumber1->SetDrawActive(false);
 		m_SelectArrowNumber2->SetDrawActive(false);
 		m_SelectArrowNumber3->SetDrawActive(false);
 
 
+		m_text_next->SetDrawActive(false);
+		m_text_stageselect->SetDrawActive(false);
+		m_text_backtitle->SetDrawActive(false);
+		m_text_next2->SetDrawActive(false);
+		m_text_stageselect2->SetDrawActive(false);
+		m_text_backtitle2->SetDrawActive(false);
 
 	}
 
@@ -252,8 +266,12 @@ namespace basecross {
 		case 0:
 			BoolSet();
 			m_Start->SetDrawActive(true);
-			m_NextLogoObject->SetDrawActive(true);
+			m_text_next2->SetDrawActive(true);
 			m_SelectArrowNumber1->SetDrawActive(true);
+
+			m_text_stageselect->SetDrawActive(true);
+			m_text_backtitle->SetDrawActive(true);
+
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
@@ -266,8 +284,12 @@ namespace basecross {
 		case 1:
 			BoolSet();
 			m_Select->SetDrawActive(true);
-			m_SelectLogoObject->SetDrawActive(true);
+			m_text_stageselect2->SetDrawActive(true);
 			m_SelectArrowNumber2->SetDrawActive(true);
+
+			m_text_next->SetDrawActive(true);
+			m_text_backtitle->SetDrawActive(true);
+
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
@@ -276,11 +298,14 @@ namespace basecross {
 
 			break;
 		case 2:
-
 			BoolSet();
 			m_End->SetDrawActive(true);
-			m_EndLogoObject->SetDrawActive(true);
+			m_text_backtitle2->SetDrawActive(true);
 			m_SelectArrowNumber3->SetDrawActive(true);
+
+			m_text_next->SetDrawActive(true);
+			m_text_stageselect->SetDrawActive(true);
+
 
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);

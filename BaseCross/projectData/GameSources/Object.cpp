@@ -96,14 +96,19 @@ namespace basecross {
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"Goal_Spot.bmf");
+		ptrShadow->SetMeshResource(L"Goal_Spot_2.bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
-		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
+		auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
 		ptrDraw->SetFogEnabled(true);
-		ptrDraw->SetMeshResource(L"Goal_Spot.bmf");
+		ptrDraw->SetMeshResource(L"Goal_Spot_2.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetDrawActive(true);
+
+		ptrDraw->AddAnimation(L"Close", 0, 1, true, 20.0f);
+		ptrDraw->AddAnimation(L"Open", 0, 20, false, 20.0f);
+
+		ptrDraw->ChangeCurrentAnimation(L"Close");
 
 
 		auto ptrParent = m_Parent.lock();
@@ -118,6 +123,36 @@ namespace basecross {
 		//auto PsPtr = AddComponent<RigidbodyBox>(param);
 		//PsPtr->SetDrawActive(false);
 
+	}
+	void Goal::SeekParentGoal() {
+		auto ptrTrans = GetComponent<Transform>();
+		//auto pos = ptrTrans->GetPosition();
+		auto ptrParent = m_Parent.lock();
+		if (ptrParent) {
+			auto matParent = ptrParent->GetComponent<Transform>()->GetWorldMatrix();
+			matParent.scaleIdentity();
+			Mat4x4 mat;
+			mat.affineTransformation(
+				Vec3(1.0),
+				Vec3(0.0),
+				Vec3(0.0),
+				m_VecToParent
+			);
+			mat *= matParent;
+
+			//auto posTarget = mat.transInMatrix();
+			//auto v = Lerp::CalculateLerp(pos, posTarget, 0.0f, 1.0f, 0.2f, Lerp::rate::Linear);
+			//ptrTrans->SetPosition(v);
+			//ptrTrans->SetQuaternion(mat.quatInMatrix());
+		}
+
+	}
+	void Goal::OnUpdate() {
+		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		ptrDraw->UpdateAnimation(elapsedTime);
+
+		SeekParentGoal();
 	}
 
 	void FixedBox::SeekParent() {
@@ -144,32 +179,6 @@ namespace basecross {
 		SeekParent();
 	}
 
-	void Goal::SeekParentGoal() {
-		auto ptrTrans = GetComponent<Transform>();
-		//auto pos = ptrTrans->GetPosition();
-		auto ptrParent = m_Parent.lock();
-		if (ptrParent) {
-			auto matParent = ptrParent->GetComponent<Transform>()->GetWorldMatrix();
-			matParent.scaleIdentity();
-			Mat4x4 mat;
-			mat.affineTransformation(
-				Vec3(1.0),
-				Vec3(0.0),
-				Vec3(0.0),
-				m_VecToParent
-			);
-			mat *= matParent;
-
-			//auto posTarget = mat.transInMatrix();
-			//auto v = Lerp::CalculateLerp(pos, posTarget, 0.0f, 1.0f, 0.2f, Lerp::rate::Linear);
-			//ptrTrans->SetPosition(v);
-			//ptrTrans->SetQuaternion(mat.quatInMatrix());
-		}
-
-	}
-	void Goal::OnUpdate() {
-		SeekParentGoal();
-	}
 
 	void SwitchBox::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();

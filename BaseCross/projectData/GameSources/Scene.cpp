@@ -69,7 +69,9 @@ namespace basecross{
 				if (exe == L".bmf") {
 					// 例外登録
 					//ボーンモデルの場合
-					if ((fileName == L"player_Walk_Motion.bmf")){
+					if ((fileName == L"player_Walk_Motion.bmf")||
+						(fileName == L"Goal_Spot_2.bmf")
+						){
 						auto modelMesh = MeshResource::CreateBoneModelMesh(dir, fileName);
 						App::GetApp()->RegisterResource(fileName, modelMesh);
 					}
@@ -100,7 +102,7 @@ namespace basecross{
 
 			//変更でシーン遷移
 
-			SetGameStage(GameStageKey::game);
+			SetGameStage(GameStageKey::title);
 
 		}
 		catch (...) {
