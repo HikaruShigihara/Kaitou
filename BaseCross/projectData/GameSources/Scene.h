@@ -36,6 +36,7 @@ namespace basecross{
 		virtual ~Scene() {};
 		virtual void OnCreate() override;
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
+		Vec3 m_getangle;
 		int m_SelectStageNumber;
 		int m_StarNumber;
 		bool m_Start;
@@ -46,6 +47,8 @@ namespace basecross{
 		int SetStarNumber(int star);
 		int GetSelectNumber();
 		int SetSelectNumber(int select);
+		Vec3 SetAngle(Vec3 angle);
+		Vec3 GetAngle();
 
 		void SetGameStage(GameStageKey key) {
 			m_gameStageKey = key;

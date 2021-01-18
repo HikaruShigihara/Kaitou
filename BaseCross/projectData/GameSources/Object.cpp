@@ -521,5 +521,11 @@ namespace basecross {
 		//auto PsPtr = AddComponent<RigidbodyBox>(param);
 		//PsPtr->SetDrawActive(false);
 	}
+	void GravityBox::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		if (Other->FindTag(L"Player")) {
+			
+		}
+	}
+
 
 }

@@ -165,5 +165,14 @@ namespace basecross{
 		auto a = m_star[StageNumber];
 		return a;
 	}
+
+	Vec3 Scene::SetAngle(Vec3 angle) {
+		m_getangle = angle;
+		return angle;
+	}
+	Vec3 Scene::GetAngle() {
+		return m_getangle;
+	}
+
 }
 //end basecross
