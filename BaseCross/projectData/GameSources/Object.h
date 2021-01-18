@@ -194,6 +194,41 @@ namespace basecross {
 
 	};
 
+	class GravityBox : public GameObject {
+		Vec3 m_scale = Vec3(0.64f);
+		//Vec3 m_Rotation;
+		Vec3 m_Position;
 
+		weak_ptr<GameObject> m_Parent;
+		Vec3 m_VecToParent;
+
+		void SeekParent();
+
+	public:
+		//ç\ízÇ∆îjä¸
+		GravityBox(const shared_ptr<Stage>& StagePtr,
+			//const Vec3& Scale,
+			//const Vec3& Rotation,
+			const Vec3& Position,
+			const shared_ptr<GameObject>& Parent,
+			const Vec3& VecToParent
+
+		) :
+			GameObject(StagePtr),
+			//m_Scale(Scale),
+			//m_Rotation(Rotation),
+			m_Position(Position),
+			m_Parent(Parent),
+			m_VecToParent(VecToParent)
+
+		{}
+
+
+		virtual ~GravityBox()
+		{}
+		//èâä˙âª
+		virtual void OnCreate() override;
+		//virtual void OnUpdate() override;
+	};
 
 }

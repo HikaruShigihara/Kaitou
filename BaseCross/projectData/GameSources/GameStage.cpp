@@ -181,6 +181,19 @@ namespace basecross {
 						m_group->IntoGroup(m_fixedbox);
 
 					}
+					else if (Tokens[j] == L"6") {
+						//スイッチで動くブロック
+						m_Target = GetSharedGameObject<ParentBox>(L"ParentBox");
+						m_Switch = AddGameObject<GravityBox>(
+							//Vec3(XPos*0.25f, 0.5f, ZPos*0.25f),
+							Vec3(XPos*m_position, f*m_position, ZPos*m_position),
+							m_Target,
+							Vec3(0, 0, 0)
+							);
+						//Group = GetSharedObjectGroup(L"FixedBoxes");
+						m_group->IntoGroup(m_fixedbox);
+
+					}
 
 				}
 			}
@@ -351,6 +364,7 @@ namespace basecross {
 
 	}
 	void GameStage::CreateMask() {
+		auto a = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
 		m_mask = AddGameObject<Mask_UI>(
 			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
@@ -365,7 +379,7 @@ namespace basecross {
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
 			Rect2D<float>(0.0f, 200.0f, 1820.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
-			m_text_UI_joken1,
+			L"★★★:" + m_text_UI_joken1_Before[a] + m_text_UI_joken1_After,
 			5,
 			false
 			);		
@@ -375,7 +389,7 @@ namespace basecross {
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
 			Rect2D<float>(0.0f, 400.0f, 1920.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
-			m_text_UI_joken2,
+			L"★★：" + m_text_UI_joken2_Before[a]+m_text_UI_joken2_After,
 			5,
 			false
 			);
@@ -385,7 +399,7 @@ namespace basecross {
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
 			Rect2D<float>(160.0f, 600.0f, 1920.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
-			m_text_UI_joken3,
+			L"★："+ m_text_UI_joken2_Before[a] + m_text_UI_joken3_After,
 			5,
 			false
 			);
@@ -456,7 +470,9 @@ namespace basecross {
 			case 3:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage4.xml"));
 				break;
-
+			case 4:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage16.xml"));
+				break;
 			}
 			//ビューとライトの作成
 			CreateViewLight();
@@ -468,6 +484,7 @@ namespace basecross {
 			CreateEffect();
 			App::GetApp()->GetScene<Scene>()->StopBGM();
 			App::GetApp()->GetScene<Scene>()->PlayBGM(L"hikousen.wav", 0.1f);
+
 		}
 
 		catch (...) {

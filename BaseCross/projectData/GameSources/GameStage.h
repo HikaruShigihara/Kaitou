@@ -29,8 +29,12 @@ namespace basecross {
 		wstring m_back;
 		wstring m_number_UI;
 		wstring m_mask_UI;
-		wstring m_text_UI1,m_text_UI2;
-		wstring m_text_UI_joken1, m_text_UI_joken2, m_text_UI_joken3;
+		wstring m_text_UI1, m_text_UI2;
+		wstring m_text_UI_joken1_Before[5] = { L"24",L"4",L"8" ,L"4", L"4"};
+		wstring m_text_UI_joken2_Before[5] = { L"48",L"8",L"16" ,L"8", L"4" };
+		wstring m_text_UI_joken3_Before[5] = { L"72",L"12",L"24" ,L"12", L"4" };
+
+		wstring m_text_UI_joken1_After, m_text_UI_joken2_After, m_text_UI_joken3_After;
 		wstring m_cloud,m_cloud1, m_cloud2, m_cloud3, m_cloud4;
 
 		wstring m_clear;
@@ -62,9 +66,9 @@ namespace basecross {
 			m_clear(L"Clear.png"),
 			m_text_UI1(L"スタートボタンで開始！"),
 			m_text_UI2(L"歩数"),
-			m_text_UI_joken1(L"★★★：4歩以内でクリア"),
-			m_text_UI_joken2(L"★★：8歩以内でクリア"),
-			m_text_UI_joken3(L"★：12歩以内でクリア"),
+			m_text_UI_joken1_After(L"歩以内でクリア"),
+			m_text_UI_joken2_After(L"歩以内でクリア"),
+			m_text_UI_joken3_After(L"歩以内でクリア"),
 			m_number(000),
 			m_position(0.65f)
 		{}

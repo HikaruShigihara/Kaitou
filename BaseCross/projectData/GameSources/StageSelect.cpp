@@ -305,6 +305,17 @@ namespace basecross {
 			}
 
 			break;
+		case 4:
+			BoolCheck();
+			m_Stage04->SetDrawActive(true);
+			StarDisplay();
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
+				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+			}
+
+			break;
 
 
 		}
