@@ -24,7 +24,6 @@ namespace basecross{
 		//d—Í‚ğ‚Â‚¯‚é
 		auto ptrGra = AddComponent<Gravity>();
 		AddTag(L"Player");
-		ptrColl->SetDrawActive(true);
 
 		//GetStage()->SetCollisionPerformanceActive(true);
 		//GetStage()->SetUpdatePerformanceActive(true);
@@ -268,7 +267,7 @@ namespace basecross{
 			StarResult();
 			//auto stage = App::GetApp()->GetScene<GameStage>();
 			//stage->StopBGM();
-			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
+			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
 
 			//if (time > 1.0f) {
 			//}
