@@ -202,7 +202,7 @@ namespace basecross {
 
 		weak_ptr<GameObject> m_Parent;
 		Vec3 m_VecToParent;
-
+		int count = 0;
 		void SeekParent();
 
 	public:
