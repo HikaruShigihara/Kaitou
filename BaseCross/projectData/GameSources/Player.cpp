@@ -17,13 +17,14 @@ namespace basecross{
 		ptrTrans->SetPosition(m_Position);
 
 		//衝突判定を付ける
-		auto ptrColl = AddComponent<CollisionCapsule>();
+		auto ptrColl = AddComponent<CollisionObb>();
 		//ptrColl->SetMakedHeight(3.0f);
 		//ptrColl->SetMakedSize(Vec3(2.0f, 5.0f, 2.0f));
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
 		//重力をつける
 		auto ptrGra = AddComponent<Gravity>();
 		AddTag(L"Player");
+		ptrColl->SetDrawActive(true);
 
 		//GetStage()->SetCollisionPerformanceActive(true);
 		//GetStage()->SetUpdatePerformanceActive(true);
@@ -43,7 +44,7 @@ namespace basecross{
 			Vec3(0.3f, 0.2f, 0.3f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, XM_PI, 0.0f),
-			Vec3(0.0f, -0.8f, 0.0f)
+			Vec3(0.0f, -0.5f, 0.0f)
 		);
 
 		//影をつける（シャドウマップを描画する）
@@ -259,28 +260,16 @@ namespace basecross{
 
 	}
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
-		//auto elap = App::GetApp()->GetElapsedTime();
-		//time += elap;
+		auto elap = App::GetApp()->GetElapsedTime();
+		time += elap;
 		auto cntVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (Other->FindTag(L"Goal")) {
-			if (!m_clearflag) {
-				auto clear = GetStage()->AddGameObject<Clear>(
-					Vec2(137.0f, 64.0f),
-					Vec3(0.0f, 200.0f, 0.0f),
-					Vec3(3.0f),
-					10,
-					Col4(1.0f),
-					m_clear
-					);
-				m_clearflag = true;
-			}
-			if (cntVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 
-			}
+
 			StarResult();
 			//auto stage = App::GetApp()->GetScene<GameStage>();
 			//stage->StopBGM();
-			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
+			//App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
 
 			//if (time > 1.0f) {
 			//}
