@@ -71,8 +71,7 @@ namespace basecross {
 		//OBBÕ“Ëj”»’è‚ğ•t‚¯‚é
 		auto ptrColl = AddComponent<CollisionObb>();
 
-		ptrColl->SetFixed(true);
-
+		ptrColl->SetFixed(false);
 
 		//ƒ^ƒO‚ğ‚Â‚¯‚é
 		AddTag(L"Goal");
@@ -147,6 +146,14 @@ namespace basecross {
 		}
 
 	}
+	void Goal::OnCollisionEnter(shared_ptr<GameObject>& Other) {
+		if (Other->FindTag(L"Player")) {
+			auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
+			ptrDraw->ChangeCurrentAnimation(L"Open");
+
+		}
+	}
+
 	void Goal::OnUpdate() {
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
