@@ -257,6 +257,10 @@ namespace basecross {
 
 	}
 	void GameStage::CreateOperation_UI() {
+		auto ns = App::GetApp()->GetScene<Scene>()->m_number_scene;
+		if (ns != 0) {
+			App::GetApp()->GetScene<Scene>()->ResetNumber();
+		}
 		AddGameObject<Operation_UI>(
 			Vec2(573.0f, 573.0f),
 			Vec3(-800.0f, -400.0f, 0.0f),
@@ -419,7 +423,7 @@ namespace basecross {
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
 			Rect2D<float>(0.0f, 200.0f, 1820.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
-			L"★★★:" + m_text_UI_joken1_Before[a] + m_text_UI_joken1_After,
+			L"★★★: " + m_text_UI_joken1_Before[a] + m_text_UI_joken1_After,
 			5,
 			false
 			);		
@@ -437,9 +441,9 @@ namespace basecross {
 			L"メイリオ",
 			100.0f,
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
-			Rect2D<float>(160.0f, 600.0f, 1920.0f, 500.0f),
+			Rect2D<float>(100.0f, 600.0f, 1920.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
-			L"★："+ m_text_UI_joken2_Before[a] + m_text_UI_joken3_After,
+			L"★："+ m_text_UI_joken3_Before[a] + m_text_UI_joken3_After,
 			5,
 			false
 			);
