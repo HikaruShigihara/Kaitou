@@ -255,6 +255,7 @@ namespace basecross {
 			//m_numbers[i]->SetDrawActive(false);
 		}
 
+
 	}
 	void GameStage::CreateOperation_UI() {
 		AddGameObject<Operation_UI>(
@@ -273,6 +274,34 @@ namespace basecross {
 			Col4(1.0f),
 			m_operation_UI2
 			);
+		AddGameObject<Operation_UI>(
+			Vec2(1049.0f, 317.0f),
+			Vec3(700.0f, 200.0f, 0.0f),
+			Vec3(0.5f),
+			3,
+			Col4(1.0f),
+			m_Star_UI1
+
+			);
+		AddGameObject<Operation_UI>(
+			Vec2(1049.0f, 317.0f),
+			Vec3(700.0f, 200.0f, 0.0f),
+			Vec3(0.5f),
+			1,
+			Col4(1.0f),
+			m_Star_UI2
+
+			);
+		m_star_UI =AddGameObject<Operation_UI>(
+			Vec2(1049.0f, 317.0f),
+			Vec3(1749.0f, 200.0f, 0.0f),
+			Vec3(0.5f),
+			2,
+			Col4(1.0f),
+			m_Star_UI3
+
+			);
+
 		AddGameObject<UI_Text>(
 			L"HGP‘n‰pŠpÎß¯Ìß‘Ì",
 			100.0f,
@@ -542,6 +571,9 @@ namespace basecross {
 			m_text_joken2->SetDrawActive(false);
 			m_text_joken3->SetDrawActive(false);
 		}
+		auto pos=m_star_UI->GetComponent<Transform>()->GetPosition();
+		pos = Vec3(1450 -((1450/72)*m_number), pos.y, pos.z);
+		m_star_UI->GetComponent<Transform>()->SetPosition(pos);
 	}
 
 	void GameStage::OnUpdate2() {

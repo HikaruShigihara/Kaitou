@@ -24,7 +24,7 @@ namespace basecross {
 		shared_ptr<GameObject> m_Goal;
 		shared_ptr<GameObject> m_Switch;
 		shared_ptr<GameObject> m_player;
-		shared_ptr<GameObject> m_mask;
+		shared_ptr<GameObject> m_mask,m_star_UI;
 		shared_ptr<GameObject> m_text, m_text2, m_text_joken1, m_text_joken2, m_text_joken3;
 		wstring m_back;
 		wstring m_number_UI;
@@ -34,7 +34,7 @@ namespace basecross {
 		wstring m_text_UI_joken2_Before[5] = { L"48",L"8",L"16" ,L"8", L"4" };
 		wstring m_text_UI_joken3_Before[5] = { L"72",L"12",L"24" ,L"12", L"4" };
 
-		wstring m_operation_UI1, m_operation_UI2;
+		wstring m_operation_UI1, m_operation_UI2, m_Star_UI1, m_Star_UI2, m_Star_UI3;
 		wstring m_text_UI_joken1_After, m_text_UI_joken2_After, m_text_UI_joken3_After;
 		wstring m_cloud,m_cloud1, m_cloud2, m_cloud3, m_cloud4;
 
@@ -68,6 +68,10 @@ namespace basecross {
 			m_clear(L"Clear.png"),
 			m_operation_UI1(L"Ten_Key.png"),
 			m_operation_UI2(L"Analog_Stick.png"),
+			m_Star_UI1(L"Result_Star_Frame.png"),
+			m_Star_UI2(L"yello.png"),
+			m_Star_UI3(L"black.png"),
+
 			m_text_UI1(L"スタートボタンで開始！"),
 			m_text_UI2(L"歩数"),
 			m_text_UI_joken1_After(L"歩以内でクリア"),
