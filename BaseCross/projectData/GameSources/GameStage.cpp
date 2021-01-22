@@ -439,7 +439,7 @@ namespace basecross {
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
 			Rect2D<float>(160.0f, 600.0f, 1920.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
-			L"šF"+ m_text_UI_joken2_Before[a] + m_text_UI_joken3_After,
+			L"šF"+ m_text_UI_joken3_Before[a] + m_text_UI_joken3_After,
 			5,
 			false
 			);

@@ -531,10 +531,13 @@ namespace basecross {
 	void GravityBox::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		if (Other->FindTag(L"Player")) {
 			if (count == 0) {
+				auto PtrAction = AddComponent<Action>();
 				auto a = App::GetApp()->GetScene<Scene>()->GetAngle();
 				auto Pos = GetComponent<Transform>()->GetPosition();
-				Pos += a * 0.098;
-				GetComponent<Transform>()->SetPosition(Pos);
+				float elapsedTime = App::GetApp()->GetElapsedTime();
+				Pos += Vec3(a.x * 0.098, a.y, a.z*0.098);
+				PtrAction->AddMoveTo(1.0f,Pos);
+				PtrAction->Run();
 				count = 1;
 			}
 		}
