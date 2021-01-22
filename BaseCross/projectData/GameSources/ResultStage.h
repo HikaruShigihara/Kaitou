@@ -25,6 +25,7 @@ namespace basecross {
 		wstring m_Endlogo;
 		wstring m_next;
 		wstring m_SelectArrow;
+		wstring m_FontName;
 
 		wstring m_nextStage_text, m_stageSelect_text, m_backTitle_text;
 		shared_ptr<GameObject> m_text_next, m_text_stageselect, m_text_backtitle;
@@ -42,9 +43,9 @@ namespace basecross {
 		std::shared_ptr<basecross::Result_UI> m_Start;
 		std::shared_ptr<basecross::Result_UI> m_Select;
 		std::shared_ptr<basecross::Result_UI> m_End;
-		std::shared_ptr<basecross::Result_UI> m_NextLogoObject;
-		std::shared_ptr<basecross::Result_UI> m_SelectLogoObject;
-		std::shared_ptr<basecross::Result_UI> m_EndLogoObject;
+		//std::shared_ptr<basecross::Result_UI> m_NextLogoObject;
+		//std::shared_ptr<basecross::Result_UI> m_SelectLogoObject;
+		//std::shared_ptr<basecross::Result_UI> m_EndLogoObject;
 		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber1;
 		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber2;
 		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber3;
@@ -62,7 +63,7 @@ namespace basecross {
 			m_Nextlogo(L"next.png"),
 			m_Endlogo(L"Titlelogo.png"),
 			m_SelectArrow(L"Select_Arrow.png"),
-
+			m_FontName(L"HGP創英角ﾎﾟｯﾌﾟ体"),
 			m_nextStage_text(L"次のステージ"),
 			m_stageSelect_text(L"ステージセレクト"),
 			m_backTitle_text(L"タイトルに戻る")

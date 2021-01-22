@@ -77,58 +77,58 @@ namespace basecross {
 			Col4(1.0f),
 			m_titleflame
 			);
-		AddGameObject<Title_UI>(
-			Vec2(581.0f, 132.0f),
-			Vec3(-600.0f, -420.0f, 0.0f),
-			Vec3(0.8f),
-			-2,
-			Col4(1.0f),
-			m_Startlogo
-			);
-		AddGameObject<Title_UI>(
-			Vec2(581.0f, 132.0f),
-			Vec3(10.0f, -420.0f, 0.0f),
-			Vec3(0.8f),
-			-2,
-			Col4(1.0f),
-			m_Selectlogo
-			);
-		AddGameObject<Title_UI>(
-			Vec2(581.0f, 132.0f),
-			Vec3(620.0f, -420.0f, 0.0f),
-			Vec3(0.8f),
-			-2,
-			Col4(1.0f),
-			m_Endlogo
-			);
+		//AddGameObject<Title_UI>(
+		//	Vec2(581.0f, 132.0f),
+		//	Vec3(-600.0f, -420.0f, 0.0f),
+		//	Vec3(0.8f),
+		//	-2,
+		//	Col4(1.0f),
+		//	m_Startlogo
+		//	);
+		//AddGameObject<Title_UI>(
+		//	Vec2(581.0f, 132.0f),
+		//	Vec3(10.0f, -420.0f, 0.0f),
+		//	Vec3(0.8f),
+		//	-2,
+		//	Col4(1.0f),
+		//	m_Selectlogo
+		//	);
+		//AddGameObject<Title_UI>(
+		//	Vec2(581.0f, 132.0f),
+		//	Vec3(620.0f, -420.0f, 0.0f),
+		//	Vec3(0.8f),
+		//	-2,
+		//	Col4(1.0f),
+		//	m_Endlogo
+		//	);
 
-		m_StartLogoObject=
-			AddGameObject<Title_UI>(
-			Vec2(581.0f, 132.0f),
-			Vec3(-600.0f, -420.0f, 0.0f),
-			Vec3(1.0f),
-			0,
-			Col4(1.0f),
-			m_Startlogo
-			);
-		m_SelectLogoObject=
-			AddGameObject<Title_UI>(
-			Vec2(581.0f, 132.0f),
-			Vec3(10.0f, -420.0f, 0.0f),
-			Vec3(1.0f),
-			0,
-			Col4(1.0f),
-			m_Selectlogo
-			);
-		m_EndLogoObject=
-			AddGameObject<Title_UI>(
-			Vec2(581.0f, 132.0f),
-			Vec3(620.0f, -420.0f, 0.0f),
-			Vec3(1.0f),
-			0,
-			Col4(1.0f),
-			m_Endlogo
-			);
+		//m_StartLogoObject=
+		//	AddGameObject<Title_UI>(
+		//	Vec2(581.0f, 132.0f),
+		//	Vec3(-600.0f, -420.0f, 0.0f),
+		//	Vec3(1.0f),
+		//	0,
+		//	Col4(1.0f),
+		//	m_Startlogo
+		//	);
+		//m_SelectLogoObject=
+		//	AddGameObject<Title_UI>(
+		//	Vec2(581.0f, 132.0f),
+		//	Vec3(10.0f, -420.0f, 0.0f),
+		//	Vec3(1.0f),
+		//	0,
+		//	Col4(1.0f),
+		//	m_Selectlogo
+		//	);
+		//m_EndLogoObject=
+		//	AddGameObject<Title_UI>(
+		//	Vec2(581.0f, 132.0f),
+		//	Vec3(620.0f, -420.0f, 0.0f),
+		//	Vec3(1.0f),
+		//	0,
+		//	Col4(1.0f),
+		//	m_Endlogo
+		//	);
 
 		m_SelectArrowNumber1=
 			AddGameObject<Title_Arrow>(
@@ -159,68 +159,69 @@ namespace basecross {
 			m_SelectArrow
 			);
 
-		//m_start_next = AddGameObject<UI_Text>(
-		//	L"メイリオ",
-		//	50.0f,
-		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
-		//	Rect2D<float>(-1200.0f, 910.0f, 1900.0f, 800.0f),
-		//	StringSprite::TextAlignment::m_Center,
-		//	m_start_text,
-		//	5,
-		//	false
-		//	);
-		//m_start_next2 = AddGameObject<UI_Text>(
-		//	L"メイリオ",
-		//	65.0f,
-		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
-		//	Rect2D<float>(-1200.0f, 900.0f, 1900.0f, 800.0f),
-		//	StringSprite::TextAlignment::m_Center,
-		//	m_start_text,
-		//	5,
-		//	false
-		//	);
+		///
+		m_start_obj = AddGameObject<UI_Text>(
+			m_FontName,
+			50.0f,
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(-1200.0f, 910.0f, 1900.0f, 800.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_start_text,
+			5,
+			false
+			);
+		m_start_obj2 = AddGameObject<UI_Text>(
+			m_FontName,
+			65.0f,
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(-1200.0f, 900.0f, 1900.0f, 800.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_start_text,
+			5,
+			false
+			);
 
-		//m_text_stageselect = AddGameObject<UI_Text>(
-		//	L"メイリオ",
-		//	50.0f,
-		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
-		//	Rect2D<float>(10.0f, 910.0f, 1900.0f, 800.0f),
-		//	StringSprite::TextAlignment::m_Center,
-		//	m_stageSelect_text,
-		//	5,
-		//	false
-		//	);
-		//m_text_stageselect2 = AddGameObject<UI_Text>(
-		//	L"メイリオ",
-		//	65.0f,
-		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
-		//	Rect2D<float>(10.0f, 900.0f, 1900.0f, 800.0f),
-		//	StringSprite::TextAlignment::m_Center,
-		//	m_stageSelect_text,
-		//	5,
-		//	false
-		//	);
+		m_stageselect_obj = AddGameObject<UI_Text>(
+			m_FontName,
+			50.0f,
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(10.0f, 910.0f, 1900.0f, 800.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_stageSelect_text,
+			5,
+			false
+			);
+		m_stageselect_obj2 = AddGameObject<UI_Text>(
+			m_FontName,
+			65.0f,
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(10.0f, 900.0f, 1900.0f, 800.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_stageSelect_text,
+			5,
+			false
+			);
 
-		//m_text_tutorial = AddGameObject<UI_Text>(
-		//	L"メイリオ",
-		//	50.0f,
-		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
-		//	Rect2D<float>(1200.0f, 910.0f, 1900.0f, 800.0f),
-		//	StringSprite::TextAlignment::m_Center,
-		//	m_tutorial_text,
-		//	5,
-		//	false
-		//	);
-		//m_text_tutorial2 = AddGameObject<UI_Text>(
-		//	L"メイリオ",
-		//	65.0f,
-		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
-		//	Rect2D<float>(1200.0f, 900.0f, 1900.0f, 800.0f),
-		//	StringSprite::TextAlignment::m_Center,
-		//	m_tutorial_text,
-		//	5,
-		//	false
-		//	);
+		m_tutorial_obj = AddGameObject<UI_Text>(
+			m_FontName,
+			50.0f,
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(1200.0f, 910.0f, 1900.0f, 800.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_tutorial_text,
+			5,
+			false
+			);
+		m_tutorial_obj2 = AddGameObject<UI_Text>(
+			m_FontName,
+			65.0f,
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(1200.0f, 900.0f, 1900.0f, 800.0f),
+			StringSprite::TextAlignment::m_Center,
+			m_tutorial_text,
+			5,
+			false
+			);
 
 
 	}
@@ -345,13 +346,16 @@ namespace basecross {
 		m_Start->SetDrawActive(false);
 		m_Select->SetDrawActive(false);
 		m_End->SetDrawActive(false);
-		m_StartLogoObject->SetDrawActive(false);
-		m_SelectLogoObject->SetDrawActive(false);
-		m_EndLogoObject->SetDrawActive(false);
 		m_SelectArrowNumber1->SetDrawActive(false);
 		m_SelectArrowNumber2->SetDrawActive(false);
 		m_SelectArrowNumber3->SetDrawActive(false);
 
+		m_start_obj->SetDrawActive(false);
+		m_stageselect_obj->SetDrawActive(false);
+		m_tutorial_obj->SetDrawActive(false);
+		m_start_obj2->SetDrawActive(false);
+		m_stageselect_obj2->SetDrawActive(false);
+		m_tutorial_obj2->SetDrawActive(false);
 
 	}
 	
@@ -391,7 +395,10 @@ namespace basecross {
 		case 0:
 			BoolSet();
 			m_Start->SetDrawActive(true);
-			m_StartLogoObject->SetDrawActive(true);
+			//m_StartLogoObject->SetDrawActive(true);
+			m_start_obj2->SetDrawActive(true);
+			m_stageselect_obj->SetDrawActive(true);
+			m_tutorial_obj->SetDrawActive(true);
 			m_SelectArrowNumber1->SetDrawActive(true);
 
 
@@ -404,7 +411,10 @@ namespace basecross {
 		case 1:
 			BoolSet();
 			m_Select->SetDrawActive(true);
-			m_SelectLogoObject->SetDrawActive(true);
+			//m_SelectLogoObject->SetDrawActive(true);
+			m_start_obj->SetDrawActive(true);
+			m_stageselect_obj2->SetDrawActive(true);
+			m_tutorial_obj->SetDrawActive(true);
 			m_SelectArrowNumber2->SetDrawActive(true);
 
 
@@ -419,7 +429,10 @@ namespace basecross {
 
 			BoolSet();
 			m_End->SetDrawActive(true);
-			m_EndLogoObject->SetDrawActive(true);
+			//m_EndLogoObject->SetDrawActive(true);
+			m_start_obj->SetDrawActive(true);
+			m_stageselect_obj->SetDrawActive(true);
+			m_tutorial_obj2->SetDrawActive(true);
 			m_SelectArrowNumber3->SetDrawActive(true);
 
 

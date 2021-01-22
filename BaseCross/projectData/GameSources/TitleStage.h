@@ -17,13 +17,14 @@ namespace basecross {
 		wstring m_Selectlogo;
 		wstring m_Endlogo;
 		wstring m_SelectArrow;
+		wstring m_FontName;
 
 		wstring m_start_text, m_stageSelect_text, m_tutorial_text;
 		wstring m_cloud1, m_cloud2, m_cloud3, m_cloud4;
 		wstring m_Kai, m_Tou;
 
-		shared_ptr<GameObject> m_start_next, m_text_stageselect, m_text_tutorial;
-		shared_ptr<GameObject> m_start_next2, m_text_stageselect2, m_text_tutorial2;
+		shared_ptr<GameObject> m_start_obj, m_stageselect_obj, m_tutorial_obj;
+		shared_ptr<GameObject> m_start_obj2, m_stageselect_obj2, m_tutorial_obj2;
 
 		void CreateUI();
 		void CreateCloud();
@@ -38,9 +39,9 @@ namespace basecross {
 		std::shared_ptr<basecross::Title_UI> m_Start;
 		std::shared_ptr<basecross::Title_UI> m_Select;
 		std::shared_ptr<basecross::Title_UI> m_End;
-		std::shared_ptr<basecross::Title_UI> m_StartLogoObject;
-		std::shared_ptr<basecross::Title_UI> m_SelectLogoObject;
-		std::shared_ptr<basecross::Title_UI> m_EndLogoObject;
+		//std::shared_ptr<basecross::Title_UI> m_StartLogoObject;
+		//std::shared_ptr<basecross::Title_UI> m_SelectLogoObject;
+		//std::shared_ptr<basecross::Title_UI> m_EndLogoObject;
 		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber1;
 		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber2;
 		std::shared_ptr<basecross::Title_Arrow> m_SelectArrowNumber3;
@@ -57,6 +58,7 @@ namespace basecross {
 			m_start_text(L"スタート"),
 			m_stageSelect_text(L"ステージセレクト"),
 			m_tutorial_text(L"チュートリアル"),
+			m_FontName(L"HGP創英角ﾎﾟｯﾌﾟ体"),
 			m_cloud1(L"Cloud Parts 1.png"),
 			m_cloud2(L"Cloud Parts 2.png"),
 			m_cloud3(L"Cloud Parts 3.png"),

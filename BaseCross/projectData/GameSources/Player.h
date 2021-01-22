@@ -36,7 +36,6 @@ namespace basecross{
 		bool m_anime = true;
 
 		float m_WalkSpeed = 7.0f;
-		void Control();
 		void PlayerMove();
 		void Respawn();
 		void DrawStrings();
