@@ -178,6 +178,20 @@ namespace basecross {
 				 false
 				 );
 
+			 m_number = App::GetApp()->GetScene<Scene>()->m_number_scene;
+			 auto wstringNumber = std::to_wstring(m_number);
+			 AddGameObject<UI_Text>(
+				 L"HGP‘n‰pŠpÎß¯Ìß‘Ì",
+				 100.0f,
+				 Col4(1.0f),
+				 Rect2D<float>(0.0f, 600.0f, 1900.0f, 800.0f),
+				 StringSprite::TextAlignment::m_Center,
+				 L"•à”F" + wstringNumber,
+				 5,
+				 false
+				 );
+
+
 			auto SelectNumber = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
 			m_StarQuantity=App::GetApp()->GetScene<Scene>()->GetStageStar(SelectNumber);
 	switch (m_StarQuantity){

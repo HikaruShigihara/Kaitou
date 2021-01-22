@@ -167,6 +167,8 @@ namespace basecross{
 			//ƒJƒEƒ“ƒg’Ç‰Á
 			auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
 			gamestage->SetCount(1);
+			App::GetApp()->GetScene<Scene>()->SetNumber(1);
+
 
 			App::GetApp()->GetScene<Scene>()->SetAngle(angle);
 		}

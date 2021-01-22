@@ -41,6 +41,7 @@ namespace basecross{
 		int m_StarNumber;
 		bool m_Start;
 		int m_star[10];
+		int m_number_scene;
 		int SetStageStar(int StageNumber,int StarQuantity);
 		int GetStageStar(int StageNumber);
 		int GetStarNumber();
@@ -54,7 +55,12 @@ namespace basecross{
 			m_gameStageKey = key;
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), m_stageKey[m_gameStageKey]);
 		}
-
+		void SetNumber(int a) {
+			m_number_scene += a;
+		}
+		void ResetNumber() {
+			m_number_scene = 0;
+		}
 
 		//SE‚ÌŠÖ”
 		void PlaySE(wstring key, float vol) {

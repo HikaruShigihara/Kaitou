@@ -35,6 +35,8 @@ namespace basecross {
 		int m_SelectQuantity;//‘I‘ğˆ‚ÌŒÂ”
 		int m_StarQuantity;
 
+		int m_number;
+
 		//float x = 1.0f;
 		std::shared_ptr<basecross::Result_UI> m_Star01;
 		std::shared_ptr<basecross::Result_UI> m_Star02;
