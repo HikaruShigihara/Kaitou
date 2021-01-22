@@ -214,57 +214,12 @@ namespace basecross{
 
 
 	}
-	void Player::Control() {
-		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
-		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		auto PtrDraw = GetComponent<BcPNTBoneModelDraw>();
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
-			m_start = true;
-		}
-		if (m_start) {
-			auto ptrTrans = GetComponent<Transform>();
 
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				m_Key = 0;
-			}
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
-				m_Key = 1;
-			}
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-				m_Key = 2;
-			}
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_Y) {
-				m_Key = 3;
-			}
-
-			switch (m_Key)
-			{
-			case 0://Bボタン
-				PtrDraw->ChangeCurrentAnimation(L"Fall");
-				break;
-			case 1://Xボタン
-				PtrDraw->ChangeCurrentAnimation(L"Fall");
-
-				break;
-			case 2://Aボタン
-				PtrDraw->ChangeCurrentAnimation(L"Fall");
-
-				break;
-			case 3://Yボタン
-				PtrDraw->ChangeCurrentAnimation(L"Fall");
-
-				break;
-			}
-		}
-
-	}
 	void Player::OnCollisionEnter(shared_ptr<GameObject>& Other) {
 		auto elap = App::GetApp()->GetElapsedTime();
 		time += elap;
 		auto cntVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (Other->FindTag(L"Goal")) {
-
-
 			StarResult();
 			//auto stage = App::GetApp()->GetScene<GameStage>();
 			//stage->StopBGM();

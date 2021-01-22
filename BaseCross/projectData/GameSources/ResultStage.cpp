@@ -114,8 +114,9 @@ namespace basecross {
 					m_SelectArrow
 					);
 
+			///
 			 m_text_next = AddGameObject<UI_Text>(
-				L"メイリオ",
+				m_FontName,
 				50.0f,
 				Col4(0.0f, 0.0f, 0.0f, 1.0f),
 				Rect2D<float>(-1200.0f, 910.0f, 1900.0f, 800.0f),
@@ -125,7 +126,7 @@ namespace basecross {
 				false
 				);
 			 m_text_next2 = AddGameObject<UI_Text>(
-				 L"メイリオ",
+				 m_FontName,
 				 65.0f,
 				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
 				 Rect2D<float>(-1200.0f, 900.0f, 1900.0f, 800.0f),
@@ -136,7 +137,7 @@ namespace basecross {
 				 );
 
 			 m_text_stageselect = AddGameObject<UI_Text>(
-				 L"メイリオ",
+				 m_FontName,
 				 50.0f,
 				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
 				 Rect2D<float>(10.0f, 910.0f, 1900.0f, 800.0f),
@@ -146,7 +147,7 @@ namespace basecross {
 				 false
 				 );
 			 m_text_stageselect2 = AddGameObject<UI_Text>(
-				 L"メイリオ",
+				 m_FontName,
 				 65.0f,
 				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
 				 Rect2D<float>(10.0f, 900.0f, 1900.0f, 800.0f),
@@ -157,7 +158,7 @@ namespace basecross {
 				 );
 
 			 m_text_backtitle = AddGameObject<UI_Text>(
-				 L"メイリオ",
+				 m_FontName,
 				 50.0f,
 				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
 				 Rect2D<float>(1200.0f, 910.0f, 1900.0f, 800.0f),
@@ -167,7 +168,7 @@ namespace basecross {
 				 false
 				 );
 			 m_text_backtitle2 = AddGameObject<UI_Text>(
-				 L"メイリオ",
+				 m_FontName,
 				 65.0f,
 				 Col4(0.0f, 0.0f, 0.0f, 1.0f),
 				 Rect2D<float>(1200.0f, 900.0f, 1900.0f, 800.0f),

@@ -419,19 +419,19 @@ namespace basecross {
 		spanMat.affineTransformation(
 			Vec3(0.231f, 0.231f, 0.231f),
 			Vec3(0.0f, 0.0f, 0.0f),
-			Vec3(0.0f, 0.0f, 0.0f),
+			Vec3(0.0f, XM_PI/2, 0.0f),
 			Vec3(0.0f, -0.5f, 0.0f)
 		);
 
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"Stone_Block_2.bmf");
+		ptrShadow->SetMeshResource(L"Arrow_Block.bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 		auto ptrDraw = AddComponent<BcPNTStaticModelDraw>();
 		ptrDraw->SetFogEnabled(true);
-		ptrDraw->SetMeshResource(L"Stone_Block_2.bmf");
+		ptrDraw->SetMeshResource(L"Arrow_Block.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetDrawActive(true);
 		auto ptrParent = m_Parent.lock();

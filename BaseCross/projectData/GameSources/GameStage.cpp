@@ -256,6 +256,46 @@ namespace basecross {
 		}
 
 	}
+	void GameStage::CreateOperation_UI() {
+		AddGameObject<Operation_UI>(
+			Vec2(573.0f, 573.0f),
+			Vec3(-800.0f, -400.0f, 0.0f),
+			Vec3(0.25f),
+			0,
+			Col4(1.0f),
+			m_operation_UI1
+			);
+		AddGameObject<Operation_UI>(
+			Vec2(573.0f, 573.0f),
+			Vec3(500.0f, -400.0f, 0.0f),
+			Vec3(0.25f),
+			0,
+			Col4(1.0f),
+			m_operation_UI2
+			);
+		AddGameObject<UI_Text>(
+			L"HGP‘n‰pŠpÎß¯Ìß‘Ì",
+			100.0f,
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(-1200.0f, 910.0f, 1900.0f, 800.0f),
+			StringSprite::TextAlignment::m_Center,
+			L"ˆÚ“®",
+			0,
+			false
+			);
+		AddGameObject<UI_Text>(
+			L"HGP‘n‰pŠpÎß¯Ìß‘Ì",
+			100.0f,
+			Col4(0.0f, 0.0f, 0.0f, 0.7f),
+			Rect2D<float>(1400.0f, 910.0f, 1900.0f, 800.0f),
+			StringSprite::TextAlignment::m_Center,
+			L"ƒJƒƒ‰",
+			0,
+			false
+			);
+
+
+	}
 	void GameStage::CreateBack() {
 		//ƒQ[ƒ€‚Ì•û
 		AddGameObject<Game_Back>(
@@ -459,10 +499,10 @@ namespace basecross {
 			//XML‚Ì“Ç‚İ‚İ
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage12.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage15.xml"));
 				break;
 			case 1:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage16.xml"));
 				break;
 			case 2:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage3.xml"));
@@ -481,6 +521,7 @@ namespace basecross {
 			CreateBack();
 			CreateCloud();
 			CreateUI();
+			CreateOperation_UI();
 			CreateEffect();
 			App::GetApp()->GetScene<Scene>()->StopBGM();
 			App::GetApp()->GetScene<Scene>()->PlayBGM(L"hikousen.wav", 0.1f);

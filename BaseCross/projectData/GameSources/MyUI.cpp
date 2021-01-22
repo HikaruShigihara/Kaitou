@@ -73,6 +73,10 @@ namespace basecross {
 		Draw();
 	}
 
+	void Operation_UI::OnCreate() {
+		Draw();
+	}
+
 	void Number_UI::OnCreate() {
 		float score = static_cast<float>(m_Score / m_place % 10);
 		float Width = 69.1f / 691.0f;	//各数字の幅をテクスチャ座標に変換

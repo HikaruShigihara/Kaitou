@@ -541,4 +541,31 @@ namespace basecross {
 	};
 
 
+	class Operation_UI : public UI_Base {
+	public:
+
+		Operation_UI(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~Operation_UI() {}
+
+		virtual void OnCreate() override;
+
+	};
+
 }

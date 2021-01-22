@@ -34,6 +34,7 @@ namespace basecross {
 		wstring m_text_UI_joken2_Before[5] = { L"48",L"8",L"16" ,L"8", L"4" };
 		wstring m_text_UI_joken3_Before[5] = { L"72",L"12",L"24" ,L"12", L"4" };
 
+		wstring m_operation_UI1, m_operation_UI2;
 		wstring m_text_UI_joken1_After, m_text_UI_joken2_After, m_text_UI_joken3_After;
 		wstring m_cloud,m_cloud1, m_cloud2, m_cloud3, m_cloud4;
 
@@ -45,6 +46,7 @@ namespace basecross {
 		void CreateViewLight();
 		//ボックスの作成
 		void CreateUI();
+		void CreateOperation_UI();
 		void CreateBack();
 		void CreateCloud();
 		void CreateEffect();
@@ -64,6 +66,8 @@ namespace basecross {
 			m_cloud4(L"Cloud Parts 4.png"),
 			m_cloud(L"Cloud.png"),
 			m_clear(L"Clear.png"),
+			m_operation_UI1(L"Ten_Key.png"),
+			m_operation_UI2(L"Analog_Stick.png"),
 			m_text_UI1(L"スタートボタンで開始！"),
 			m_text_UI2(L"歩数"),
 			m_text_UI_joken1_After(L"歩以内でクリア"),
