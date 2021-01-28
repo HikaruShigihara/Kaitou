@@ -271,9 +271,11 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
 			m_SelectChoices += 1;
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"Motion-Pop36-1.wav", 0.2f);
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
 			m_SelectChoices -= 1;
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"Motion-Pop36-1.wav", 0.2f);
 		}
 
 		switch (m_SelectChoices)

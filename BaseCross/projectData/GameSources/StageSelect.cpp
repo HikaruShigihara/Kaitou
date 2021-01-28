@@ -215,6 +215,17 @@ namespace basecross {
 			false
 			);
 
+		//m_StageNumber = AddGameObject<UI_Text>(
+		//	L"HGP‘n‰pŠpÎß¯Ìß‘Ì",
+		//	100.0f,
+		//	Col4(0.0f, 0.0f, 0.0f, 1.0f),
+		//	Rect2D<float>(0.0f, 1000.0f, 500.0f, 500.0f),
+		//	StringSprite::TextAlignment::m_Center,
+		//	m_StageText + std::to_wstring(m_Stagenumber),
+		//	5,
+		//	false
+		//	);
+
 	}
 
 	void StageSelect::OnCreate() {
@@ -240,12 +251,14 @@ namespace basecross {
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
 			m_StageSelectNumber += 1;
+			m_Stagenumber += 1;
 			m_StageArrowRight->SetTexture(m_StageSelect_Arrow_yellow);
 			App::GetApp()->GetScene<Scene>()->PlaySE(L"Motion-Pop36-1.wav", 0.2f);
 			time = 0;
 		}
 		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
 			m_StageSelectNumber -= 1;
+			m_Stagenumber -= 1;
 			m_StageArrowLeft->SetTexture(m_StageSelect_Arrow_yellow);
 			App::GetApp()->GetScene<Scene>()->PlaySE(L"Motion-Pop36-1.wav", 0.2f);
 
@@ -333,11 +346,16 @@ namespace basecross {
 			m_StageArrowRight->SetTexture(m_StageSelect_Arrow);
 			m_StageArrowLeft->SetTexture(m_StageSelect_Arrow);
 		}
+
+
 	}
 
 
 
-
+	void StageSelect::OnUpdate2() {
+		//auto elap = App::GetApp()->GetElapsedTime();
+		//m_StageNumber->SetUpdateActive(elap);
+	}
 
 
 

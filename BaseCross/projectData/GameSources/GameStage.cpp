@@ -244,7 +244,7 @@ namespace basecross {
 			float n = static_cast<float>(i);
 			m_numbers[i] = AddGameObject<Number_UI>(
 				Vec2(500.0f, 100.0f),
-				Vec3(1500.0f * 0.5f - n * 64.0f - 64.0f, 900.0f * 0.5f, 0.0f),
+				Vec3(1800.0f * 0.5f - n * 64.0f - 64.0f, 700.0f * 0.5f, 0.0f),
 				Vec3(1.5f, 1.5f, 1.5f),
 				0,
 				Col4(1.0f, 1.0f, 1.0f, 1.0f),
@@ -280,7 +280,7 @@ namespace basecross {
 			);
 		AddGameObject<Operation_UI>(
 			Vec2(1049.0f, 317.0f),
-			Vec3(700.0f, 200.0f, 0.0f),
+			Vec3(700.0f, 450.0f, 0.0f),
 			Vec3(0.5f),
 			3,
 			Col4(1.0f),
@@ -289,18 +289,18 @@ namespace basecross {
 			);
 		AddGameObject<Operation_UI>(
 			Vec2(1049.0f, 317.0f),
-			Vec3(700.0f, 200.0f, 0.0f),
+			Vec3(700.0f, 450.0f, 0.0f),
 			Vec3(0.5f),
-			1,
+			0,//àÍî‘âú
 			Col4(1.0f),
 			m_Star_UI2
 
 			);
 		m_star_UI =AddGameObject<Operation_UI>(
 			Vec2(1049.0f, 317.0f),
-			Vec3(1749.0f, 200.0f, 0.0f),
+			Vec3(1749.0f, 450.0f, 0.0f),
 			Vec3(0.5f),
-			2,
+			1,
 			Col4(1.0f),
 			m_Star_UI3
 
@@ -442,7 +442,7 @@ namespace basecross {
 			Vec2(1920.0f, 1080.0f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(1.0f),
-			1,
+			4,
 			Col4(1.0f, 1.0f, 1.0f, 0.5f),
 			m_mask_UI
 			);
@@ -487,17 +487,22 @@ namespace basecross {
 			5,
 			false
 			);
+
+		//ï‡êî
 		AddGameObject<UI_Text>(
 			L"ÉÅÉCÉäÉI",
 			100.0f,
 			Col4(1.0f, 1.0f, 1.0f, 1.0f),
-			Rect2D<float>(1300.0f, 0.0f, 1920.0f, 500.0f),
+			Rect2D<float>(1200.0f, 200.0f, 1920.0f, 800.0f),
 			StringSprite::TextAlignment::m_Center,
 			m_text_UI2,
 			0,
 			false
 			);
 
+		m_text_joken1->SetDrawActive(false);
+		m_text_joken2->SetDrawActive(false);
+		m_text_joken3->SetDrawActive(false);
 	}
 
 	void GameStage::CreateEffect() {

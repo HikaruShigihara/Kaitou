@@ -202,6 +202,7 @@ namespace basecross{
 			PtrAction->AddMoveTo(0.5f, pos);
 			PtrAction->SetLooped(false);
 			PtrAction->Run();
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"Motion-Pop36-1.wav", 0.2f);
 
 			PtrAction->ReStart();
 
@@ -233,10 +234,17 @@ namespace basecross{
 	}
 
 	void Player::Respawn() {
-		const float limitY = 10.0f;
+		const float limitY_camera = 5.0f;
+		const float limitY = 13.0f;
+
 		auto player = GetComponent<Transform>();
 		auto pos = player->GetPosition();
-		
+		auto ptrCamera = dynamic_pointer_cast<MyCamera>(OnGetDrawCamera());
+		if (abs(pos.y) > limitY_camera) {
+			if (ptrCamera) {
+				ptrCamera->SetTargetObject(NULL);
+			}
+		}
 		if (abs(pos.y) > limitY) {
 			//player->SetPosition(m_Position);
 			//auto gamestage = dynamic_pointer_cast<GameStage>(GetStage());
