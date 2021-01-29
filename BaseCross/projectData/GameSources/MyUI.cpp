@@ -135,6 +135,26 @@ namespace basecross {
 		}
 	}
 
+	void Cloud_Small::OnCreate() {
+		Draw();
+		auto PtrAction = AddComponent<Action>();
+
+		PtrAction->AddMoveBy(0.1f, Vec3(2.5f, 0, 0));
+		PtrAction->SetLooped(true);
+		//アクション開始
+		PtrAction->Run();
+	}
+	void Cloud_Small::OnUpdate() {
+		auto PtrAction = AddComponent<Action>();
+		auto trans = GetComponent<Transform>();
+		auto pos = trans->GetPosition();
+		if (pos.x >= 1200.0f) {
+			PtrAction->AddMoveTo(0.000001f, Vec3(-1200.0f, pos.y, 0.0f));
+			PtrAction->AddMoveTo(45.0f, Vec3(1200.0f, pos.y, 0.0f));
+		}
+	}
+
+
 	void Title_Kai::OnCreate() {
 		Draw();
 	}

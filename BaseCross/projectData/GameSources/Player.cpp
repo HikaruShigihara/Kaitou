@@ -224,12 +224,6 @@ namespace basecross{
 		auto cntVec = App::GetApp()->GetInputDevice().GetControlerVec();
 		if (Other->FindTag(L"Goal")) {
 			StarResult();
-			//auto stage = App::GetApp()->GetScene<GameStage>();
-			//stage->StopBGM();
-			App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
-
-			//if (time > 1.0f) {
-			//}
 		}
 	}
 
@@ -274,7 +268,7 @@ namespace basecross{
 			(cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_B))
 		{
 			ptrDraw->ChangeCurrentAnimation(L"Fall");
-
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"kaiten2.wav", 0.2f);
 		}
 		//auto ptrParent = m_Parent.lock();
 		//if (cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
