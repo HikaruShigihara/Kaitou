@@ -298,7 +298,7 @@ namespace basecross {
 			);
 		m_star_UI =AddGameObject<Operation_UI>(
 			Vec2(1049.0f, 317.0f),
-			Vec3(1749.0f, 450.0f, 0.0f),
+			Vec3(1224.0f, 450.0f, 0.0f),
 			Vec3(0.5f),
 			1,
 			Col4(1.0f),
@@ -581,7 +581,7 @@ namespace basecross {
 			m_text_joken3->SetDrawActive(false);
 		}
 		auto pos=m_star_UI->GetComponent<Transform>()->GetPosition();
-		pos = Vec3(1450 -((1450/72)*m_number), pos.y, pos.z);
+		pos = Vec3(1150.0f -((1150.0f /288)*m_number), pos.y, pos.z);
 		m_star_UI->GetComponent<Transform>()->SetPosition(pos);
 	}
 
