@@ -245,7 +245,7 @@ namespace basecross {
 			m_cloud1
 			);
 
-		AddGameObject<Cloud>(
+		AddGameObject<Cloud_Small>(
 			Vec2(1027.0f, 652.0f),
 			Vec3(-1500.0f, 0.0f, 0.0f),
 			Vec3(0.5f),
@@ -253,7 +253,7 @@ namespace basecross {
 			Col4(1.0f),
 			m_cloud2
 			);
-		AddGameObject<Cloud>(
+		AddGameObject<Cloud_Small>(
 			Vec2(1027.0f, 652.0f),
 			Vec3(-300.0f, -300.0f, 0.0f),
 			Vec3(0.5f),
@@ -277,7 +277,7 @@ namespace basecross {
 			Col4(1.0f),
 			m_cloud4
 			);
-		AddGameObject<Cloud>(
+		AddGameObject<Cloud_Small>(
 			Vec2(1027.0f, 652.0f),
 			Vec3(500.0f, 300.0f, 0.0f),
 			Vec3(0.5f),

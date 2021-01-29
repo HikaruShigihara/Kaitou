@@ -312,6 +312,33 @@ namespace basecross {
 		virtual void OnUpdate() override;
 	};
 
+	class Cloud_Small : public UI_Base {
+	public:
+
+		Cloud_Small(const shared_ptr<Stage>& StagePtr,
+			const Vec2& vertex,
+			const Vec3& pos,
+			const Vec3& scale,
+			const int& layer,
+			const Col4& color,
+			const wstring& textures
+		) :
+			UI_Base(
+				StagePtr,
+				vertex,
+				pos,
+				scale,
+				layer,
+				color,
+				textures
+			)
+		{}
+		~Cloud_Small() {}
+
+		virtual void OnCreate() override;
+		virtual void OnUpdate() override;
+	};
+
 	class Title_Kai : public UI_Base {
 		float time;
 	public:

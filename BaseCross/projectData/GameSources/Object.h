@@ -45,10 +45,13 @@ namespace basecross {
 		Vec3 m_Rotation;
 		Vec3 m_Position;
 
+		float m_time;
+
 		weak_ptr<GameObject> m_Parent;
 		Vec3 m_VecToParent;
 
 		void SeekParentGoal();
+
 		
 	public:
 		//\’z‚Æ”jŠü
@@ -72,6 +75,7 @@ namespace basecross {
 		virtual ~Goal()
 		{}
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
+		virtual void OnCollisionExcute(shared_ptr<GameObject>& Other) override;
 
 		virtual void OnCreate() override;
 		virtual void OnUpdate() override;
@@ -108,7 +112,6 @@ namespace basecross {
 		virtual ~SwitchBox()
 		{}
 		virtual void OnCollisionEnter(shared_ptr<GameObject>& Other) override;
-
 		//‰Šú‰»
 		virtual void OnCreate() override;
 
@@ -187,6 +190,7 @@ namespace basecross {
 		{}
 		//‰Šú‰»
 		int m_a;
+		int m_s;
 		int MoveBoxCheck(int a);
 		float movevalue = 0.01f;
 		float totalmove;

@@ -150,7 +150,18 @@ namespace basecross {
 		if (Other->FindTag(L"Player")) {
 			auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
 			ptrDraw->ChangeCurrentAnimation(L"Open");
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"kirakira.wav", 0.2f);
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"open.wav", 0.2f);
 
+		}
+	}
+	void Goal::OnCollisionExcute(shared_ptr<GameObject>& Other) {
+		if (Other->FindTag(L"Player")) {
+			auto elap = App::GetApp()->GetElapsedTime();
+			m_time += elap;
+			if (m_time >= 3.0f) {
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::result);
+			}
 		}
 	}
 
@@ -245,9 +256,11 @@ namespace basecross {
 				auto movebox = dynamic_pointer_cast<SwitchMoveBox>(obj);
 				if (movebox) {
 					movebox->MoveBoxCheck(1);
+
 				}
 
 			}
+
 		}
 		//a->MoveBoxCheck(1);
 
@@ -453,20 +466,27 @@ namespace basecross {
 	}
 	void SwitchMoveBox::OnUpdate() {
 		if (m_a == 1) {
+
 			auto Trans = GetComponent<Transform>();
 			auto pos = Trans->GetPosition();
 			totalmove += movevalue;
 			if (totalmove <= 0.65f) {
 				Trans->SetPosition(pos.x - movevalue , pos.y, pos.z);
 			}
+
+			m_s += 1;
 		}
 
+		if (m_s == 1) {
+			App::GetApp()->GetScene<Scene>()->PlaySE(L"robot_work.wav", 0.2f);
+		}
 	}
 	int SwitchMoveBox::MoveBoxCheck(int a)
 	{
 		m_a = a;
 		return 0;
 	}
+
 
 	void GravityBox::OnCreate() {
 		auto ptrTransform = GetComponent<Transform>();
