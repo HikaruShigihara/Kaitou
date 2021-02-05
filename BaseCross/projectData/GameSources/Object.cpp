@@ -70,9 +70,9 @@ namespace basecross {
 		ptrTransform->SetPosition(m_Position);
 		//OBB衝突j判定を付ける
 		auto ptrColl = AddComponent<CollisionObb>();
-
 		ptrColl->SetFixed(false);
 
+		auto gra = AddComponent<Gravity>();
 		//タグをつける
 		AddTag(L"Goal");
 		//影をつける（シャドウマップを描画する）

@@ -17,7 +17,7 @@ namespace basecross{
 		ptrTrans->SetPosition(m_Position);
 
 		//衝突判定を付ける
-		auto ptrColl = AddComponent<CollisionObb>();
+		auto ptrColl = AddComponent<CollisionCapsule>();
 		//ptrColl->SetMakedHeight(3.0f);
 		//ptrColl->SetMakedSize(Vec3(2.0f, 5.0f, 2.0f));
 		ptrColl->SetAfterCollision(AfterCollision::Auto);
@@ -43,14 +43,14 @@ namespace basecross{
 			Vec3(0.3f, 0.2f, 0.3f),
 			Vec3(0.0f, 0.0f, 0.0f),
 			Vec3(0.0f, XM_PI, 0.0f),
-			Vec3(0.0f, -0.5f, 0.0f)
+			Vec3(0.0f, -0.8f, 0.0f)
 		);
 
 		//影をつける（シャドウマップを描画する）
 		auto ptrShadow = AddComponent<Shadowmap>();
 
 		//影の形（メッシュ）を設定
-		ptrShadow->SetMeshResource(L"player_Walk_Motion.bmf");
+		ptrShadow->SetMeshResource(L"Player_11.bmf");
 		ptrShadow->SetMeshToTransformMatrix(spanMat);
 
 
@@ -58,7 +58,7 @@ namespace basecross{
 		auto ptrDraw = AddComponent<BcPNTBoneModelDraw>();
 		ptrDraw->SetFogEnabled(true);
 		//描画するメッシュを設定
-		ptrDraw->SetMeshResource(L"player_Walk_Motion.bmf");
+		ptrDraw->SetMeshResource(L"Player_11.bmf");
 		ptrDraw->SetMeshToTransformMatrix(spanMat);
 		ptrDraw->SetDrawActive(true);
 
