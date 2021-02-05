@@ -425,15 +425,6 @@ namespace basecross {
 				m_cloud4
 				);
 
-				//AddGameObject<Clear>(
-				//	Vec2(137.0f, 64.0f),
-				//	Vec3(0.0f, 200.0f, 0.0f),
-				//	Vec3(3.0f),
-				//	10,
-				//	Col4(1.0f),
-				//	m_clear
-				//);
-
 	}
 	void GameStage::CreateMask() {
 		auto a = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
@@ -505,20 +496,11 @@ namespace basecross {
 	}
 
 	void GameStage::CreateEffect() {
-		Aura::InitParams params; // オーラエフェクトに渡すパラメータをまとめた構造体（BaseCrossはAddGameObjectの際、引数が分かりづらいのでまとめると良い）
-		//params.textureKey = L"aura.png";
-		//params.sides = 30;
-		//params.height = 1.0f;
-		//params.topRadius = 1.5f;
-		//params.bottomRadius = 1.0f;
-		//params.topColor = Col4(1.0f, 0.0f, 1.0f, 0.0f);
-		//params.bottomColor = Col4(1.0f, 0.0f, 1.0f, 1.0f);
-		//params.uvOffsetSpeed = Vec2(0.1f, 0.0f);
-		//params.textureLoops = 1.0f;
+		Aura::InitParams params;
 
 		auto goalpos = m_Goal->GetComponent<Transform>()->GetPosition();
 		goalpos = Vec3(0.0f, 0.4f, 0.0f);
-			// リスポーン地点的なエフェクト
+		// 宝箱の目印
 		auto respawnArea = AddGameObject<Aura>(Aura::InitParams(L"line.png", 30, 1.5f, 0.5f, 0.5f, Col4(1.0f, 1.0f, 1.0f, 0.0f), Col4(1.0f, 1.0f, 1.0f, 1.0f), Vec2(0.0f, 1.0f), 6.0f), m_Goal);
 		respawnArea->GetComponent<Transform>()->SetPosition(goalpos);
 
@@ -536,37 +518,26 @@ namespace basecross {
 			//XMLの読み込み
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test4.xml"));
 				break;
 			case 1:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage3.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
 				break;
 			case 2:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage4.xml"));
 				break;
 			case 3:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage15.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage11.xml"));
 				break;
 			case 4:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage16.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test10.xml"));
 				break;
 			case 5:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage11.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage15.xml"));
 				break;
 			case 6:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage12.xml"));
 				break;
-			case 7:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage13.xml"));
-				break;
-			case 8:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage14.xml"));
-				break;
-
-			case 9:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test10"));
-				break;
-
 			}
 			//ビューとライトの作成
 			CreateViewLight();

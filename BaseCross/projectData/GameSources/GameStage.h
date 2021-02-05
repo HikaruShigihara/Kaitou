@@ -69,8 +69,8 @@ namespace basecross {
 			m_clear(L"Clear.png"),
 			m_operation_UI1(L"Ten_Key.png"),
 			m_operation_UI2(L"Analog_Stick.png"),
-			//m_Star_UI1(L"Result_Star_Frame.png"),
-			m_Star_UI1(L"Result_Star_Flame.jpg"),
+			m_Star_UI1(L"Result_Star_Frame.png"),
+			//m_Star_UI1(L"Result_Star_Flame.jpg"),
 			m_Star_UI2(L"yello.png"),
 			m_Star_UI3(L"black.png"),
 

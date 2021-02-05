@@ -126,6 +126,24 @@ namespace basecross {
 				Col4(1.0f),
 				m_StageSelect_Stage04
 				);
+		m_Stage05 =
+			AddGameObject<StageSelect_UI>(
+				Vec2(1920.0f, 1080.0f),
+				Vec3(0.0f, 0.0f, 0.0f),
+				Vec3(0.75f),
+				-1,
+				Col4(1.0f),
+				m_StageSelect_Stage05
+				);
+		m_Stage06 =
+			AddGameObject<StageSelect_UI>(
+				Vec2(1920.0f, 1080.0f),
+				Vec3(0.0f, 0.0f, 0.0f),
+				Vec3(0.75f),
+				-1,
+				Col4(1.0f),
+				m_StageSelect_Stage06
+				);
 
 
 		m_StageArrowRight =
@@ -157,6 +175,8 @@ namespace basecross {
 		m_Stage02->SetDrawActive(false);
 		m_Stage03->SetDrawActive(false);
 		m_Stage04->SetDrawActive(false);
+		m_Stage05->SetDrawActive(false);
+		m_Stage06->SetDrawActive(false);
 
 
 	}
@@ -320,15 +340,34 @@ namespace basecross {
 			break;
 		case 4:
 			BoolCheck();
-			m_Stage04->SetDrawActive(true);
+			m_Stage05->SetDrawActive(true);
 			StarDisplay();
 			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
 				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
 				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
 				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
 			}
-
 			break;
+		case 5:
+			BoolCheck();
+			m_Stage06->SetDrawActive(true);
+			StarDisplay();
+			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+				App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
+				App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
+				App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+			}
+			break;
+		//case 6:
+		//	BoolCheck();
+		//	m_Stage04->SetDrawActive(true);
+		//	StarDisplay();
+		//	if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+		//		App::GetApp()->GetScene<Scene>()->PlaySE(L"decision.wav", 0.5f);
+		//		App::GetApp()->GetScene<Scene>()->SetSelectNumber(m_StageSelectNumber);
+		//		App::GetApp()->GetScene<Scene>()->SetGameStage(GameStageKey::game);
+		//	}
+		//	break;
 
 
 		}

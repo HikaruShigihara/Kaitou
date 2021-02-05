@@ -7,15 +7,15 @@ namespace basecross {
 	public :
 		struct InitParams
 		{
-			std::wstring textureKey; // テクスチャリソースのキー
-			int sides; // 円形の分割数
-			float height; // オーラの高さ
-			float topRadius; // 上部円の半径
-			float bottomRadius; // 下部円の半径
-			Col4 topColor; // 上部の色
-			Col4 bottomColor; // 下部の色
-			Vec2 uvOffsetSpeed; // UVアニメーションの秒速
-			float textureLoops; // テクスチャの「u座標」
+			std::wstring textureKey; //リソース
+			int sides; // 分割数
+			float height; // 高さ
+			float topRadius; // 上の半径
+			float bottomRadius; // 下の半径
+			Col4 topColor; // 上の色
+			Col4 bottomColor; // 下の色
+			Vec2 uvOffsetSpeed; // UVアニメーション
+			float textureLoops; // テクスチャU座標
 
 			InitParams(const wstring& textureKey, int sides, float height, float topRadius, float bottomRadius, const Col4& topColor, const Col4& bottomColor, const Vec2& speed, float textureLoops)
 				: textureKey(textureKey), sides(sides), height(height), topRadius(topRadius), bottomRadius(bottomRadius), topColor(topColor), bottomColor(bottomColor), uvOffsetSpeed(speed), textureLoops(textureLoops)
