@@ -53,6 +53,7 @@ namespace basecross {
 		void CreateMask();
 		//XMLのオブジェクトの作成
 		void CreateXmlObjects();
+		int m_Stargage[10] = { 288,288,288,288,288,288,288,288,288,288 };
 
 	public:
 		//構築と破棄
