@@ -41,6 +41,7 @@ namespace basecross {
 		wstring m_clear;
 		bool m_clearflag;
 		float m_position;
+		float m_time;
 		int m_number;
 		//ビューの作成
 		void CreateViewLight();
@@ -74,7 +75,7 @@ namespace basecross {
 			m_Star_UI2(L"yello.png"),
 			m_Star_UI3(L"black.png"),
 
-			m_text_UI1(L"Aボタンで開始"),
+			m_text_UI1(L"スタート！"),
 			m_text_UI2(L"歩数"),
 			m_text_UI_joken1_After(L"歩以内でクリア"),
 			m_text_UI_joken2_After(L"歩以内でクリア"),

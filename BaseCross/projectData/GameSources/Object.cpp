@@ -299,79 +299,75 @@ namespace basecross {
 	void ParentBox::MoveBox() {
 		auto KeyState = App::GetApp()->GetInputDevice().GetKeyState();
 		auto cntlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
-			m_start = true;
+		auto ptrTrans = GetComponent<Transform>();
+
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
+			m_Key = 0;
 		}
-		if (m_start) {
-			auto ptrTrans = GetComponent<Transform>();
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
+			m_Key = 1;
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
+			m_Key = 2;
+		}
+		if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_Y) {
+			m_Key = 3;
+		}
+		Quat spanQtZp(Vec3(0, 0, 1.0), m_RotSpan);
+		Quat spanQtZm(Vec3(0, 0, -1.0), m_RotSpan);
+		Quat spanQtXp(Vec3(1.0, 0, 0), m_RotSpan);
+		Quat spanQtXm(Vec3(-1.0, 0, 0), m_RotSpan);
 
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_B) {
-				m_Key = 0;
-			}
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_X) {
-				m_Key = 1;
-			}
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_A) {
-				m_Key = 2;
-			}
-			if (cntlVec[0].wPressedButtons & XINPUT_GAMEPAD_Y) {
-				m_Key = 3;
-			}
-			Quat spanQtZp(Vec3(0, 0, 1.0), m_RotSpan);
-			Quat spanQtZm(Vec3(0, 0, -1.0), m_RotSpan);
-			Quat spanQtXp(Vec3(1.0, 0, 0), m_RotSpan);
-			Quat spanQtXm(Vec3(-1.0, 0, 0), m_RotSpan);
+		switch (m_Key)
+		{
+		case 0://Bボタン
+			qt = ptrTrans->GetQuaternion();
+			qt *= spanQtZm;
+			ptrTrans->SetQuaternion(qt);
+			m_TotalRot += m_RotSpan;
+			if (m_TotalRot > (XM_PI / 2.0f)) {
 
-			switch (m_Key)
-			{
-			case 0://Bボタン
-				qt = ptrTrans->GetQuaternion();
-				qt *= spanQtZm;
-				ptrTrans->SetQuaternion(qt);
-				m_TotalRot += m_RotSpan;
-				if (m_TotalRot > (XM_PI / 2.0f)) {
+				m_TotalRot = 0.0f;
+				m_RotSpan = m_RotSpan;
+				m_Key = 99;
 
-					m_TotalRot = 0.0f;
-					m_RotSpan = m_RotSpan;
-					m_Key = 99;
-
-				}
-				break;
-			case 1://Xボタン
-				qt = ptrTrans->GetQuaternion();
-				qt *= spanQtZp;
-				ptrTrans->SetQuaternion(qt);
-				m_TotalRot += m_RotSpan;
-				if (m_TotalRot > (XM_PI / 2.0f)) {
-					m_TotalRot = 0.0f;
-					m_RotSpan = m_RotSpan;
-					m_Key = 99;
-				}
-				break;
-			case 2://Aボタン
-				qt = ptrTrans->GetQuaternion();
-				qt *= spanQtXm;
-				ptrTrans->SetQuaternion(qt);
-				m_TotalRot += m_RotSpan;
-				if (m_TotalRot > (XM_PI / 2.0f)) {
-					m_TotalRot = 0.0f;
-					m_RotSpan = m_RotSpan;
-					m_Key = 99;
-				}
-				break;
-			case 3://Yボタン
-				qt = ptrTrans->GetQuaternion();
-				qt *= spanQtXp;
-				ptrTrans->SetQuaternion(qt);
-
-				m_TotalRot += m_RotSpan;
-				if (m_TotalRot > (XM_PI / 2.0f)) {
-					m_TotalRot = 0.0f;
-					m_RotSpan = m_RotSpan;
-					m_Key = 99;
-				}
-				break;
 			}
+			break;
+		case 1://Xボタン
+			qt = ptrTrans->GetQuaternion();
+			qt *= spanQtZp;
+			ptrTrans->SetQuaternion(qt);
+			m_TotalRot += m_RotSpan;
+			if (m_TotalRot > (XM_PI / 2.0f)) {
+				m_TotalRot = 0.0f;
+				m_RotSpan = m_RotSpan;
+				m_Key = 99;
+			}
+			break;
+		case 2://Aボタン
+			qt = ptrTrans->GetQuaternion();
+			qt *= spanQtXm;
+			ptrTrans->SetQuaternion(qt);
+			m_TotalRot += m_RotSpan;
+			if (m_TotalRot > (XM_PI / 2.0f)) {
+				m_TotalRot = 0.0f;
+				m_RotSpan = m_RotSpan;
+				m_Key = 99;
+			}
+			break;
+		case 3://Yボタン
+			qt = ptrTrans->GetQuaternion();
+			qt *= spanQtXp;
+			ptrTrans->SetQuaternion(qt);
+
+			m_TotalRot += m_RotSpan;
+			if (m_TotalRot > (XM_PI / 2.0f)) {
+				m_TotalRot = 0.0f;
+				m_RotSpan = m_RotSpan;
+				m_Key = 99;
+			}
+			break;
+
 		}
 	}
 

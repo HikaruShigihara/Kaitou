@@ -468,10 +468,10 @@ namespace basecross {
 			);
 
 		m_text = AddGameObject<UI_Text>(
-			L"ƒƒCƒŠƒI",
+			L"HGP‘n‰pŠpÎß¯Ìß‘Ì",
 			100.0f,
-			Col4(1.0f, 1.0f, 1.0f, 1.0f),
-			Rect2D<float>(0.0f, 0.0f, 1920.0f, 500.0f),
+			Col4(0.0f, 0.0f, 0.0f, 1.0f),
+			Rect2D<float>(0.0f, 400.0f, 1920.0f, 500.0f),
 			StringSprite::TextAlignment::m_Center,
 			m_text_UI1,
 			5,
@@ -493,6 +493,7 @@ namespace basecross {
 		m_text_joken1->SetDrawActive(false);
 		m_text_joken2->SetDrawActive(false);
 		m_text_joken3->SetDrawActive(false);
+		m_mask->SetDrawActive(false);
 	}
 
 	void GameStage::CreateEffect() {
@@ -559,7 +560,13 @@ namespace basecross {
 	}
 
 	void GameStage::OnUpdate() {
+		auto elap = App::GetApp()->GetElapsedTime();
+		m_time += elap;
+		if (m_time > 2.0f) {
+			m_text->SetDrawActive(false);
+		}
 		auto cntVec = App::GetApp()->GetInputDevice().GetControlerVec();
+
 		if (cntVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
 			m_mask->SetDrawActive(false);
 			m_text->SetDrawActive(false);

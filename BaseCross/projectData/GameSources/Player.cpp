@@ -250,13 +250,9 @@ namespace basecross{
 
 	void Player::OnUpdate() {
 		auto cnlVec = App::GetApp()->GetInputDevice().GetControlerVec();
-		if (cnlVec[0].wPressedButtons & XINPUT_GAMEPAD_START) {
-			m_start = true;
-		}
-		if (m_start) {
-			PlayerMove();
 
-		}
+		PlayerMove();
+
 		auto ptrDraw = GetComponent<BcPNTBoneModelDraw>();
 		float elapsedTime = App::GetApp()->GetElapsedTime();
 		ptrDraw->UpdateAnimation(elapsedTime);		
