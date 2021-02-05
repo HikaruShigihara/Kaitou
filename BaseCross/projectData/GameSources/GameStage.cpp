@@ -537,13 +537,14 @@ namespace basecross {
 			//XMLの読み込み
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage16.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage2.xml"));
+
 				break;
 			case 1:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage16.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage3.xml"));
 				break;
 			case 2:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage3.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage4.xml"));
 				break;
 			case 3:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage15.xml"));
@@ -551,6 +552,23 @@ namespace basecross {
 			case 4:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage16.xml"));
 				break;
+			case 5:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage11.xml"));
+				break;
+			case 6:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage12.xml"));
+				break;
+			case 7:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage13.xml"));
+				break;
+			case 8:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage14.xml"));
+				break;
+
+			case 9:
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/test10"));
+				break;
+
 			}
 			//ビューとライトの作成
 			CreateViewLight();
