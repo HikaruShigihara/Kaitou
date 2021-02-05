@@ -264,7 +264,7 @@ namespace basecross {
 		}
 		AddGameObject<Operation_UI>(
 			Vec2(573.0f, 573.0f),
-			Vec3(-800.0f, -400.0f, 0.0f),
+			Vec3(-850.0f, -400.0f, 0.0f),
 			Vec3(0.25f),
 			0,
 			Col4(1.0f),
@@ -272,7 +272,7 @@ namespace basecross {
 			);
 		AddGameObject<Operation_UI>(
 			Vec2(573.0f, 573.0f),
-			Vec3(500.0f, -400.0f, 0.0f),
+			Vec3(600.0f, -400.0f, 0.0f),
 			Vec3(0.25f),
 			0,
 			Col4(1.0f),
@@ -294,7 +294,6 @@ namespace basecross {
 			0,//àÍî‘âú
 			Col4(1.0f),
 			m_Star_UI2
-
 			);
 		m_star_UI =AddGameObject<Operation_UI>(
 			Vec2(1049.0f, 317.0f),
@@ -310,7 +309,7 @@ namespace basecross {
 			L"HGPënâpäpŒﬂØÃﬂëÃ",
 			100.0f,
 			Col4(0.0f, 0.0f, 0.0f, 1.0f),
-			Rect2D<float>(-1200.0f, 910.0f, 1900.0f, 800.0f),
+			Rect2D<float>(-1300.0f, 910.0f, 1900.0f, 800.0f),
 			StringSprite::TextAlignment::m_Center,
 			L"à⁄ìÆ",
 			0,
@@ -320,7 +319,7 @@ namespace basecross {
 			L"HGPënâpäpŒﬂØÃﬂëÃ",
 			100.0f,
 			Col4(0.0f, 0.0f, 0.0f, 0.7f),
-			Rect2D<float>(1400.0f, 910.0f, 1900.0f, 800.0f),
+			Rect2D<float>(1600.0f, 910.0f, 1900.0f, 800.0f),
 			StringSprite::TextAlignment::m_Center,
 			L"ÉJÉÅÉâ",
 			0,
@@ -537,7 +536,7 @@ namespace basecross {
 			//XMLÇÃì«Ç›çûÇ›
 			switch (a) {
 			case 0:
-				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage16.xml"));
+				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage15.xml"));
 				break;
 			case 1:
 				m_XmlDocReader.reset(new XmlDocReader(DataDir + L"xml/Stage16.xml"));
