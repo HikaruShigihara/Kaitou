@@ -580,9 +580,13 @@ namespace basecross {
 			m_text_joken2->SetDrawActive(false);
 			m_text_joken3->SetDrawActive(false);
 		}
+		auto star = App::GetApp()->GetScene<Scene>()->GetSelectNumber();
 		auto pos=m_star_UI->GetComponent<Transform>()->GetPosition();
-		pos = Vec3(1150.0f -((1150.0f /288)*m_number), pos.y, pos.z);
-		m_star_UI->GetComponent<Transform>()->SetPosition(pos);
+		auto x = 1150.0f - ((1150.0f / m_Stargage[star])*m_number);
+		if (x >= 320) {
+			pos = Vec3(x, pos.y, pos.z);
+			m_star_UI->GetComponent<Transform>()->SetPosition(pos);
+		}
 	}
 
 	void GameStage::OnUpdate2() {
